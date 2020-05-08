@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>bl</Authors>
+    <Copyright>copy@2020 bl</Copyright>
+    <NeutralLanguage>zh</NeutralLanguage>
+    <Owners>bl</Owners>
+    <Title>standard dictionary for personal use</Title>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <PackageVersion>1.3.5</PackageVersion>
+    <Authors>bl(315297830@qq.com)</Authors>
+    <Copyright>copyright@2020 bl</Copyright>
+    <Owners>bl(315297830@qq.com)</Owners>
+    <PackageReleaseNotes>change to .NET Standard</PackageReleaseNotes>
+    <Summary>Sample mongodb connection helper</Summary>
+    <Title>Sample mongodb connection helper</Title>
+    <Description>A sample and single usefor MongoDB Driver Helper.Only rely MongoDB.Driver.Include function below:
+1.BaseDbContext.cs:
+package some usefor mongodb-to-C# mapping,like ObjectId&lt;=&gt;string,UTC&lt;=&gt;LocalTime,Enum&lt;=&gt;string,property name to camel field..etc
+2.NetCoreAppSetting.cs:
+for mapping mongodb standard along server or replicaSet servers connecting string in appsettings.json
+3.BsonDocumentExtends.cs: 
+extend method to BsonValue,for example: var bs={info:{gender:{k:'01',v:'Man'}}} . we can get "Man" through bs.GetValueByHierarchicalNames("info.gender.v")</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.10.3" />
+  </ItemGroup>
+</Project>

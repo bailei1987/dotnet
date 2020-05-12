@@ -80,6 +80,7 @@ namespace BL.WebApi.ResultProcess
                 writer.WriteNumberValue(value);
             }
         }
+
         public class IntNullConverter : JsonConverter<int?>
         {
             public override int? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -90,6 +91,24 @@ namespace BL.WebApi.ResultProcess
             public override void Write(Utf8JsonWriter writer, int? value, JsonSerializerOptions options)
             {
                 if (value != null) writer.WriteNumberValue(value.Value);
+                else writer.WriteNullValue();
+            }
+        }
+
+        public class BoolNullConverter : JsonConverter<bool?>
+        {
+            public override bool? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                if (reader.TokenType == JsonTokenType.True || reader.TokenType == JsonTokenType.False) return reader.GetBoolean();
+                else if (reader.TokenType == JsonTokenType.Null) return null;
+                else if (reader.TokenType == JsonTokenType.String) return bool.Parse(reader.GetString());
+                else if (reader.TokenType == JsonTokenType.Number) return reader.GetDouble() > 0 ? true : false;
+                else throw new NotImplementedException($"un processed tokentype {reader.TokenType}");
+            }
+
+            public override void Write(Utf8JsonWriter writer, bool? value, JsonSerializerOptions options)
+            {
+                if (value != null) writer.WriteBooleanValue(value.Value);
                 else writer.WriteNullValue();
             }
         }

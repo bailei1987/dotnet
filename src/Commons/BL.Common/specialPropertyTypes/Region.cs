@@ -192,7 +192,11 @@ namespace BL.Common
             }
         }
 
-
+        public string ReFillByCodes()
+        {
+            Names.Clear();
+            return FillByCodesOrNames(1);
+        }
 
         public bool IsIntegrated()
         {

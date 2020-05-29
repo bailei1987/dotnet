@@ -7,6 +7,8 @@
     <NeutralLanguage>zh</NeutralLanguage>
     <Owners>bl</Owners>
     <Title>standard dictionary for personal use</Title>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageVersion>1.0.1</PackageVersion>
   </PropertyGroup>
 
 </Project>

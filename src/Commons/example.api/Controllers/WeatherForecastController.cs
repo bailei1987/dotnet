@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using ExcelDataReader;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using models;
 using MongoDB.Driver;
@@ -38,5 +41,17 @@ namespace example.api.Controllers
         {
             return db.WeatherForecasts.Find(x => true).ToList();
         }
+
+        [HttpPost]
+        public List<Dictionary<string, object>> GetExcelDatas([FromForm] IFormFile file)
+        {
+            if (file == null) throw new Exception("未找到文件");
+
+            var list = GetDatas(file.OpenReadStream());
+            var extension = Path.GetExtension(file.FileName);
+            if (extension != ".xls" && extension != ".xlsx") throw new Exception("请选择正确的Excel文件");
+            return list;
+        }
+
     }
 }

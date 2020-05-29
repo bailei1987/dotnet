@@ -59,6 +59,10 @@ namespace BL.StandardDictionary
             return item?.V;
         }
 
+        public override string ToString()
+        {
+            return V;
+        }
 
     }
 }

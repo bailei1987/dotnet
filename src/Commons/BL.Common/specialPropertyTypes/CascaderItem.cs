@@ -9,7 +9,7 @@ namespace BL.Common
     {
         public string Value { get; set; }//一定得写value，
         public string Label { get; set; }//一定得写label
-        public List<CascaderItem> Children { get; set; }//一定得写children
+        public List<CascaderItem> Children { get; set; } = new List<CascaderItem>(); //一定得写children
         public bool? Loading { get; set; }
     }
 }

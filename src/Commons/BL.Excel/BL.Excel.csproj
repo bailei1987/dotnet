@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>bl(315297830@qq.com)</Authors>
+    <Description>get excel data to List&lt;Dictionary&lt;string,object&gt;&gt;</Description>
+    <Copyright>copyrite@bl</Copyright>
+    <Owners>bl</Owners>
+    <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+    <Summary>get excel data</Summary>
+    <Title>BL.Excel,depend on ExcelDataReader</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.1" />
+  </ItemGroup>
+</Project>

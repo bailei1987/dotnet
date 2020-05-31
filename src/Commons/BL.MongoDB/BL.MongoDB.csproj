@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>2.10.4</PackageVersion>
     <Authors>bl(315297830@qq.com)</Authors>
     <Copyright>copyright@2020 bl</Copyright>
     <Owners>bl(315297830@qq.com)</Owners>
-    <PackageReleaseNotes>change to .NET Standard</PackageReleaseNotes>
+    <PackageReleaseNotes>change to same version of MongoDB.Driver ^_^</PackageReleaseNotes>
     <Summary>Sample mongodb connection helper</Summary>
     <Title>Sample mongodb connection helper</Title>
     <Description>A sample and single usefor MongoDB Driver Helper.Only rely MongoDB.Driver.Include function below:
@@ -20,6 +20,6 @@ extend method to BsonValue,for example: var bs={info:{gender:{k:'01',v:'Man'}}} 
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.10.3" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
   </ItemGroup>
 </Project>

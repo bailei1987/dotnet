@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using ExcelDataReader;
 
@@ -40,7 +42,7 @@ namespace BL.Excel
                             {
                                 dic.Add(columns[i], reader.GetValue(i));
                             }
-                            list.Add(dic);
+                            if (dic.Values.Any(x => x != null && !string.IsNullOrWhiteSpace(Convert.ToString(x)))) list.Add(dic);
                         }
                         row++;
                     }

@@ -9,6 +9,10 @@
     <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
     <Summary>get excel data</Summary>
     <Title>BL.Excel,depend on ExcelDataReader</Title>
+    <PackageVersion>1.0.5</PackageVersion>
+    <PackageReleaseNotes>add empty row judge</PackageReleaseNotes>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <ReleaseVersion>1.0.4</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>

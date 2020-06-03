@@ -1,4 +1,5 @@
 using bl.filters;
+using BL.Dictionary;
 using BL.MongoDB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -58,6 +59,7 @@ namespace example.api
                     Description = ""
                 });
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,7 +75,6 @@ namespace example.api
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

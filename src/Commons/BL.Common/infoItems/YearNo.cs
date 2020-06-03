@@ -1,6 +1,6 @@
 ﻿namespace BL.Common
 {
-    public class YearNoStr:YearNo
+    public class YearNoStr : YearNo
     {
         /// <summary>
         /// 存储源值(常用于导入)
@@ -26,20 +26,20 @@
         }
         public YearNo GetYearNo()
         {
-            return new YearNo {  Year=Year,No=No};
+            return new YearNo { Year = Year, No = No };
         }
     }
-    public class YearNo:IValidate
+    public class YearNo : IIntegrate
     {
         public YearNo() { }
         public YearNo(int year, int no) { Year = year; No = no; }
         public int Year { get; set; }
         public int No { get; set; }
-        
+
         public override string ToString()
         {
-            return Year+No.ToString().PadLeft(2,'0');
-        }        
+            return Year + No.ToString().PadLeft(2, '0');
+        }
 
         public bool IsIntegrated()
         {

@@ -2,6 +2,6 @@
 {
     public interface IValidate
     {
-        bool IsIntegrated();
+        void Validate();
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BL.Common
+namespace BL.Regions
 {
-    public class Region : IFill
+    public class Region
     {
         public Region()
         {

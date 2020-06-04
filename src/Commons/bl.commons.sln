@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Dictionary.MongoDB", "BL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Regions", "BL.Regions\BL.Regions.csproj", "{134AD948-DEA1-4887-985E-F4F7468C5598}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Excel.API", "BL.Excel.API\BL.Excel.API.csproj", "{2E4C71B1-A5A4-4B8F-B1F5-185B0C0E78E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Regions.API", "BL.Regions.API\BL.Regions.API.csproj", "{D48592AF-2071-42CE-B18A-537B59E07EEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,5 +59,13 @@ Global
 		{134AD948-DEA1-4887-985E-F4F7468C5598}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{134AD948-DEA1-4887-985E-F4F7468C5598}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{134AD948-DEA1-4887-985E-F4F7468C5598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E4C71B1-A5A4-4B8F-B1F5-185B0C0E78E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E4C71B1-A5A4-4B8F-B1F5-185B0C0E78E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E4C71B1-A5A4-4B8F-B1F5-185B0C0E78E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E4C71B1-A5A4-4B8F-B1F5-185B0C0E78E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D48592AF-2071-42CE-B18A-537B59E07EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D48592AF-2071-42CE-B18A-537B59E07EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D48592AF-2071-42CE-B18A-537B59E07EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D48592AF-2071-42CE-B18A-537B59E07EEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

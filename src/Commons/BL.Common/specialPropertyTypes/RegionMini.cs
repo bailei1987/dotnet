@@ -2,8 +2,13 @@
 
 namespace BL.Common
 {
-    public struct RegionMini : IIntegrate
+    public class RegionMini : IIntegrate
     {
+        public RegionMini()
+        {
+            Codes = new List<string>();
+            Names = new List<string>();
+        }
         public List<string> Codes { get; set; }
         public List<string> Names { get; set; }
         public string Text
@@ -23,9 +28,9 @@ namespace BL.Common
         {
             return Codes.Count == 3 && Names.Count == 3;
         }
-        public bool IsEmpty()
+        public bool IsEmpty
         {
-            return Codes is null || Names is null || Codes.Count == 0 || Names.Count == 0;
+            get => Codes is null || Names is null || Codes.Count == 0 || Names.Count == 0;
         }
     }
 }

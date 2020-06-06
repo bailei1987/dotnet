@@ -10,5 +10,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.4.1" />
     <PackageReference Include="BL.Excel" Version="1.0.5" />
     <PackageReference Include="BL.MongoDB" Version="2.10.4" />
+    <PackageReference Include="BL.StandardDictionary.API" Version="1.0.5" />
   </ItemGroup>
 </Project>

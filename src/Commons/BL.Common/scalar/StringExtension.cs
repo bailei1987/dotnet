@@ -1,4 +1,4 @@
-﻿namespace BL.Common.Scalar
+﻿namespace BL.Common
 {
     public static class StringExtension
     {

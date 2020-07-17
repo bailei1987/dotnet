@@ -30,11 +30,18 @@ namespace BL.StandardDictionary
 
 
         public void FillByV() { FillByV(AllOption()); }
+        public void FillByK() { FillByK(AllOption()); }
         protected void FillByV(DicItem[] options)
         {
             if (string.IsNullOrWhiteSpace(V)) return;
             var option = options.FirstOrDefault(x => x.V == V);
             if (option != null) K = option.K;
+        }
+        protected void FillByK(DicItem[] options)
+        {
+            if (string.IsNullOrWhiteSpace(K)) return;
+            var option = options.FirstOrDefault(x => x.K == K);
+            if (option != null) V = option.V;
         }
         public string Fill(object sourceValue)
         {

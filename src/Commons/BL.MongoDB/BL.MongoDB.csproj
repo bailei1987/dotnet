@@ -2,11 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <PackageVersion>2.10.4</PackageVersion>
+    <PackageVersion>3.0.2</PackageVersion>
     <Authors>bl(315297830@qq.com)</Authors>
     <Copyright>copyright@2020 bl</Copyright>
     <Owners>bl(315297830@qq.com)</Owners>
-    <PackageReleaseNotes>change to same version of MongoDB.Driver ^_^</PackageReleaseNotes>
+    <PackageReleaseNotes>1.now can use connectionString to create DbContext Instance by using static method(which in BaseDbContext):CreateInstance&lt;T&gt;(string connectionString,string db=null) where T:BaseDbContext
+2.now allow none authentication(user name and pwd) setting
+3.if use CreateInstance&lt;T&gt; method,your DbContext must have the empty constructor</PackageReleaseNotes>
     <Summary>Sample mongodb connection helper</Summary>
     <Title>Sample mongodb connection helper</Title>
     <Description>A sample and single usefor MongoDB Driver Helper.Only rely MongoDB.Driver.Include function below:

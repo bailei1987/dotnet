@@ -9,9 +9,9 @@
         {
             return new[]{
                  new DicItem("1","男"),
-                 new DicItem("2","女")
+                 new DicItem("0","女")
             };
-            
+
         }
     }
 }

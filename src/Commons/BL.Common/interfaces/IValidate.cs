@@ -1,7 +1,9 @@
-﻿namespace BL.Common
+﻿using System.Collections.Generic;
+
+namespace BL.Common
 {
     public interface IValidate
     {
-        void Validate();
+        string Validate();
     }
 }

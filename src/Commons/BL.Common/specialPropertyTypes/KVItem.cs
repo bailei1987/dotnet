@@ -15,6 +15,17 @@
         {
             return string.IsNullOrEmpty(K) == false && string.IsNullOrEmpty(V) == false;
         }
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (obj is KVItem objKV && objKV.K == K && objKV.V == V) return true;
+            else return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
     public class KVItem<T>
     {

@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <PackageVersion>1.6.3</PackageVersion>
+    <PackageVersion>2.0.4</PackageVersion>
     <Authors>bl</Authors>
     <Description>some base class for convenience</Description>
     <Copyright>copyright@2020 </Copyright>
     <Owners>bl</Owners>
     <Title>some basic classes</Title>
     <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-    <PackageReleaseNotes>remove SystemDictionary to BL.SystemDictionary.API. </PackageReleaseNotes>
+    <PackageReleaseNotes>override Equals(object obj) of KVItem,when K and V all equal,then true</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

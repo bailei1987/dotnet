@@ -197,6 +197,12 @@ namespace BL.Regions
             Names.Clear();
             return FillByCodesOrNames(1);
         }
+        public string ReFillByNames()
+        {
+            Codes.Clear();
+            return FillByCodesOrNames(2);
+        }
+
 
         public bool IsIntegrated()
         {

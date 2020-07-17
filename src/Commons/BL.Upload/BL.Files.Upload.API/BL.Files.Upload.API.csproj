@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PackageVersion>1.1.2</PackageVersion>
+        <PackageReleaseNotes>change filename create logic</PackageReleaseNotes>
+        <AssemblyName>BL.Files.Upload.API</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    </ItemGroup>
+    <PropertyGroup>
+        <Authors>bl(315297830@qq.com)</Authors>
+        <Copyright>copyright@2020 bl</Copyright>
+        <Owners>bl(315297830@qq.com)</Owners>
+        <Summary>upload image or file,store uploads info in mongodb</Summary>
+        <Title>upload file api</Title>
+        <Description>you can directly use this package's Api Upload to post a file</Description>
+        <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+    </PropertyGroup>
+</Project>

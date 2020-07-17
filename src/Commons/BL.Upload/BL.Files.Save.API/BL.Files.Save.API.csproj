@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PackageVersion>1.0.8</PackageVersion>
+        <PackageReleaseNotes>init</PackageReleaseNotes>
+        <AssemblyName>BL.Files.Save.API</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    <PropertyGroup>
+        <Authors>bl(315297830@qq.com)</Authors>
+        <Copyright>copyright@2020 bl</Copyright>
+        <Owners>bl(315297830@qq.com)</Owners>
+        <Summary>save file in api self wwwroot</Summary>
+        <Title>save file in api self wwwroot</Title>
+        <Description>save byte[],base64String of image and etc.. to file inner api</Description>
+        <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+    </PropertyGroup>
+</Project>

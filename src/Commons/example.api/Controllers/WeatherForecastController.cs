@@ -27,15 +27,8 @@ namespace example.api.Controllers
         [HttpGet("Test")]
         public string Test()
         {
-            WeatherForecast dto = new WeatherForecast
-            {
-                Id = "haha",
-                Date = DateTime.Now,
-                Summary = "test",
-                TemperatureC = 10
-            };
-            db.WeatherForecasts.InsertOne(dto);
-            return dto.Id;
+
+            return null;
         }
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()

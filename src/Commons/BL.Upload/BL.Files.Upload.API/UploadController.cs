@@ -52,8 +52,9 @@ namespace BL.Files.Upload.API.Controllers
                 };
             }
             //==生成设置
-            var requestUrl = Request.GetDisplayUrl();
-            requestUrl = requestUrl.Substring(0, requestUrl.LastIndexOf("/Upload"));
+            var requestUrl = $"{Request.Scheme}://{Request.Host}";
+            //var requestUrl = Request.GetDisplayUrl();
+            //requestUrl = requestUrl.Substring(0, requestUrl.LastIndexOf("/Upload"));
             UploadSettings settings = new UploadSettings()
             {
                 //UriPath = Request.GetDisplayUrl().Replace("http:", "https:").Replace("File", "")                
@@ -62,27 +63,33 @@ namespace BL.Files.Upload.API.Controllers
             switch (dto.UploadType)
             {
                 case UploadType.SingleImage:
-                    settings.UploadParam = new ImageUploadParam
+                    var pam1 = new ImageUploadParam
                     {
                         UploadType = dto.UploadType,
-                        ImageCompressSettings = dto.Compresses,
                         UploadFiles = dto.File.Select(x => new UploadFileInfo() { FileName = x.FileName, Length = x.Length, Extension = Path.GetExtension(x.FileName), FileStream = x.OpenReadStream() }),
                         Directory = !string.IsNullOrEmpty(dto.Directory) ? dto.Directory : dto.BusinessType,
                         DeleteFiles = uploads.GetFiles()
                     };
+
+                    if (dto.CompressesJSON != null) pam1.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
+                    settings.UploadParam = pam1;
                     uploads.ClearFiles();
                     break;
                 case UploadType.MutipleImage:
-                    settings.UploadParam = new ImageUploadParam
+                    var pam2 = new ImageUploadParam
                     {
                         UploadType = dto.UploadType,
-                        ImageCompressSettings = dto.Compresses,
                         UploadFiles = dto.File.Select(x => new UploadFileInfo() { FileName = x.FileName, Length = x.Length, Extension = Path.GetExtension(x.FileName), FileStream = x.OpenReadStream() }),
                         Directory = !string.IsNullOrEmpty(dto.Directory) ? dto.Directory : dto.BusinessType,
                     };
-                    if (dto.DeleteFilesJSON != null) settings.UploadParam.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON);
-                    //if (dto.DeleteFilesJSON != null) settings.UploadParam.DeleteFiles = JsonConvert.DeserializeObject<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON);
-                    if (settings.UploadParam.DeleteFiles != null) uploads.RemoveFiles(settings.UploadParam.DeleteFiles);
+                    settings.UploadParam = pam2;
+
+                    if (dto.CompressesJSON != null) pam2.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
+                    if (dto.DeleteFilesJSON != null) pam2.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
+                    if (pam2.DeleteFiles != null) uploads.RemoveFiles(settings.UploadParam.DeleteFiles);
                     break;
                 case UploadType.Files:
                     settings.UploadParam = new UploadParam
@@ -91,11 +98,9 @@ namespace BL.Files.Upload.API.Controllers
                         UploadFiles = dto.File.Select(x => new UploadFileInfo() { FileName = x.FileName, Length = x.Length, Extension = Path.GetExtension(x.FileName), FileStream = x.OpenReadStream() }),
                         Directory = !string.IsNullOrEmpty(dto.Directory) ? dto.Directory : dto.BusinessType
                     };
-                    if (dto.DeleteFilesJSON != null)
-                    {
-                        settings.UploadParam.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON);
-                    }
-                    //if (dto.DeleteFilesJSON != null) settings.UploadParam.DeleteFiles = JsonConvert.DeserializeObject<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON);
+
+                    if (dto.DeleteFilesJSON != null) settings.UploadParam.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
                     if (settings.UploadParam.DeleteFiles != null) uploads.RemoveFiles(settings.UploadParam.DeleteFiles);
                     break;
             }
@@ -242,7 +247,7 @@ namespace BL.Files.Upload.API.Controllers
         /// <summary>
         /// 压缩配置,上传图片(单或多)时有效
         /// </summary>
-        public IEnumerable<ImageCompressSetting> Compresses { get; set; }
+        public string CompressesJSON { get; set; }
         /// <summary>
         /// 要删除的文件,上传文件或多图片上传时有效
         /// </summary>

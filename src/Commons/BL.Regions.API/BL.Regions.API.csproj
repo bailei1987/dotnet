@@ -2,12 +2,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <PackageVersion>1.0.1</PackageVersion>
+        <PackageVersion>1.0.3</PackageVersion>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="BL.Regions" Version="1.0.1" />
+      <PackageReference Include="BL.Regions" Version="1.0.3" />
     </ItemGroup>
 </Project>

@@ -9,34 +9,18 @@ using System.Linq;
 
 namespace BL.IdentityServer.Community
 {
-    public class LoginUser
+    public static class LoginUserExtension
     {
-        public string Rid { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string School { get; set; }
-        public string Tag1 { get; set; }
-
-        public OperatorItem ToOperator()
-        {
-            return new OperatorItem
-            {
-                Name = Name,
-                Rid = Rid,
-                Time = DateTime.Now
-            };
-        }
-        public Dictionary<string, string> GetTokenRequestParamsDictionary()
+        public static Dictionary<string, string> GetTokenRequestParamsDictionary(this LoginUser user)
         {
             return new Dictionary<string, string> {
-                { "user_rid",Rid },
-                { "user_name",Name },
-                { "user_type",Type },
-                { "user_school",School },
-                 { "user_tag1",Tag1 },
+                { "user_rid",user.Rid },
+                { "user_name",user.Name },
+                { "user_type",user.Type },
+                { "user_school",user.School },
+                 { "user_tag1",user.Tag1 },
             };
         }
-
     }
     public static class ICollectionClaimExtension
     {
@@ -66,9 +50,9 @@ namespace BL.IdentityServer.Community
             {
                 Name = c_name.Value,
                 Rid = c_rid.Value,
-                Type = c_type.Value,
-                School = c_school.Value,
-                Tag1 = c_tag1.Value
+                Type = string.IsNullOrWhiteSpace(c_type.Value) ? null : c_type.Value,
+                School = string.IsNullOrWhiteSpace(c_school.Value) ? null : c_school.Value,
+                Tag1 = string.IsNullOrWhiteSpace(c_tag1.Value) ? null : c_tag1.Value,
             };
         }
     }

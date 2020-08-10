@@ -21,7 +21,6 @@ namespace BL.Files.Upload.API
         /// <param name="collection">upload collection</param>
         public static IServiceCollection AddUpload(this IServiceCollection services, IMongoDatabase db, string collection)
         {
-
             if (db is null || string.IsNullOrWhiteSpace(collection)) throw new Exception("uploads cant be null");
             services.AddSingleton(db.GetCollection<Uploads>(collection));
             services.Configure<FormOptions>(options =>

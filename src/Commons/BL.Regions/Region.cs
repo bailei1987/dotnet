@@ -191,15 +191,21 @@ namespace BL.Regions
                 Names = region.Names;
             }
         }
+        public void ReFillByLongName()
+        {
+            Codes?.Clear();
+            Names?.Clear();
+            FillByLongName();
+        }
 
         public string ReFillByCodes()
         {
-            Names.Clear();
+            Names?.Clear();
             return FillByCodesOrNames(1);
         }
         public string ReFillByNames()
         {
-            Codes.Clear();
+            Codes?.Clear();
             return FillByCodesOrNames(2);
         }
 

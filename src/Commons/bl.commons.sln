@@ -1,45 +1,50 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "example.api", "example.api\example.api.csproj", "{D5302D17-3EE0-4416-8499-8511A3987ED8}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "example.api", "example.api\example.api.csproj", "{D5302D17-3EE0-4416-8499-8511A3987ED8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.WebApi.ResultProcess", "BL.WebApi.ResultProcess\BL.WebApi.ResultProcess.csproj", "{E7CE5974-5CB6-44B0-A291-E90159E74424}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.WebApi.ResultProcess", "BL.WebApi.ResultProcess\BL.WebApi.ResultProcess.csproj", "{E7CE5974-5CB6-44B0-A291-E90159E74424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Common", "BL.Common\BL.Common.csproj", "{DA773518-F41E-46BC-8757-4A88049AB011}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Common", "BL.Common\BL.Common.csproj", "{DA773518-F41E-46BC-8757-4A88049AB011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.MongoDB", "BL.MongoDB\BL.MongoDB.csproj", "{91A87DD8-0303-4E59-9ACA-D14C0ADD0581}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.MongoDB", "BL.MongoDB\BL.MongoDB.csproj", "{91A87DD8-0303-4E59-9ACA-D14C0ADD0581}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.StandardDictionary", "BL.StandardDictionary\BL.StandardDictionary.csproj", "{B5AC8F7A-E8C8-46EA-BF40-26AED989EBB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.StandardDictionary", "BL.StandardDictionary\BL.StandardDictionary.csproj", "{B5AC8F7A-E8C8-46EA-BF40-26AED989EBB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Excel", "BL.Excel\BL.Excel.csproj", "{2935EEFF-429C-408F-BBB5-5CFD740F23DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Excel", "BL.Excel\BL.Excel.csproj", "{2935EEFF-429C-408F-BBB5-5CFD740F23DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Regions", "BL.Regions\BL.Regions.csproj", "{134AD948-DEA1-4887-985E-F4F7468C5598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Regions", "BL.Regions\BL.Regions.csproj", "{134AD948-DEA1-4887-985E-F4F7468C5598}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Excel.API", "BL.Excel.API\BL.Excel.API.csproj", "{2E4C71B1-A5A4-4B8F-B1F5-185B0C0E78E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Excel.API", "BL.Excel.API\BL.Excel.API.csproj", "{2E4C71B1-A5A4-4B8F-B1F5-185B0C0E78E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Regions.API", "BL.Regions.API\BL.Regions.API.csproj", "{D48592AF-2071-42CE-B18A-537B59E07EEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Regions.API", "BL.Regions.API\BL.Regions.API.csproj", "{D48592AF-2071-42CE-B18A-537B59E07EEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Dto", "BL.Dto\BL.Dto.csproj", "{083700FA-4C33-4C98-BE8A-890BDB49DCEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.StandardDictionary.API", "BL.StandardDictionary.API\BL.StandardDictionary.API.csproj", "{2AF5E1AC-FE1C-43D0-9FE4-485D650C86B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.StandardDictionary.API", "BL.StandardDictionary.API\BL.StandardDictionary.API.csproj", "{2AF5E1AC-FE1C-43D0-9FE4-485D650C86B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.SystemDictionary.API", "BL.SystemDictionary.API\BL.SystemDictionary.API.csproj", "{2ADA5651-C51D-4881-BC45-601A6C80C068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.SystemDictionary.API", "BL.SystemDictionary.API\BL.SystemDictionary.API.csproj", "{2ADA5651-C51D-4881-BC45-601A6C80C068}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Dictionary.API", "BL.Dictionary.API\BL.Dictionary.API.csproj", "{65590DC8-0380-4E2D-94CC-03CACFF4468A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Dictionary.API", "BL.Dictionary.API\BL.Dictionary.API.csproj", "{65590DC8-0380-4E2D-94CC-03CACFF4468A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BL.Upload", "BL.Upload", "{EE02F4EA-A874-4BF5-85A9-CE8C50CC6A6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Files", "BL.Upload\BL.Files\BL.Files.csproj", "{CEFE3C6B-03B3-4705-AE1A-73884E69AFCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Files", "BL.Upload\BL.Files\BL.Files.csproj", "{CEFE3C6B-03B3-4705-AE1A-73884E69AFCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Files.Upload", "BL.Upload\BL.Files.Upload\BL.Files.Upload.csproj", "{83079A6A-1A38-491A-BE69-44ED7DFC4B0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Files.Upload", "BL.Upload\BL.Files.Upload\BL.Files.Upload.csproj", "{83079A6A-1A38-491A-BE69-44ED7DFC4B0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.IdentityServer.Community", "BL.IdentityServer.Community\BL.IdentityServer.Community.csproj", "{455F19C6-ECF4-420B-BB00-423BF1A14F57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.IdentityServer.Community", "BL.IdentityServer.Community\BL.IdentityServer.Community.csproj", "{455F19C6-ECF4-420B-BB00-423BF1A14F57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.MongoDB.Gen", "BL.MongoDB.Gen\BL.MongoDB.Gen.csproj", "{A3C22C71-2EDF-4914-AD46-B1C1A9DDBE35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.MongoDB.Gen", "BL.MongoDB.Gen\BL.MongoDB.Gen.csproj", "{A3C22C71-2EDF-4914-AD46-B1C1A9DDBE35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Files.Save.API", "BL.Upload\BL.Files.Save.API\BL.Files.Save.API.csproj", "{7D88CB67-8F4D-48C3-BA09-8034DE53A962}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Files.Save.API", "BL.Upload\BL.Files.Save.API\BL.Files.Save.API.csproj", "{7D88CB67-8F4D-48C3-BA09-8034DE53A962}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Files.Upload.API", "BL.Upload\BL.Files.Upload.API\BL.Files.Upload.API.csproj", "{DBFAFCB2-D920-406D-B929-43FE54298A92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Files.Upload.API", "BL.Upload\BL.Files.Upload.API\BL.Files.Upload.API.csproj", "{DBFAFCB2-D920-406D-B929-43FE54298A92}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Dto", "BL.Dto\BL.Dto.csproj", "{552A5E21-3B67-4625-9B0B-07E0B7E6812F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.StandardDictionary.Extension", "BL.StandardDictionary.Extension\BL.StandardDictionary.Extension.csproj", "{95A1BC65-6545-43C3-B1D5-10FF556A262D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Files.Save", "BL.Upload\BL.Files.Save\BL.Files.Save.csproj", "{B4EA17BB-ACCD-4886-9935-DE929834C55E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,10 +88,6 @@ Global
 		{D48592AF-2071-42CE-B18A-537B59E07EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D48592AF-2071-42CE-B18A-537B59E07EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D48592AF-2071-42CE-B18A-537B59E07EEF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{083700FA-4C33-4C98-BE8A-890BDB49DCEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{083700FA-4C33-4C98-BE8A-890BDB49DCEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{083700FA-4C33-4C98-BE8A-890BDB49DCEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{083700FA-4C33-4C98-BE8A-890BDB49DCEF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2AF5E1AC-FE1C-43D0-9FE4-485D650C86B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2AF5E1AC-FE1C-43D0-9FE4-485D650C86B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AF5E1AC-FE1C-43D0-9FE4-485D650C86B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -123,11 +124,30 @@ Global
 		{DBFAFCB2-D920-406D-B929-43FE54298A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBFAFCB2-D920-406D-B929-43FE54298A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBFAFCB2-D920-406D-B929-43FE54298A92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552A5E21-3B67-4625-9B0B-07E0B7E6812F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552A5E21-3B67-4625-9B0B-07E0B7E6812F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552A5E21-3B67-4625-9B0B-07E0B7E6812F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552A5E21-3B67-4625-9B0B-07E0B7E6812F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95A1BC65-6545-43C3-B1D5-10FF556A262D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95A1BC65-6545-43C3-B1D5-10FF556A262D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95A1BC65-6545-43C3-B1D5-10FF556A262D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95A1BC65-6545-43C3-B1D5-10FF556A262D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4EA17BB-ACCD-4886-9935-DE929834C55E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4EA17BB-ACCD-4886-9935-DE929834C55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4EA17BB-ACCD-4886-9935-DE929834C55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4EA17BB-ACCD-4886-9935-DE929834C55E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CEFE3C6B-03B3-4705-AE1A-73884E69AFCF} = {EE02F4EA-A874-4BF5-85A9-CE8C50CC6A6F}
 		{83079A6A-1A38-491A-BE69-44ED7DFC4B0F} = {EE02F4EA-A874-4BF5-85A9-CE8C50CC6A6F}
 		{7D88CB67-8F4D-48C3-BA09-8034DE53A962} = {EE02F4EA-A874-4BF5-85A9-CE8C50CC6A6F}
 		{DBFAFCB2-D920-406D-B929-43FE54298A92} = {EE02F4EA-A874-4BF5-85A9-CE8C50CC6A6F}
+		{B4EA17BB-ACCD-4886-9935-DE929834C55E} = {EE02F4EA-A874-4BF5-85A9-CE8C50CC6A6F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1CD7B59-9DA1-485F-B7A9-F96EB639D156}
 	EndGlobalSection
 EndGlobal

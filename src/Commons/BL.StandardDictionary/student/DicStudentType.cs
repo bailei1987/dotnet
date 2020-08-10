@@ -1,7 +1,7 @@
 ﻿namespace BL.StandardDictionary
 {
     /// <summary>
-    /// 学生类别(JYT1001-XSLB仅取了部分)
+    /// 学生类别(JYT1001-XSLB仅取了部分),毕业类别
     /// </summary>
     public class DicStudentType : DicItem
     {

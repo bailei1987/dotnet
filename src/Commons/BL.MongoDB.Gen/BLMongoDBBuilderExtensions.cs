@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace BL.MongoDB
 {
-
     public static class BLMongoDBServiceCollectionExtensions
     {
         /// <summary>
@@ -26,6 +25,24 @@ namespace BL.MongoDB
             var db = BaseDbContext.CreateInstance<T>(connectionString);
             db.BuildTransactCollections();
             services.AddSingleton(db);
+            return db;
+        }
+
+        public static T AddBLMongoDbSet<T>(this IServiceCollection services, IConfiguration configuration, Action<ConventionPackOptions> conventionPackOptionsAction = null) where T : BaseDbContext, IDbSet
+        {
+            var tipHead = "BL.MongoDB.Gen.AddBLDbSet";
+            var connectionString = configuration["CONNECTIONSTRINGS_MONGO"];
+            if (string.IsNullOrWhiteSpace(connectionString) == false) Console.WriteLine($"[{tipHead}]:get [CONNECTIONSTRINGS_MONGO] setting value [{connectionString}] from env,used ");
+            else
+            {
+                connectionString = configuration.GetConnectionString("Mongo");
+                Console.WriteLine($"[{tipHead}]:get ConnectionStrings.Mongo in appsettings.json");
+            }
+            if (string.IsNullOrWhiteSpace(connectionString)) throw new Exception($"[{tipHead}]:no [CONNECTIONSTRINGS_MONGO] setting in env and ConnectionStrings.Mongo in appsettings.json");
+            BaseDbContext.RegistConventionPack(conventionPackOptionsAction);
+            var db = BaseDbContext.CreateInstance<T>(connectionString);
+            db.BuildTransactCollections();
+            services.AddSingleton(typeof(IDbSet),db);
             return db;
         }
     }

@@ -6,6 +6,7 @@
     public class UploadImageInfo
     {
         public string Url { get; set; }
+        public string CompressUrl { get; set; }
         public string UploadId { get; set; }
         public FileItem File { get; set; }
 

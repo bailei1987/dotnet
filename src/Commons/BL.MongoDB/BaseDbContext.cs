@@ -9,8 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace BL.Test
-{ }
 namespace BL.MongoDB
 {
 

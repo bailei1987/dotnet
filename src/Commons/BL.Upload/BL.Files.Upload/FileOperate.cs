@@ -23,8 +23,8 @@ namespace BL.Files.Upload
 
         protected void CreatePaths()
         {
-            string a = Path.GetTempPath();
-            string split = Path.DirectorySeparatorChar.ToString();
+            _ = Path.GetTempPath();
+            _ = Path.DirectorySeparatorChar.ToString();
             if (UploadSettings.UploadParam.HasDateDirecotry)
             {
                 SavePath = Path.Combine(Path.DirectorySeparatorChar.ToString(), UploadSettings.RootFloder, UploadSettings.UploadParam.Directory, DateTime.Now.ToString("yyyyMMdd"), Guid.NewGuid().ToString());

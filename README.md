@@ -18,6 +18,26 @@ Getting Started
 * Example.Infrasetructure  : .NET Standard 2.1 dll
 * Example.Domain : .NET Standard 2.1 dll
 
+### Configure mongodb connection string use one of these two
+
+* 1. configure in appsettings.json
+```json
+ConnectionStrings:{
+    "Mongo":"mongodb://uname:pwd@127.0.0.1:27017/yourdb?authSource=admin&serverSelectionTimeoutMS=1000"
+}
+```
+* 2. set in docker env,like docker-compose.yml
+```docker-compose
+ example_api:
+     environment:
+       - TZ=Asia/Shanghai
+       - CONNECTIONSTRINGS_MONGO=mongodb://uname:pwd@127.0.0.1:27017/yourdb?authSource=admin&serverSelectionTimeoutMS=1000
+       - ASPNETCORE_ENVIRONMENT=Development
+       - ASPNETCORE_URLS=http://+:80
+     ports:
+       - 10002:80
+```
+
 ### Install Package use Nuget Package Manager
 
 * packages:

@@ -2,27 +2,27 @@
 =================
 
 A sample useful MongoDB Driver Helper.Only rely MongoDB.Driver.Include function below:
-	1.BaseDbContext.cs:you can create your DbContext inherit BaseDbContext
-	  package some useful mongodb-to-C# mapping,like ObjectId&lt;=&gt;string,UTC&lt;=&gt;LocalTime,Enum&lt;=&gt;string,property name to camel field..etc
-	2.can get ConnetionString from env "CONNECTIONSTRINGS_MONGO" in docker container or "ConnectionStrings.Mongo" in appsettings.json:
-	3.BsonDocumentExtends.cs:
-		extend method to BsonValue,for example: var bs={info:{gender:{k:'01',v:'Man'}}} . we can get "Man" through bs.GetValueByHierarchicalNames("info.gender.v")
-	4.you can simply using BL.MongoDB.Gen's AddBLMongoDbContext method in ConfigureServices(startup.cs) to create your DbContext
+* 1.BaseDbContext.cs:you can create your DbContext inherit BaseDbContext
+*    package some useful mongodb-to-C# mapping,like ObjectId&lt;=&gt;string,UTC&lt;=&gt;LocalTime,Enum&lt;=&gt;string,property name to camel field..etc
+* 2.can get ConnetionString from env "CONNECTIONSTRINGS_MONGO" in docker container or "ConnectionStrings.Mongo" in appsettings.json:
+* 3.BsonDocumentExtends.cs:
+*    extend method to BsonValue,for example: var bs={info:{gender:{k:'01',v:'Man'}}} . we can get "Man" through bs.GetValueByHierarchicalNames("info.gender.v")
+* 4.you can simply using BL.MongoDB.Gen's AddBLMongoDbContext method in ConfigureServices(startup.cs) to create your DbContext
 
 
 Getting Started
 ---------------
 ### consider your solution structure as follow
 
-Example.API : .NET Core 3.1 Web Api
-Example.Infrasetructure  : .NET Standard 2.1 dll
-Example.Domain : .NET Standard 2.1 dll
+* Example.API : .NET Core 3.1 Web Api
+* Example.Infrasetructure  : .NET Standard 2.1 dll
+* Example.Domain : .NET Standard 2.1 dll
 
 ### Install Package use Nuget Package Manager
 
-packages:
-  BL.MongoDB  : install on Example.Infrasetructure
-  BL.MongoDB.Gen  : install on Example.API
+* packages:
+*   BL.MongoDB  : install on Example.Infrasetructure
+*  BL.MongoDB.Gen  : install on Example.API
 
 ### Create your Model in Example.Domain
 

@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <PackageVersion>2.1.8</PackageVersion>
-    <Authors>bl</Authors>
-    <Description>some base class for convenience</Description>
-    <Copyright>copyright@2020 </Copyright>
-    <Owners>bl</Owners>
-    <Title>some basic classes</Title>
-    <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-    <PackageReleaseNotes>add Import related class,like ImportResultT and ImportDateItem.</PackageReleaseNotes>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<PackageVersion>2.1.21</PackageVersion>
+		<Version>2.1.21</Version>
+		<Authors>bl</Authors>
+		<Description>some base class for convenience</Description>
+		<Copyright>copyright@2020 </Copyright>
+		<Owners>bl</Owners>
+		<Title>some basic classes</Title>
+		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+		<PackageReleaseNotes>update IMapClass and IMapClassFrom</PackageReleaseNotes>
+	</PropertyGroup>
 
 </Project>

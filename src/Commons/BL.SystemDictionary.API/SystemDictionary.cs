@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BL.SystemDictionary
 {
@@ -33,6 +34,11 @@ namespace BL.SystemDictionary
                 if (dics.TryGetValue(type, out List<SystemDictionaryKV> value)) res.Add(type, value);
             }
             return res;
+        }
+        public static SystemDictionaryKV GetItemByV(string type,string v)
+        {
+            if (dics.ContainsKey(type) == false) throw new KeyNotFoundException($"type [{type}] is not correct");
+            return dics[type].Find(x=>x.V==v)??throw new Exception($"can not find item by v [{v}] in {type}'s items");
         }
     }
 }

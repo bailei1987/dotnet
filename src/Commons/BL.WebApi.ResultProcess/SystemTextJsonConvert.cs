@@ -95,6 +95,22 @@ namespace BL.WebApi.ResultProcess
             }
         }
 
+        public class BoolConverter : JsonConverter<bool>
+        {
+            public override bool Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                if (reader.TokenType == JsonTokenType.True || reader.TokenType == JsonTokenType.False) return reader.GetBoolean();
+                else if (reader.TokenType == JsonTokenType.String) return bool.Parse(reader.GetString());
+                else if (reader.TokenType == JsonTokenType.Number) return reader.GetDouble() > 0 ? true : false;
+                else throw new NotImplementedException($"un processed tokentype {reader.TokenType}");
+            }
+
+            public override void Write(Utf8JsonWriter writer, bool value, JsonSerializerOptions options)
+            {
+                writer.WriteBooleanValue(value);
+            }
+        }
+
         public class BoolNullConverter : JsonConverter<bool?>
         {
             public override bool? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -110,6 +126,22 @@ namespace BL.WebApi.ResultProcess
             {
                 if (value != null) writer.WriteBooleanValue(value.Value);
                 else writer.WriteNullValue();
+            }
+        }
+
+        public class StringConverter : JsonConverter<string>
+        {
+            public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                if (reader.TokenType == JsonTokenType.String) return reader.GetString();
+                else if (reader.TokenType == JsonTokenType.Number) return reader.GetDouble().ToString();
+                else if (reader.TokenType == JsonTokenType.Null) return null;
+                else return reader.GetString();
+            }
+
+            public override void Write(Utf8JsonWriter writer, string value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(value);
             }
         }
     }

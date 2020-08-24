@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using BL.Common;
 
 namespace BL.Dto
@@ -10,7 +11,7 @@ namespace BL.Dto
         [Required]
         public string V { get; set; }
 
-        public KVItem GetMapClass()
+        public KVItem GetMapClass(Action<KVItem> action = null)
         {
             return new KVItem(K, V);
         }

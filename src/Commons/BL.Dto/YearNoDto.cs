@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using BL.Common;
 
 namespace BL.Dto
@@ -13,7 +14,7 @@ namespace BL.Dto
         [Required]
         public int No { get; set; }
 
-        public YearNo GetMapClass()
+        public YearNo GetMapClass(Action<YearNo> action = null)
         {
             return new YearNo { Year=Year,No=No };
         }

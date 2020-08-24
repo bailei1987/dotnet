@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using BL.Common;
 
 namespace BL.Dto
@@ -13,7 +14,7 @@ namespace BL.Dto
         [Required]
         public int M { get; set; }
 
-        public YMNumber GetMapClass()
+        public YMNumber GetMapClass(Action<YMNumber> action = null)
         {
             return new YMNumber { Y=Y,M=M };
         }
@@ -26,7 +27,7 @@ namespace BL.Dto
         [Required]
         public string Str { get; set; }
 
-        public YMNumber GetMapClass()
+        public YMNumber GetMapClass(Action<YMNumber> action = null)
         {
             var obj = new YMNumber { Str=Str};
             obj.FillByStr();

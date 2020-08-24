@@ -12,7 +12,7 @@
                 new DicItem("2","砖木结构"),
                 new DicItem("3","砖混结构"),
                 new DicItem("4","框架结构"),
-                new DicItem("5","钢结构"),
+                new DicItem("5","钢架结构"),
                 new DicItem("9","其他"),
             };
             

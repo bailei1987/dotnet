@@ -1,9 +1,9 @@
 ﻿namespace BL.StandardDictionary
 {
     /// <summary>
-    ///  岗位类别代码 JT1001-GWLB
+    ///  教学类别,教学岗位类别代码 JT1001-GWLB
     /// </summary>
-    public class DicJobType : DicItem
+    public class DicTeachingJobType : DicItem
     {
         protected override DicItem[] AllOption()
         {

@@ -11,7 +11,7 @@ namespace BL.Dto
         [Required]
         public string UploadId { get; set; }
 
-        public UploadImageInfo GetMapClass()
+        public UploadImageInfo GetMapClass(Action<UploadImageInfo> action = null)
         {
             return new UploadImageInfo
             {

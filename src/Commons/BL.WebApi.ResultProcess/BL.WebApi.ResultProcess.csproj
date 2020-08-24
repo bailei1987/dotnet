@@ -1,28 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.5</Version>
-    <Authors>bl(315297830@qq.com)</Authors>
-    <Description>use for C# asp.net core web api. 
-include 
-1.process to standard format result like {statusCode:200,msg:"success",data:"anydatas"}
-2.deal with exception to standard result too like {statusCode:500,msg:'object reference of null..etc',data:null}
-3.TextJsonConvert,for use System.Text.Json,like "2017" from front-end to back-end int property "Year"</Description>
-    <PackageReleaseNotes>add BoolNullConvert which can deal with string,number and bool value from front.
-for example:change "false","true" to bool value,change number value&gt;0 to true,number value&lt;=0 to false</PackageReleaseNotes>
-    <AssemblyVersion>1.0.5.0</AssemblyVersion>
-    <FileVersion>1.0.5.0</FileVersion>
-    <PackOnBuild>true</PackOnBuild>
-    <PackageVersion>1.0.9</PackageVersion>
-    <Owners>bl(315297830@qq.com)</Owners>
-    <Title>for simple webapi action result process</Title>
-    <Copyright>copyright@2020 bl</Copyright>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-  </PropertyGroup>
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>bl(315297830@qq.com)</Authors>
+		<Description>
+			use for C# asp.net core web api.
+			include
+			1.process to standard format result like {statusCode:200,msg:"success",data:"anydatas"}
+			2.deal with exception to standard result too like {statusCode:500,msg:'object reference of null..etc',data:null}
+			3.TextJsonConvert,for use System.Text.Json,like "2017" from front-end to back-end int property "Year"
+		</Description>
+		<PackageReleaseNotes>
+			add BoolNullConvert which can deal with string,number and bool value from front.
+			for example:change "false","true" to bool value,change number value&gt;0 to true,number value&lt;=0 to false
+		</PackageReleaseNotes>
+		<PackOnBuild>true</PackOnBuild>
+		<PackageVersion>1.0.12</PackageVersion>
+		<FileVersion>1.0.12.0</FileVersion>
+		<Version>1.0.12</Version>
+		<Owners>bl(315297830@qq.com)</Owners>
+		<Title>for simple webapi action result process</Title>
+		<Copyright>copyright@2020 bl</Copyright>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+	</PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 </Project>

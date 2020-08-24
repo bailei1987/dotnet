@@ -13,7 +13,6 @@
                 new DicItem("C","丙级"),
                 new DicItem("D","无"),
             };
-            
         }
     }
 }

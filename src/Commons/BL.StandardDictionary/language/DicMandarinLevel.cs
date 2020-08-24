@@ -13,7 +13,7 @@
                 new DicItem("3","二级甲等"),
                 new DicItem("4","二级乙等"),
                 new DicItem("5","三级甲等"),
-                new DicItem("6","三级乙等"),
+                new DicItem("6","三级乙等")
             };
             
         }

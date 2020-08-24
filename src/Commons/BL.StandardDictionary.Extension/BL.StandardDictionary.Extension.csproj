@@ -3,12 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
 	  <Authors>bl(315297830@qq.com)</Authors>
-	  <PackageVersion>1.0.10</PackageVersion>
+	  <PackageVersion>1.0.19</PackageVersion>
+	  <Version>1.0.19</Version>
+	  <FileVersion>1.0.19.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BL.Common" Version="2.1.8" />
-    <PackageReference Include="BL.StandardDictionary" Version="1.0.10" />
+    <PackageReference Include="BL.Common" Version="2.1.20" />
+    <PackageReference Include="BL.StandardDictionary" Version="1.0.19" />
   </ItemGroup>
 
 </Project>

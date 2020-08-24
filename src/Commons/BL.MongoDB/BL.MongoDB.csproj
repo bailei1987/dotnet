@@ -1,25 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <PackageVersion>3.0.4</PackageVersion>
-    <Authors>bl(315297830@qq.com)</Authors>
-    <Copyright>copyright@2020 bl</Copyright>
-    <Owners>bl(315297830@qq.com)</Owners>
-    <PackageReleaseNotes>update MongoDB.Driver</PackageReleaseNotes>
-    <Summary>Sample mongodb connection helper</Summary>
-    <Title>Sample mongodb connection helper</Title>
-    <Description>A sample and single usefor MongoDB Driver Helper.Only rely MongoDB.Driver.Include function below:
-1.BaseDbContext.cs:
-package some usefor mongodb-to-C# mapping,like ObjectId&lt;=&gt;string,UTC&lt;=&gt;LocalTime,Enum&lt;=&gt;string,property name to camel field..etc
-2.NetCoreAppSetting.cs:
-for mapping mongodb standard along server or replicaSet servers connecting string in appsettings.json
-3.BsonDocumentExtends.cs: 
-extend method to BsonValue,for example: var bs={info:{gender:{k:'01',v:'Man'}}} . we can get "Man" through bs.GetValueByHierarchicalNames("info.gender.v")</Description>
-    <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<PackageVersion>3.0.5</PackageVersion>
+		<Version>3.0.5</Version>
+		<Authors>bl(315297830@qq.com)</Authors>
+		<Copyright>copyright@2020 bl</Copyright>
+		<Owners>bl(315297830@qq.com)</Owners>
+		<PackageReleaseNotes>Optimizal logic to mapping or not mapping ObjectId and String</PackageReleaseNotes>
+		<Summary>Sample mongodb connection helper</Summary>
+		<Title>Sample mongodb connection helper</Title>
+		<Description>
+			A sample useful MongoDB Driver Helper.Only rely MongoDB.Driver.Include function below:
+			1.BaseDbContext.cs:you can create your DbContext inherit BaseDbContext
+			package some useful mongodb-to-C# mapping,like ObjectId&lt;=&gt;string,UTC&lt;=&gt;LocalTime,Enum&lt;=&gt;string,property name to camel field..etc
+			2.can get ConnetionString from env "CONNECTIONSTRINGS_MONGO" in docker container or "ConnectionStrings.Mongo" in appsettings.json:
+			3.BsonDocumentExtends.cs:
+			extend method to BsonValue,for example: var bs={info:{gender:{k:'01',v:'Man'}}} . we can get "Man" through bs.GetValueByHierarchicalNames("info.gender.v")
+			4.you can simply using BL.MongoDB.Gen's AddBLMongoDbContext method in ConfigureServices(startup.cs) to create your DbContext
+			5.example.api have some simple code for refering
+		</Description>
+		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.11.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MongoDB.Driver" Version="2.11.0" />
+	</ItemGroup>
 </Project>

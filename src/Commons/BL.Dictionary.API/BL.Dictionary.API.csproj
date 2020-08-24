@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <Authors>bl</Authors>
         <PackageVersion>1.1.5</PackageVersion>
+		<Version>1.1.5</Version>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

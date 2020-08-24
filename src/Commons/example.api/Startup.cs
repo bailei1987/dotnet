@@ -32,11 +32,12 @@ namespace example.api
                     builder.WithOrigins(origins).AllowAnyMethod().AllowAnyHeader();
                 });
             });
-            //db contenxt
-            //BaseDbContext.RegistConventionPack(options => { options.AddNotConvertObjectIdToStringTypes(typeof(WeatherForecast)); });
-            BaseDbContext.RegistConventionPack();
-            var connCfg = Configuration.GetSection("db1").Get<NetCoreAppSetting>();
-            var db = new DbContext(connCfg);
+            //db 
+            var connectionString = Configuration.GetConnectionString("Mongo");
+            BaseDbContext.RegistConventionPack(options => {
+                options.AddNotConvertObjectIdToStringTypes(typeof(Test2));
+            });
+            var db = BaseDbContext.CreateInstance<DbContext>(connectionString);
             services.AddSingleton(db);
             //same format of api results
             services.AddControllers(options =>

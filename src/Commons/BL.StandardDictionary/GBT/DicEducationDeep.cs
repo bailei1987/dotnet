@@ -8,6 +8,15 @@
         protected override DicItem[] AllOption()
         {
             return new[]{
+                new DicItem("01","博士"),
+                new DicItem("02","硕士"),
+                new DicItem("03","本科"),
+                new DicItem("04","大专"),
+                new DicItem("05","中专"),
+                new DicItem("90","其他"),
+            };
+            /*
+            return new[]{
                 new DicItem("10","研究生教育"),
                 new DicItem("11","博士研究生毕业"),
                 new DicItem("12","博士研究生结业"),
@@ -54,7 +63,7 @@
 
                 new DicItem("90","其他"),
             };
-            
+            */
         }
     }
 }

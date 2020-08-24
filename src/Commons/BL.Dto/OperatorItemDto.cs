@@ -11,7 +11,7 @@ namespace BL.Dto
         [Required]
         public string Name { get; set; }
 
-        public OperatorItem GetMapClass()
+        public OperatorItem GetMapClass(Action<OperatorItem> action = null)
         {
             return new OperatorItem(Rid, Name) { Time = DateTime.Now };
         }

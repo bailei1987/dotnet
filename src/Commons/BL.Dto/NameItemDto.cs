@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using BL.Common;
 
 namespace BL.Dto
@@ -8,7 +9,7 @@ namespace BL.Dto
         [Required]
         public string Name { get; set; }
 
-        public ReferenceItem GetMapClass()
+        public ReferenceItem GetMapClass(Action<ReferenceItem> action = null)
         {
             return new ReferenceItem { Name = Name };
         }

@@ -11,6 +11,7 @@
                 new DicItem("1","房屋建筑"),
                 new DicItem("2","围墙"),
                 new DicItem("3","校门"),
+                new DicItem("4","露天建筑"),
                 new DicItem("9","其他"),
             };
             

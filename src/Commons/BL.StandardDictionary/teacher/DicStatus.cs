@@ -20,8 +20,7 @@
                 new DicItem("11","在职"),
                 new DicItem("12","延聘"),
                 new DicItem("13","待退休"),
-            };
-            
+            };            
         }
     }
 }

@@ -7,12 +7,12 @@ namespace BL.Dto
     /// <summary>
     /// only have v,use for import of KVItem
     /// </summary>
-    public class VItemDto : IMapClass<KVItem>
+    public class VItemDto : IMapClassOnly<KVItem>
     {
         [Required]
         public string V { get; set; }
 
-        public KVItem GetMapClass(Action<KVItem> action = null)
+        public KVItem GetMapClass()
         {
             return new KVItem { V = V };
         }

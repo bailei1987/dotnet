@@ -4,14 +4,14 @@ using BL.Common;
 
 namespace BL.Dto
 {
-    public class OperatorItemDto : IMapClass<OperatorItem>
+    public class OperatorItemDto : IMapClassOnly<OperatorItem>
     {
         [Required]
         public string Rid { get; set; }
         [Required]
         public string Name { get; set; }
 
-        public OperatorItem GetMapClass(Action<OperatorItem> action = null)
+        public OperatorItem GetMapClass()
         {
             return new OperatorItem(Rid, Name) { Time = DateTime.Now };
         }

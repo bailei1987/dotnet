@@ -89,24 +89,33 @@ namespace BL.MongoDB
             _database = _client.GetDatabase(dbSettings.Db);
         }
 
-        public static void RegistConventionPack(Action<ConventionPackOptions> configure = null)
+        public static void RegistConventionPack(Action<ConventionPackOptions> configure = null, bool first = true)
         {
             configure?.Invoke(options);
-            var pack = new ConventionPack
+            if (first)
             {
-                new CamelCaseElementNameConvention(),//property to camel
-                new IgnoreExtraElementsConvention(true),//
-                new NamedIdMemberConvention("Id","ID"),//_id mapping Id or ID
-                new EnumRepresentationConvention(BsonType.String),//save enum value as string
-                //new StringObjectIdIdGeneratorConventionThatWorks(options)//Id[string] mapping ObjectId
-            };
+                try
+                {
+                    var pack = new ConventionPack
+                    {
+                        new CamelCaseElementNameConvention(),//property to camel
+                        new IgnoreExtraElementsConvention(true),//
+                        new NamedIdMemberConvention("Id","ID"),//_id mapping Id or ID
+                        new EnumRepresentationConvention(BsonType.String),//save enum value as string
+                    };
+                    ConventionRegistry.Register("commonpack", pack, x => true);
+                    BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer(DateTimeKind.Local));//to local time
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("you have already regist commonpack,please change param [first] to false from since second RegistConventionPack Method(or BL.MongoDB.Gen.AddBLDbContext etc..):" + ex.Message);
+                }
+            }
             var idpack = new ConventionPack
             {
                 new StringObjectIdIdGeneratorConventionThatWorks()//Id[string] mapping ObjectId
             };
-            ConventionRegistry.Register("pack1", pack, x => true);
-            ConventionRegistry.Register("idpack", idpack, x => options.IsNotConvertObjectIdToStringType(x) == false);
-            BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer(DateTimeKind.Local));//to local time
+            ConventionRegistry.Register("idpack" + Guid.NewGuid().ToString(), idpack, x => options.IsNotConvertObjectIdToStringType(x) == false);
         }
         protected virtual string[] GetTransactColletions()
         {

@@ -58,44 +58,7 @@ namespace BL.Common
             }
             else return null;
         }
-
-        /*
-        public static string Fill(object obj, PropertyInfo prop, object sourceValue)
-        {
-            string valueStr = sourceValue?.ToString();
-            YMNumber ym = new YMNumber() { Str = valueStr };
-            if (string.IsNullOrWhiteSpace(valueStr)) { }
-            else if (valueStr.Length == 6)
-            {
-                if (int.TryParse(valueStr, out int date))
-                {
-                    ym.Y = date / 100;
-                    ym.M = date % 100;
-                    ym.Str = (ym.Y * 100 + ym.M).ToString();
-                }
-            }
-            else if (valueStr.Length == 4)
-            {
-                if (int.TryParse(valueStr, out int year))
-                {
-                    ym.Y = year;
-                }
-            }
-            else
-            {
-                valueStr = valueStr.Replace("&", "-").Replace(" ", "-").Replace(".", "-").Replace(",", "-").Replace("/", "-").Replace("\\", "-").Replace("|", "-");
-                if (DateTime.TryParse(valueStr, out DateTime date))
-                {
-                    ym.Y = date.Year;
-                    ym.M = date.Month;
-                    ym.Str = (ym.Y * 100 + ym.M).ToString();
-                }
-            }
-            prop.SetValue(obj, ym);
-            if (ym.Y == null || ym.M == null) return "值[" + sourceValue + "]转换年月失败";
-            else return null;
-        }
-        */
+        
         public string FillByStr()
         {
             if (string.IsNullOrWhiteSpace(Str)) return "值不能为空";

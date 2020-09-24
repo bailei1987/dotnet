@@ -1,13 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
-		<PackageVersion>3.0.5</PackageVersion>
-		<Version>3.0.5</Version>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<PackageVersion>3.1.0</PackageVersion>
+		<Version>3.1.0</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>
-		<PackageReleaseNotes>Optimizal logic to mapping or not mapping ObjectId and String</PackageReleaseNotes>
+		<PackageReleaseNotes>add supportting to multiply DbContext(mean you can create some DbContext use different connectionStrings)  </PackageReleaseNotes>
 		<Summary>Sample mongodb connection helper</Summary>
 		<Title>Sample mongodb connection helper</Title>
 		<Description>
@@ -21,9 +21,10 @@
 			5.example.api have some simple code for refering
 		</Description>
 		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+		<LangVersion>8.0</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MongoDB.Driver" Version="2.11.0" />
+	  <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
 	</ItemGroup>
 </Project>

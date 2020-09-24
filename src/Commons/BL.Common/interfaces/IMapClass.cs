@@ -6,6 +6,10 @@ namespace BL.Common
     {
         T GetMapClass(Action<T> action = null);
     }
+    public interface IMapClassOnly<T>
+    {
+        T GetMapClass();
+    }
     public interface IFromMapClass<Tfrom, Tto>
     {
         Tto FromMapClass(Tfrom tfrom);

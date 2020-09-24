@@ -4,14 +4,14 @@ using BL.Common;
 
 namespace BL.Dto
 {
-    public class UploadImageInfoDto : IMapClass<UploadImageInfo>
+    public class UploadImageInfoDto : IMapClassOnly<UploadImageInfo>
     {
         [Required]
         public string Url { get; set; }
         [Required]
         public string UploadId { get; set; }
 
-        public UploadImageInfo GetMapClass(Action<UploadImageInfo> action = null)
+        public UploadImageInfo GetMapClass()
         {
             return new UploadImageInfo
             {

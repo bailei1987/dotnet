@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PackageVersion>1.1.3</PackageVersion>
+		<Version>1.1.3</Version>
+		<Authors>bl(315297830@qq.com)</Authors>
+		<Description>log insert,update,delete to mongodb for business</Description>
+		<Copyright>copyright@2020 </Copyright>
+		<Owners>bl</Owners>
+		<Title>log for business</Title>
+		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+		<PackageReleaseNotes>first initial</PackageReleaseNotes>
+		<OutputType>Library</OutputType>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>	
+	</PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>		
+		<PackageReference Include="MongoDB.Driver" Version="2.10.4" />
+	</ItemGroup>
+</Project>

@@ -4,14 +4,14 @@ using BL.Common;
 
 namespace BL.Dto
 {
-    public class KVItemDto : IMapClass<KVItem>
+    public class KVItemDto : IMapClassOnly<KVItem>
     {
         [Required]
         public string K { get; set; }
         [Required]
         public string V { get; set; }
 
-        public KVItem GetMapClass(Action<KVItem> action = null)
+        public KVItem GetMapClass()
         {
             return new KVItem(K, V);
         }

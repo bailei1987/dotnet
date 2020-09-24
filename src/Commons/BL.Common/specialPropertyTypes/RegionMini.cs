@@ -15,7 +15,7 @@ namespace BL.Common
         {
             get
             {
-                if (Names.Count > 0) return string.Join('/', Names);
+                if (Names.Count > 0) return string.Join("/", Names);
                 else return null;
             }
         }

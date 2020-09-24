@@ -35,10 +35,15 @@ namespace BL.SystemDictionary
             }
             return res;
         }
-        public static SystemDictionaryKV GetItemByV(string type,string v)
+        public static SystemDictionaryKV GetItemByV(string type, string v)
         {
             if (dics.ContainsKey(type) == false) throw new KeyNotFoundException($"type [{type}] is not correct");
-            return dics[type].Find(x=>x.V==v)??throw new Exception($"can not find item by v [{v}] in {type}'s items");
+            return dics[type].Find(x => x.V == v) ?? throw new Exception($"can not find item by v [{v}] in {type}'s items");
+        }
+        public static SystemDictionaryKV GetItemByK(string type, string k)
+        {
+            if (dics.ContainsKey(type) == false) throw new KeyNotFoundException($"type [{type}] is not correct");
+            return dics[type].Find(x => x.K == k) ?? throw new Exception($"can not find item by k [{k}] in {type}'s items");
         }
     }
 }

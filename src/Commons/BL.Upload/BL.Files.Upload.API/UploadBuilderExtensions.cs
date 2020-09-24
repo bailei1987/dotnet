@@ -29,6 +29,16 @@ namespace BL.Files.Upload.API
             });
             return services;
         }
+        public static IServiceCollection AddUploadUseDefaultColl(this IServiceCollection services, IMongoDatabase db)
+        {
+            var coll = db.Client.GetDatabase("blcommon").GetCollection<Uploads>("uploads");
+            services.AddSingleton(coll);
+            services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = long.MaxValue;
+            });
+            return services;
+        }
         /// <summary>
         /// get get settings from env or appsettings.json
         /// [required]RootFloder: UPLOADSETTINGS_ROOTFLODER(env),UploadSettings.RootFloder(appsettings.json)

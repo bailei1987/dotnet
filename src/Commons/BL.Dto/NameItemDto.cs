@@ -4,12 +4,12 @@ using BL.Common;
 
 namespace BL.Dto
 {
-    public class NameItemDto : IMapClass<ReferenceItem>
+    public class NameItemDto : IMapClassOnly<ReferenceItem>
     {
         [Required]
         public string Name { get; set; }
 
-        public ReferenceItem GetMapClass(Action<ReferenceItem> action = null)
+        public ReferenceItem GetMapClass()
         {
             return new ReferenceItem { Name = Name };
         }

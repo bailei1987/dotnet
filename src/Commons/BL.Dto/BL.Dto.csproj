@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-	  <PackageVersion>2.1.20</PackageVersion>
-	  <Version>2.1.20</Version>
+	  <PackageVersion>2.1.28</PackageVersion>
+	  <Version>2.1.28</Version>
 	  <Authors>bl(315297830@qq.com)</Authors>
 	  <Copyright>copyright@2020 bl</Copyright>
 	  <Owners>bl(315297830@qq.com)</Owners>
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BL.Common" Version="2.1.20" />
+    <PackageReference Include="BL.Common" Version="2.1.28" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 

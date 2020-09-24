@@ -19,7 +19,7 @@ namespace BL.Common
         public static DateTime? ToDateTime(this string value, bool force = true)
         {
             value = value.Replace("/", "-").Replace(".", "-").Replace("。", "-").Replace(",", "-").Replace(" ", "-").Replace("|", "-");
-            if (value.Split("-").Length == 1)
+            if (value.Split('-').Length == 1)
             {
                 if (value.Length == 8) value = string.Join("-", value.Substring(0, 4), value.Substring(4, 2), value.Substring(6, 2));
             }
@@ -38,7 +38,7 @@ namespace BL.Common
         public static string ToDateTimeFormat(this string value, bool force = true)
         {
             value = value.Replace("/", "-").Replace(".", "-").Replace("。", "-").Replace(",", "-").Replace(" ", "-").Replace("|", "-");
-            if (value.Split("-").Length == 1)
+            if (value.Split('-').Length == 1)
             {
                 if (value.Length == 8) value = string.Join("-", value.Substring(0, 4), value.Substring(4, 2), value.Substring(6, 2));
             }

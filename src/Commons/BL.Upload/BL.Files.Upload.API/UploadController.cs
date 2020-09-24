@@ -53,11 +53,8 @@ namespace BL.Files.Upload.API.Controllers
             }
             //==生成设置
             var requestUrl = $"{Request.Scheme}://{Request.Host}";
-            //var requestUrl = Request.GetDisplayUrl();
-            //requestUrl = requestUrl.Substring(0, requestUrl.LastIndexOf("/Upload"));
             UploadSettings settings = new UploadSettings()
-            {
-                //UriPath = Request.GetDisplayUrl().Replace("http:", "https:").Replace("File", "")                
+            {            
                 UriPath = requestUrl
             };
             switch (dto.UploadType)

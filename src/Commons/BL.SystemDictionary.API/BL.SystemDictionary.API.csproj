@@ -3,9 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<Authors>bl(315297830@qq.com)</Authors>
-		<PackageVersion>1.0.3</PackageVersion>
-		<Version>1.0.3</Version>
-		<FileVersion>1.0.3.0</FileVersion>
+		<PackageVersion>1.0.5</PackageVersion>
+		<Version>1.0.5</Version>
+		<FileVersion>1.0.5.0</FileVersion>
 	</PropertyGroup>
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />

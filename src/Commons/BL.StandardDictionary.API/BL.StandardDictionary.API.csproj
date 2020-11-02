@@ -3,14 +3,14 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <Authors>bl(315297830@qq.com)</Authors>
-        <PackageVersion>1.0.19</PackageVersion>
-		<Version>1.0.19</Version>
-		<FileVersion>1.0.19.0</FileVersion>
+        <PackageVersion>1.0.22</PackageVersion>
+        <Version>1.0.22</Version>
+        <FileVersion>1.0.22.0</FileVersion>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="BL.StandardDictionary" Version="1.0.19" />
+        <PackageReference Include="BL.StandardDictionary" Version="1.0.22" />
     </ItemGroup>
 </Project>

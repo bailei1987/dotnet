@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 
 namespace BL.MongoDB
 {
@@ -32,7 +33,7 @@ namespace BL.MongoDB
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static object GetValue(this BsonValue value)
+        public static object GetValue(this BsonValue value, Type totype = null)
         {
             return value.BsonType switch
             {
@@ -40,7 +41,7 @@ namespace BL.MongoDB
                 BsonType.Boolean => value.AsBoolean,
                 BsonType.DateTime => value.ToUniversalTime(),
                 BsonType.Decimal128 => value.AsDecimal,
-                BsonType.Document => null,
+                BsonType.Document => totype is null ? value.ToJson() : BsonSerializer.Deserialize(value.ToBsonDocument(), totype),
                 BsonType.Double => value.AsDouble,
                 BsonType.Int32 => value.AsInt32,
                 BsonType.Int64 => value.AsInt64,

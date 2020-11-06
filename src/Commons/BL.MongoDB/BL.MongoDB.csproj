@@ -1,16 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<PackageVersion>3.1.0</PackageVersion>
-		<Version>3.1.0</Version>
-		<Authors>bl(315297830@qq.com)</Authors>
-		<Copyright>copyright@2020 bl</Copyright>
-		<Owners>bl(315297830@qq.com)</Owners>
-		<PackageReleaseNotes>add supportting to multiply DbContext(mean you can create some DbContext use different connectionStrings)  </PackageReleaseNotes>
-		<Summary>Sample mongodb connection helper</Summary>
-		<Title>Sample mongodb connection helper</Title>
-		<Description>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <PackageVersion>3.1.1</PackageVersion>
+        <Version>3.1.1</Version>
+        <Authors>bl(315297830@qq.com)</Authors>
+        <Copyright>copyright@2020 bl</Copyright>
+        <Owners>bl(315297830@qq.com)</Owners>
+        <PackageReleaseNotes>update MongoDB.Driver,optimize extend method BsonValue.GetValue(this BsonValue value, Type totype = null).this method always use with GetValueByHierarchicalNames(this BsonValue ele, string hierarchicalNames).using for get value from BsonDocument directly </PackageReleaseNotes>
+        <Summary>Sample mongodb connection helper.Use this package in Infrasetructure layer,you dont need install MongoDB.Driver on Domain layer again.</Summary>
+        <Title>Sample mongodb connection helper</Title>
+        <Description>
 			A sample useful MongoDB Driver Helper.Only rely MongoDB.Driver.Include function below:
 			1.BaseDbContext.cs:you can create your DbContext inherit BaseDbContext
 			package some useful mongodb-to-C# mapping,like ObjectId&lt;=&gt;string,UTC&lt;=&gt;LocalTime,Enum&lt;=&gt;string,property name to camel field..etc
@@ -20,11 +20,10 @@
 			4.you can simply using BL.MongoDB.Gen's AddBLMongoDbContext method in ConfigureServices(startup.cs) to create your DbContext
 			5.example.api have some simple code for refering
 		</Description>
-		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-		<LangVersion>8.0</LangVersion>
-	</PropertyGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
-	</ItemGroup>
+        <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+        <LangVersion>8.0</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Driver" Version="2.11.4" />
+    </ItemGroup>
 </Project>

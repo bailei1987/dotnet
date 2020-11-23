@@ -7,7 +7,7 @@
     public class UploadSettings
     {
         #region 全局基础配置
-
+        public static string App { get; set; }
         /// <summary>
         /// 当前运行目录(绝对路径) [上传前必需配置此项]
         /// </summary>

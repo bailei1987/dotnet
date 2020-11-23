@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageVersion>3.1.1</PackageVersion>
-        <Version>3.1.1</Version>
+        <PackageVersion>3.1.2</PackageVersion>
+        <Version>3.1.2</Version>
         <Authors>bl(315297830@qq.com)</Authors>
         <Copyright>copyright@2020 bl</Copyright>
         <Owners>bl(315297830@qq.com)</Owners>

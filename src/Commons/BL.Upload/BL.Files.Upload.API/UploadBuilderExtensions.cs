@@ -48,7 +48,7 @@ namespace BL.Files.Upload.API
         /// <param name="configuration"></param>
         /// <param name="env"></param>
         /// <returns></returns>
-        public static IApplicationBuilder UseUpload(this IApplicationBuilder app, IConfiguration configuration, IWebHostEnvironment env)
+        public static IApplicationBuilder UseUpload(this IApplicationBuilder app, IConfiguration configuration, IWebHostEnvironment env, string businessApp = null)
         {
             var tipTitle = "BL.Files.Upload.API.UseUpload method:";
             Console.WriteLine($"{tipTitle} Start Configure!");
@@ -84,6 +84,7 @@ namespace BL.Files.Upload.API
 
             if (string.IsNullOrWhiteSpace(env.WebRootPath)) env.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
             UploadSettings.WebRootPath = env.WebRootPath;
+            UploadSettings.App = businessApp;
             //
             app.UseStaticFiles();
             return app;

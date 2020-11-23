@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <PackageVersion>1.1.5</PackageVersion>
+        <PackageVersion>1.1.6</PackageVersion>
         <PackageReleaseNotes>change filename create logic</PackageReleaseNotes>
         <AssemblyName>BL.Files.Upload.API</AssemblyName>
     </PropertyGroup>

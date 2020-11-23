@@ -45,7 +45,7 @@ namespace BL.Files.Upload.API.Controllers
                 {
                     Id = dto.UploadId,
                     BusinessType = dto.BusinessType,
-                    App = dto.App,
+                    App = UploadSettings.App,
                     Creator = dto.Creator,
                     CreateTime = DateTime.Now,
                     UploadType = dto.UploadType
@@ -54,7 +54,7 @@ namespace BL.Files.Upload.API.Controllers
             //==生成设置
             var requestUrl = $"{Request.Scheme}://{Request.Host}";
             UploadSettings settings = new UploadSettings()
-            {            
+            {
                 UriPath = requestUrl
             };
             switch (dto.UploadType)
@@ -205,7 +205,7 @@ namespace BL.Files.Upload.API.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public string App { get; set; }
+        //public string App { get; set; }
         /// <summary>
         /// 创建者信息
         /// </summary>

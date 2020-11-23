@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <PackageVersion>3.1.1</PackageVersion>
-        <Version>3.1.1</Version>
+        <PackageVersion>3.1.2</PackageVersion>
+        <Version>3.1.2</Version>
         <Authors>bl(315297830@qq.com)</Authors>
         <Copyright>copyright@2020 bl</Copyright>
         <Owners>bl(315297830@qq.com)</Owners>
@@ -18,6 +18,6 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="BL.MongoDB" Version="3.1.1" />
+        <PackageReference Include="BL.MongoDB" Version="3.1.2" />
     </ItemGroup>
 </Project>

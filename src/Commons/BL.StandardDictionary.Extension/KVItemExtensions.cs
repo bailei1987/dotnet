@@ -1,5 +1,5 @@
-﻿using System;
-using BL.Common;
+﻿using BL.Common;
+using System;
 
 namespace BL.StandardDictionary
 {

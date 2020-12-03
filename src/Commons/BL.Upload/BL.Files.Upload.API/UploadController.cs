@@ -1,7 +1,4 @@
-﻿using BL.Files;
-using BL.Files.Upload;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using System;
@@ -129,7 +126,7 @@ namespace BL.Files.Upload.API.Controllers
             //
             foreach (var item in upload.GetFiles())
             {
-                rs.Add(DeletePhysical(UploadSettings.WebRootPath.TrimEnd('/') + "/" + item.Path.TrimStart('/')));
+                rs.Add(DeletePhysical($"{UploadSettings.WebRootPath.TrimEnd('/')}/{item.Path.TrimStart('/')}"));
             }
             //
             _uploads.DeleteOne(x => x.Id == uploadId);
@@ -148,10 +145,10 @@ namespace BL.Files.Upload.API.Controllers
             var files = rs.Uploads.Files.FindAll(x => deleteFiles.Select(f => f.Path).Contains(x.O.Path));
             foreach (var item in files)
             {
-                rs.Deleted.Add(DeletePhysical(UploadSettings.WebRootPath.TrimEnd('/') + "/" + item.O.Path.TrimStart('/')));
+                rs.Deleted.Add(DeletePhysical($"{UploadSettings.WebRootPath.TrimEnd('/')}/{item.O.Path.TrimStart('/')}"));
                 foreach (var t in item.Ts)
                 {
-                    rs.Deleted.Add(DeletePhysical(UploadSettings.WebRootPath.TrimEnd('/') + "/" + t.Path.TrimStart('/')));
+                    rs.Deleted.Add(DeletePhysical($"{UploadSettings.WebRootPath.TrimEnd('/')}/{t.Path.TrimStart('/')}"));
                 }
             }
             //remove files info

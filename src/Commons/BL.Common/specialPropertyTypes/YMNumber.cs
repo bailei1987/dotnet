@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Reflection;
 
 namespace BL.Common
 {
-    public class YMNumber: IFill
+    public class YMNumber : IFill
     {
         public YMNumber() { }
         public YMNumber(int y, int m) { Y = y; M = m; }
@@ -15,15 +14,12 @@ namespace BL.Common
         {
             get
             {
-                if (Y != null) return Y.ToString() + (Format ?? "/") + (M == null ? null : M < 10 ? "0" + M.ToString() : M.ToString());
-                else return null;
+                return Y != null ? Y.ToString() + (Format ?? "/") + (M == null ? null : M < 10 ? "0" + M.ToString() : M.ToString()) : null;
             }
         }
         public override string ToString()
         {
-            if (M is null) return Convert.ToString(Y);
-            if (Y is null) return Convert.ToString(M);
-            return (Y * 100 + M).ToString();
+            return M is null ? Convert.ToString(Y) : Y is null ? Convert.ToString(M) : ((Y * 100) + M).ToString();
         }
         public string Fill(object sourceValue)
         {
@@ -43,7 +39,7 @@ namespace BL.Common
                     M = date % 100,
                     Format = format
                 };
-                ym.Str = (ym.Y * 100 + ym.M).ToString();
+                ym.Str = ((ym.Y * 100) + ym.M).ToString();
                 return ym;
             }
             else if (value.Length == 4 && int.TryParse(value, out int year))
@@ -58,7 +54,7 @@ namespace BL.Common
             }
             else return null;
         }
-        
+
         public string FillByStr()
         {
             if (string.IsNullOrWhiteSpace(Str)) return "值不能为空";
@@ -80,7 +76,7 @@ namespace BL.Common
                 {
                     Y = date / 100;
                     M = date % 100;
-                    Str = (Y * 100 + M).ToString();
+                    Str = ((Y * 100) + M).ToString();
                 }
                 return null;
             }
@@ -99,7 +95,7 @@ namespace BL.Common
                 {
                     Y = date.Year;
                     M = date.Month;
-                    Str = (Y * 100 + M).ToString();
+                    Str = ((Y * 100) + M).ToString();
                 }
                 return null;
             }

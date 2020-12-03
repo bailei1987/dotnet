@@ -1,6 +1,6 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Net;
 
 namespace BL.WebApi.ResultProcess
 {
@@ -18,9 +18,9 @@ namespace BL.WebApi.ResultProcess
         {
             if (context.Exception is null)
             {
-                if (context.Result is ObjectResult)
+                if (context.Result is ObjectResult result)
                 {
-                    context.Result = new ObjectResult(new { StatusCode = HttpStatusCode.OK, Msg = "success", Data = ((ObjectResult)context.Result).Value });
+                    context.Result = new ObjectResult(new { StatusCode = HttpStatusCode.OK, Msg = "success", Data = result.Value });
                 }
                 else if (context.Result is EmptyResult)
                 {

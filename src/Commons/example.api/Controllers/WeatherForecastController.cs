@@ -25,13 +25,13 @@ namespace example.api.Controllers
         [HttpGet("Test")]
         public string Test()
         {
-            db.Test1s.DeleteMany(x=>true);
+            db.Test1s.DeleteMany(x => true);
             db.Test2s.DeleteMany(x => true);
-            var test1 = new Test1 {Name="小白",  Sex = ESex.MM};
-            var test2 = new Test2 {Id="xh", Name = "小黑", Sex = ESex.MM };
+            var test1 = new Test1 { Name = "小白", Sex = ESex.MM };
+            var test2 = new Test2 { Id = "xh", Name = "小黑", Sex = ESex.MM };
             db.Test1s.InsertOne(test1);
             db.Test2s.InsertOne(test2);
-            var t1 = db.Test1s.Find(x=>true).Single();
+            var t1 = db.Test1s.Find(x => true).Single();
             var t2 = db.Test2s.Find(x => true).Single();
             return null;
         }
@@ -48,6 +48,5 @@ namespace example.api.Controllers
             var list = ExcelHelper.GetDatas(file.OpenReadStream());
             return list;
         }
-
     }
 }

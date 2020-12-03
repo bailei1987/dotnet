@@ -65,8 +65,7 @@
                 new DicItem("70","特殊任务"),
                 new DicItem("80","换发护照"),
                 new DicItem("99","其他原因出国"),
-            };
-            
+            };            
         }
     }
 }

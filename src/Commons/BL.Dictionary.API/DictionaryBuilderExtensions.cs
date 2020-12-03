@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace BL.Dictionary
 {
-
     public static class DictionaryServiceCollectionExtensions
     {
         public static IServiceCollection AddDictionary(this IServiceCollection services, Action<DictionaryManager> setupAction = null)
@@ -16,10 +15,7 @@ namespace BL.Dictionary
             else throw new Exception("setupAction cant be null");
 
             services.AddSingleton(manager);
-
             return services;
         }
     }
-
-
 }

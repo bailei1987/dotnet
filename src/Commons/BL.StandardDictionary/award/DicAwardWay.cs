@@ -13,8 +13,7 @@
                 new DicItem("3","奖金"),
                 new DicItem("4","实物"),
                 new DicItem("9","其他"),
-            };
-            
+            };            
         }
     }
 }

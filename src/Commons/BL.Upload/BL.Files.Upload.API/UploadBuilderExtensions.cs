@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
-using BL.Files.Upload;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
+using System;
+using System.IO;
 
 namespace BL.Files.Upload.API
 {

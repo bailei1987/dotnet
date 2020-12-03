@@ -1,9 +1,9 @@
-﻿using System;
+﻿using ExcelDataReader;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using ExcelDataReader;
 
 namespace BL.Excel
 {
@@ -11,7 +11,7 @@ namespace BL.Excel
     {
         public static void Init()
         {
-            Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         public static List<Dictionary<string, object>> GetDatas(Stream stream)

@@ -99,9 +99,9 @@ namespace BL.WebApi.ResultProcess
         {
             public override bool Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
-                if (reader.TokenType == JsonTokenType.True || reader.TokenType == JsonTokenType.False) return reader.GetBoolean();
+                if (reader.TokenType is JsonTokenType.True or JsonTokenType.False) return reader.GetBoolean();
                 else if (reader.TokenType == JsonTokenType.String) return bool.Parse(reader.GetString());
-                else if (reader.TokenType == JsonTokenType.Number) return reader.GetDouble() > 0 ? true : false;
+                else if (reader.TokenType == JsonTokenType.Number) return reader.GetDouble() > 0;
                 else throw new NotImplementedException($"un processed tokentype {reader.TokenType}");
             }
 
@@ -115,10 +115,10 @@ namespace BL.WebApi.ResultProcess
         {
             public override bool? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
-                if (reader.TokenType == JsonTokenType.True || reader.TokenType == JsonTokenType.False) return reader.GetBoolean();
+                if (reader.TokenType is JsonTokenType.True or JsonTokenType.False) return reader.GetBoolean();
                 else if (reader.TokenType == JsonTokenType.Null) return null;
                 else if (reader.TokenType == JsonTokenType.String) return bool.Parse(reader.GetString());
-                else if (reader.TokenType == JsonTokenType.Number) return reader.GetDouble() > 0 ? true : false;
+                else if (reader.TokenType == JsonTokenType.Number) return reader.GetDouble() > 0;
                 else throw new NotImplementedException($"un processed tokentype {reader.TokenType}");
             }
 

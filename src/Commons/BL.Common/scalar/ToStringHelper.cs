@@ -9,8 +9,11 @@ namespace BL.Common.Scalar
             if (value is null) return null;
             if (type is null) type = value.GetType();
             if (type.IsGenericType) type = type.GenericTypeArguments[0].UnderlyingSystemType;
-            if (type.Name == "DateTime") return ((DateTime)value).ToString("yyyy/MM/dd");
-            else return value.ToString();
+            return type.Name switch
+            {
+                "DateTime" => ((DateTime)value).ToString("yyyy-MM-dd"),
+                _ => value.ToString(),
+            };
         }
     }
 }

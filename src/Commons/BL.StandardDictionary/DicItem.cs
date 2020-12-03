@@ -54,9 +54,8 @@ namespace BL.StandardDictionary
             Dictionary<string, DicItem[]> dics = new Dictionary<string, DicItem[]>();
             foreach (var key in dicKeys)
             {
-                var type = Type.GetType("BL.StandardDictionary.Dic" + key);
-                var dic = Activator.CreateInstance(type) as DicItem;
-                if (dic is null) throw new Exception("该字典key值(" + key + ")不正确");
+                var type = Type.GetType($"BL.StandardDictionary.Dic{key}");
+                if (!(Activator.CreateInstance(type) is DicItem dic)) throw new Exception($"该字典key值({key})不正确");
                 dics.Add(key, dic.AllOption());
             }
             return dics;
@@ -70,6 +69,5 @@ namespace BL.StandardDictionary
         {
             return V;
         }
-
     }
 }

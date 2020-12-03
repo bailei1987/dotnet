@@ -9,7 +9,6 @@
         public string CompressUrl { get; set; }
         public string UploadId { get; set; }
         public FileItem File { get; set; }
-
     }
     public class UploadFilesInfo
     {
@@ -17,6 +16,7 @@
         public string UploadId { get; set; }
         public FileItem[] Files { get; set; }
     }
+
     public class FileItem
     {
         public int No { get; set; }

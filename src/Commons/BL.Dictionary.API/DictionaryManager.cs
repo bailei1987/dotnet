@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using MongoDB.Driver;
 
 
 namespace BL.Dictionary
@@ -62,5 +62,4 @@ namespace BL.Dictionary
             return Coll.Aggregate().Group(x => x.Type, g => new { g.Key, ItemsCount = g.Sum(x => 1) }).ToList();
         }
     }
-
 }

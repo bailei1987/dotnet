@@ -1,6 +1,6 @@
-﻿using System;
+﻿using BL.Common;
+using System;
 using System.ComponentModel.DataAnnotations;
-using BL.Common;
 
 namespace BL.Dto
 {

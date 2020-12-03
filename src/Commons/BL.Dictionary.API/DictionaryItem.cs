@@ -1,6 +1,6 @@
 ﻿
-using System.Collections.Generic;
 using BL.Common;
+using System.Collections.Generic;
 
 namespace BL.Dictionary
 {
@@ -12,10 +12,7 @@ namespace BL.Dictionary
     }
     public class DictionaryItem : DictionaryItemKV
     {
-        public DictionaryItem()
-        {
-
-        }
+        public DictionaryItem() { }
         public string Id { get; set; }
         public string Type { get; set; }
         public string Order { get; set; }

@@ -7,10 +7,7 @@ namespace BL.Common.Reflection
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     public class PropertyMarkAttribute : Attribute
     {
-        public PropertyMarkAttribute()
-        {
-
-        }
+        public PropertyMarkAttribute() { }
         public PropertyMarkAttribute(string propertyNameCN, string category = null, int showOrder = 10000, bool showAsDetail = true, string filterTextTip = null, string sort = null)
         {
             PropertyNameCN = propertyNameCN;
@@ -129,7 +126,6 @@ namespace BL.Common.Reflection
                 string[] array = s.Split(new char[] { ':', '：' }, StringSplitOptions.RemoveEmptyEntries);
                 List.Add(new KVItem(array[0], array[1]));
             }
-
         }
         public List<KVItem> List { get; set; }
     }

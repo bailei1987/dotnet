@@ -1,7 +1,4 @@
 ﻿namespace BL.MongoDB
 {
-    public interface IDbSet
-    {
-
-    }
+    public interface IDbSet { }
 }

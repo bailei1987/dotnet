@@ -19,7 +19,7 @@ namespace BL.Files.Save
         {
             if (string.IsNullOrWhiteSpace(options.Directory)) throw new Exception($"{tipTitle} Directory cant be empty");
             string savePath;
-            if (options.CreateDateDirectory) savePath = Path.Combine(Path.DirectorySeparatorChar.ToString(),FilesSaveSettings.RootFloder, options.Directory, DateTime.Now.ToString("yyyyMMdd"));
+            if (options.CreateDateDirectory) savePath = Path.Combine(Path.DirectorySeparatorChar.ToString(), FilesSaveSettings.RootFloder, options.Directory, DateTime.Now.ToString("yyyyMMdd"));
             else savePath = Path.Combine(Path.DirectorySeparatorChar.ToString(), FilesSaveSettings.RootFloder, options.Directory);
             var absolutePath = FilesSaveSettings.WebRootPath + savePath;
             if (!Directory.Exists(absolutePath)) Directory.CreateDirectory(absolutePath);
@@ -41,7 +41,7 @@ namespace BL.Files.Save
             string directory = CreateDirectory(options);
             string filePath;
             if (!string.IsNullOrWhiteSpace(options.FileName)) filePath = directory + Path.DirectorySeparatorChar.ToString() + options.FileName;
-            else filePath = directory + Path.DirectorySeparatorChar.ToString() + Guid.NewGuid().ToString() + "." + options.FileExtension.Replace(".", "");
+            else filePath = $"{directory}{Path.DirectorySeparatorChar}{Guid.NewGuid()}.{options.FileExtension.Replace(".", "")}";
             using var stream = new FileStream(filePath, FileMode.OpenOrCreate);
             stream.Write(imgBytes, 0, imgBytes.Length);
             return filePath;
@@ -49,7 +49,7 @@ namespace BL.Files.Save
         public static bool Delete(string relativePath)
         {
             SettingsCheck();
-            var physicalPath = FilesSaveSettings.WebRootPath.TrimEnd('/') + "/" + relativePath.TrimStart('/');
+            var physicalPath = $"{FilesSaveSettings.WebRootPath.TrimEnd('/')}/{relativePath.TrimStart('/')}";
             return DeleteByPhysicalh(physicalPath);
         }
         public static bool DeleteByPhysicalh(string physicalPath)

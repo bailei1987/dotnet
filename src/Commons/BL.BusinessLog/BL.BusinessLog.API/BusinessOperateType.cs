@@ -10,5 +10,4 @@
         public const string DeleteMany = "DeleteMany";
         public const string Import = "Import";
     }
-
 }

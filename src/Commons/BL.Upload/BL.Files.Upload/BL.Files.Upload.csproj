@@ -8,6 +8,6 @@
     <ProjectReference Include="..\BL.Files\BL.Files.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
   </ItemGroup>
 </Project>

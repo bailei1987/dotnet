@@ -98,5 +98,4 @@ namespace BL.Files.Upload
         public IEnumerable<ImageCompressSetting> ImageCompressSettings { get; set; }
 
     }
-
 }

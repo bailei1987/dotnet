@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <PackageVersion>1.1.3</PackageVersion>
         <PackageReleaseNotes>init</PackageReleaseNotes>
         <AssemblyName>BL.Files.Save.API</AssemblyName>

@@ -32,7 +32,7 @@
         /// </summary>
         public string GetPathSettings()
         {
-            return "UriPath:" + UriPath + "|" + "WebRootPath:" + WebRootPath + "|" + "RootFloder:" + RootFloder + "|" + "MaxSize:" + MaxSize / 1024 / 1024 + "M";
+            return $"UriPath:{UriPath}|WebRootPath:{WebRootPath}|RootFloder:{RootFloder}|MaxSize:{MaxSize / 1024 / 1024}M";
         }
         #endregion
 

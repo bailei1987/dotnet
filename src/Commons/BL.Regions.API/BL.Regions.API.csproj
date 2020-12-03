@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <PackageVersion>1.0.3</PackageVersion>
 		<Version>1.0.3</Version>
     </PropertyGroup>
@@ -9,6 +9,6 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="BL.Regions" Version="1.0.3" />
+      <PackageReference Include="BL.Regions" Version="1.0.5" />
     </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <PackageVersion>1.0.6</PackageVersion>
 		<Version>1.0.6</Version>
     </PropertyGroup>
@@ -10,6 +10,6 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="ExcelDataReader" Version="3.6.0" />
-      <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.1" />
+      <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
     </ItemGroup>
 </Project>

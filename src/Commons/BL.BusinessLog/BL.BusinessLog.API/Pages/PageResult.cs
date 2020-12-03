@@ -4,7 +4,7 @@ namespace BL.BusinessLog
 {
     public class BusinessLogPageResult
     {
-        public static BusinessLogPageResult<T> Wrap<T>(long? total,IEnumerable<T> list)
+        public static BusinessLogPageResult<T> Wrap<T>(long? total, IEnumerable<T> list)
         {
             return new BusinessLogPageResult<T>(total, list);
         }
@@ -15,13 +15,12 @@ namespace BL.BusinessLog
     }
     public class BusinessLogPageResult<T>
     {
-        public BusinessLogPageResult(long? total,IEnumerable<T> list)
+        public BusinessLogPageResult(long? total, IEnumerable<T> list)
         {
-            Total = total!=null?(long)total:0;
+            Total = total != null ? (long)total : 0;
             List = list;
         }
         public long Total { get; set; }
         public IEnumerable<T> List { get; set; }
-        
     }
 }

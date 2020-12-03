@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.IO;
 
 namespace BL.Files.Save.API
 {
@@ -71,6 +71,4 @@ namespace BL.Files.Save.API
             return app;
         }
     }
-
-
 }

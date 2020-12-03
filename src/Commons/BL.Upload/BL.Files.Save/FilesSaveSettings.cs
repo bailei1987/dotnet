@@ -26,13 +26,13 @@
         /// <summary>
         /// 指示是否成功设置了值
         /// </summary>
-        public static bool Ok{ get; set; }
+        public static bool Ok { get; set; }
         /// <summary>
         /// 获取设置的路径信息
         /// </summary>
         public string GetPathSettings()
         {
-            return "UriPath:" + UriPath + "|" + "WebRootPath:" + WebRootPath + "|" + "MaxSize:" + MaxSize / 1024 / 1024 + "M";
+            return $"UriPath:{UriPath}|WebRootPath:{WebRootPath}|MaxSize:{MaxSize / 1024 / 1024}M";
         }
     }
 }

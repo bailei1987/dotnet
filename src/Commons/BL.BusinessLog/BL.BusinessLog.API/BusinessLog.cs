@@ -15,5 +15,4 @@
         public string Content { get; set; }
         public BusinessOperator Operator { get; set; }
     }
-
 }

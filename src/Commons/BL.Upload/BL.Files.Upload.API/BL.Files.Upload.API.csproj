@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <PackageVersion>1.1.6</PackageVersion>
         <PackageReleaseNotes>change filename create logic</PackageReleaseNotes>
         <AssemblyName>BL.Files.Upload.API</AssemblyName>
@@ -10,8 +10,8 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
-        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+        <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
+        <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
     </ItemGroup>
     <PropertyGroup>
         <Authors>bl(315297830@qq.com)</Authors>

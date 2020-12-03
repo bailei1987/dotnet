@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BL.BusinessLog
+﻿namespace BL.BusinessLog
 {
     public class BusinessLogKeywordPageInfo : BusinessLogPageInfo
     {
@@ -9,6 +7,5 @@ namespace BL.BusinessLog
         /// 搜索关键词
         /// </summary>
         public string SearchKey { get; set; }
-
     }
 }

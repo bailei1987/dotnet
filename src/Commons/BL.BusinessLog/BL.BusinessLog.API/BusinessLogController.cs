@@ -6,16 +6,10 @@ namespace BL.BusinessLog.API.Controllers
     [ApiController]
     public class BusinessLogController : ControllerBase
     {
-        public BusinessLogController() { }
-        
-
         [HttpPost("Page")]
         public BusinessLogPageResult<object> Page(BusinessLogKeywordPageInfo dto)
         {
             return BusinessLogHelper.Page(dto);
         }
-
     }
-
-    
 }

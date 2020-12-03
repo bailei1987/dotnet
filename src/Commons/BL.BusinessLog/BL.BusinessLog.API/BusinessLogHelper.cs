@@ -13,8 +13,8 @@ namespace BL.BusinessLog
             string filter = null;
             if (operateType != BusinessOperateType.InsertOne)
             {
-                filter = "{_id:\"" + id + "\"}";
-                if (ObjectId.TryParse(id, out _)) filter += " | { _id: ObjectId('" + id + "')}";
+                filter = $"{{_id:\"{id}\"}}";
+                if (ObjectId.TryParse(id, out _)) filter += $" | {{ _id: ObjectId('{id}')}}";
             }
             var log = new BusinessLog
             {
@@ -107,8 +107,6 @@ namespace BL.BusinessLog
             };
             Coll.InsertOne(log);
         }
-
-
 
         public static BusinessLogPageResult<object> Page(BusinessLogKeywordPageInfo dto)
         {

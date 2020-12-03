@@ -6,7 +6,7 @@ namespace models
 {
     public class DbContext : BaseDbContext
     {
-        public DbContext()         { }
+        public DbContext() { }
 
         public IMongoCollection<Test1> Test1s => _database.GetCollection<Test1>("t1");
         public IMongoCollection<Test2> Test2s => _database.GetCollection<Test2>("t2");
@@ -18,9 +18,9 @@ namespace models
         public ESex Sex { get; set; }
     }
     public enum ESex
-    { 
-        GG=1,
-        MM=0
+    {
+        GG = 1,
+        MM = 0
     }
     public class Test2
     {

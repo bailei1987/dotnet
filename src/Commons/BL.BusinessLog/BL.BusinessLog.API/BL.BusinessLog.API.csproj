@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 	<PropertyGroup>
 		<PackageVersion>1.1.3</PackageVersion>
@@ -20,6 +20,6 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 	<ItemGroup>		
-		<PackageReference Include="MongoDB.Driver" Version="2.10.4" />
+		<PackageReference Include="MongoDB.Driver" Version="2.11.5" />
 	</ItemGroup>
 </Project>

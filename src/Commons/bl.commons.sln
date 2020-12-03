@@ -48,7 +48,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Files.Save", "BL.Upload\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BL.BusinessLog", "BL.BusinessLog", "{A9AF8809-BA07-40BF-8DA5-2418A7A29F22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.BusinessLog.API", "BL.BusinessLog\BL.BusinessLog.API\BL.BusinessLog.API.csproj", "{9E55A5BA-456D-4F64-B526-DD297F61C339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.BusinessLog.API", "BL.BusinessLog\BL.BusinessLog.API\BL.BusinessLog.API.csproj", "{9E55A5BA-456D-4F64-B526-DD297F61C339}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

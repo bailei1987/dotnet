@@ -46,7 +46,7 @@ namespace BL.Files.Upload
             //throw new Exception("SaveOriginal");
             //string path = Path.Combine(SavePath, Guid.NewGuid().ToString() + "_" + Original + uploadFile.Extension);
             var no = Uploads.Files.Count + 1;
-            string path = Path.Combine(SavePath, no.ToString() + '_' + Original + uploadFile.Extension);
+            string path = Path.Combine(SavePath, $"{no.ToString()}_{Original}{uploadFile.Extension}");
             using (var newStream = new FileStream(UploadSettings.WebRootPath + path, FileMode.OpenOrCreate))
             {
                 uploadFile.FileStream.CopyTo(newStream);
@@ -55,7 +55,7 @@ namespace BL.Files.Upload
             {
                 Length = uploadFile.Length,
                 Name = uploadFile.FileName,
-                FullPath = UploadSettings.UriPath.TrimEnd('/') + "/" + path.Replace("\\", "/").TrimStart('/'),
+                FullPath = $"{UploadSettings.UriPath.TrimEnd('/')}/{path.Replace("\\", "/").TrimStart('/')}",
                 UriPath = UploadSettings.UriPath,
                 Path = path,
                 Suff = uploadFile.Extension,
@@ -94,7 +94,7 @@ namespace BL.Files.Upload
                     DeletedItem deleted = new DeletedItem()
                     {
                         Path = item.Path,
-                        PhysicalPath = UploadSettings.WebRootPath.TrimEnd('/') + "/" + item.Path.TrimStart('/')
+                        PhysicalPath = $"{UploadSettings.WebRootPath.TrimEnd('/')}/{item.Path.TrimStart('/')}"
                     };
                     if (File.Exists(deleted.PhysicalPath))
                     {
@@ -162,7 +162,7 @@ namespace BL.Files.Upload
                     compress.Length = SaveThumImg(uploadFile.Extension, img, name, compress.Width, compress.Height, compress.Quality);
                     compress.UriPath = UploadSettings.UriPath;
                     compress.Path = Path.Combine(SavePath, name).Replace('\\', '/');
-                    compress.FullPath = compress.UriPath.TrimEnd('/') + "/" + compress.Path.TrimStart('/');
+                    compress.FullPath = $"{compress.UriPath.TrimEnd('/')}/{compress.Path.TrimStart('/')}";
                     compress.No = i;
                     filesItem.Ts.Add(compress);
                     i++;
@@ -172,7 +172,7 @@ namespace BL.Files.Upload
         protected long SaveThumImg(string suffix, Image imgSource, string filename, int width, int height, int quality)
         {
             suffix = (suffix.Substring(1) == "jpg" ? "jpeg" : suffix.Substring(1));
-            ImageCodecInfo imageCodecInfo = GetEncoderInfo("image/" + suffix);
+            ImageCodecInfo imageCodecInfo = GetEncoderInfo($"image/{suffix}");
             EncoderParameter ep = new EncoderParameter(Encoder.Quality, quality);
             EncoderParameters eps = new EncoderParameters(1);
             eps.Param[0] = ep;
@@ -203,14 +203,8 @@ namespace BL.Files.Upload
     /// </summary>
     public class FilesOperate : FileOperateBase
     {
-        protected override void SaveAddtional(FilesItem filesItem, UploadFileInfo uploadFile)
-        {
+        protected override void SaveAddtional(FilesItem filesItem, UploadFileInfo uploadFile) { }
 
-        }
-
-        protected override void ValidateFileType()
-        {
-        }
+        protected override void ValidateFileType() { }
     }
-
 }

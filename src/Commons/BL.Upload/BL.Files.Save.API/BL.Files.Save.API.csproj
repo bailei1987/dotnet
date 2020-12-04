@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
-        <PackageVersion>1.1.3</PackageVersion>
+        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+        <PackageVersion>5.0.0</PackageVersion>
         <PackageReleaseNotes>init</PackageReleaseNotes>
         <AssemblyName>BL.Files.Save.API</AssemblyName>
     </PropertyGroup>
@@ -10,7 +10,7 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="BL.Files.Save" Version="1.0.0" />
+        <PackageReference Include="BL.Files.Save" Version="1.0.0" />
     </ItemGroup>
     <PropertyGroup>
         <Authors>bl(315297830@qq.com)</Authors>
@@ -19,7 +19,7 @@
         <Summary>save file in api self wwwroot</Summary>
         <Title>save file in api self wwwroot</Title>
         <Description>save byte[],base64String of image and etc.. to file inner api</Description>
-		<PackageReleaseNotes>add Delete(path) to delete file on server</PackageReleaseNotes>
+        <PackageReleaseNotes>add Delete(path) to delete file on server</PackageReleaseNotes>
         <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
     </PropertyGroup>
 </Project>

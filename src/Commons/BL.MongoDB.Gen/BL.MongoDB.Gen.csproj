@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
-        <PackageVersion>3.1.2</PackageVersion>
-        <Version>3.1.2</Version>
+        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+        <PackageVersion>5.0.0</PackageVersion>
+        <Version>5.0.0</Version>
         <Authors>bl(315297830@qq.com)</Authors>
         <Copyright>copyright@2020 bl</Copyright>
         <Owners>bl(315297830@qq.com)</Owners>
@@ -12,7 +12,6 @@
         <Title>BL.MongoDB DbContext setting</Title>
         <Description>BL.MongoDB DbContext setting,use [CONNECTIONSTRINGS_MONGO] in environment variable or [ConnectionStrings.Mongo] in appsettings.json to create DbContext,prefer using [CONNECTIONSTRINGS_MONGO] in env</Description>
         <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-        <Version>1.0.1</Version>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

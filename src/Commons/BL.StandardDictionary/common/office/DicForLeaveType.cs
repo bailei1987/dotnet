@@ -17,7 +17,7 @@
                 new DicItem("00107","陪产假"),
                 new DicItem("00108","其他"),
                 new DicItem("00109","产检假"),
-                new DicItem("00101","丧假"),
+                new DicItem("00110","丧假"),
             };
             
         }

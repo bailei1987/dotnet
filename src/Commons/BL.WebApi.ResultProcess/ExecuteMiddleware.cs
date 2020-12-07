@@ -20,7 +20,8 @@ namespace BL.WebApi.ResultProcess
             {
                 if (context.Result is ObjectResult result)
                 {
-                    context.Result = new ObjectResult(new { StatusCode = HttpStatusCode.OK, Msg = "success", Data = result.Value });
+                    if (result.Value.GetType().IsSubclassOf(typeof(System.IO.Stream))) { }
+                    else context.Result = new ObjectResult(new { StatusCode = HttpStatusCode.OK, Msg = "success", Data = result.Value });
                 }
                 else if (context.Result is EmptyResult)
                 {

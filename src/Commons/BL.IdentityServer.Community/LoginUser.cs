@@ -37,8 +37,7 @@ namespace BL.IdentityServer.Community
     {
         public static LoginUser GetLoginUserFromToken(this HttpContext httpContext)
         {
-            var tokenT = httpContext.GetTokenAsync("access_token");
-            if (tokenT is null) throw new Exception("token is empty");
+            var tokenT = httpContext.GetTokenAsync("access_token") ?? throw new Exception("token is empty");
             var token = new JwtSecurityToken(tokenT.Result);
             var c_rid = token.Claims.FirstOrDefault(x => x.Type == "client_user_rid");
             var c_name = token.Claims.FirstOrDefault(x => x.Type == "client_user_name");

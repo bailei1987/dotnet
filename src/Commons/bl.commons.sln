@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BL.BusinessLog", "BL.Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.BusinessLog.API", "BL.BusinessLog\BL.BusinessLog.API\BL.BusinessLog.API.csproj", "{9E55A5BA-456D-4F64-B526-DD297F61C339}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.MongoDB.API", "BL.MongoDB.API\BL.MongoDB.API.csproj", "{6E51C33E-DFF2-4BF7-B643-6276065D2844}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -144,6 +146,10 @@ Global
 		{9E55A5BA-456D-4F64-B526-DD297F61C339}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E55A5BA-456D-4F64-B526-DD297F61C339}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E55A5BA-456D-4F64-B526-DD297F61C339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E51C33E-DFF2-4BF7-B643-6276065D2844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E51C33E-DFF2-4BF7-B643-6276065D2844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E51C33E-DFF2-4BF7-B643-6276065D2844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E51C33E-DFF2-4BF7-B643-6276065D2844}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

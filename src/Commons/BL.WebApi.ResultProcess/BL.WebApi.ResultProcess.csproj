@@ -16,9 +16,9 @@
 			for example:change "false","true" to bool value,change number value&gt;0 to true,number value&lt;=0 to false
 		</PackageReleaseNotes>
         <PackOnBuild>true</PackOnBuild>
-        <PackageVersion>5.0.1</PackageVersion>
-        <FileVersion>5.0.1</FileVersion>
-        <Version>5.0.1</Version>
+        <PackageVersion>5.0.2</PackageVersion>
+        <FileVersion>5.0.2</FileVersion>
+        <Version>5.0.2</Version>
         <Owners>bl(315297830@qq.com)</Owners>
         <Title>for simple webapi action result process</Title>
         <Copyright>copyright@2020 bl</Copyright>

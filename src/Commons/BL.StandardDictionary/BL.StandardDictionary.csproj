@@ -10,6 +10,6 @@
         <PackOnBuild>true</PackOnBuild>
         <PackageVersion>1.0.22</PackageVersion>
         <Version>1.0.23</Version>
-        <FileVersion>1.0.22.0</FileVersion>
+        <FileVersion>1.0.23.0</FileVersion>
     </PropertyGroup>
 </Project>

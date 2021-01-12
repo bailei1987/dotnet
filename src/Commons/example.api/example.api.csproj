@@ -14,6 +14,11 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\BL.MongoDB\BL.MongoDB.csproj" />
+    <ProjectReference Include="..\BL.MongoDB.API\BL.MongoDB.API.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\BL.Upload\BL.Upload.API.GridFS\BL.Upload.API.GridFS.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

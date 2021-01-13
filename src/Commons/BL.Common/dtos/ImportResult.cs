@@ -57,7 +57,7 @@ namespace BL.Common
             {
                 x.Validate();
             });
-            return WaitImports.RemoveAll(x => x.Status == ImportDataItemStatus.Error) == 0;
+            return WaitImports.RemoveAll(x => x.Status == ImportDataItemStatus.Error || x.Msg != null) == 0;
         }
         /// <summary>
         /// change all items in WaitImports and WaitUpdates to Success,and clear this two collection
@@ -90,7 +90,7 @@ namespace BL.Common
         {
             var result = new ImportResult<T>();
             if (list is null || list.Count == 0) throw new Exception("import list cant be null or empty");
-            list.ForEach(x =>x.SetStatus(ImportDataItemStatus.WaitImport));
+            list.ForEach(x => x.SetStatus(ImportDataItemStatus.WaitImport));
             result.Items = list;
             result.WaitImports.AddRange(list);
             return result;

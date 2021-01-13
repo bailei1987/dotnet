@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <PackageVersion>2.1.28</PackageVersion>
-        <Version>2.1.28</Version>
+        <PackageVersion>2.1.29</PackageVersion>
+        <Version>2.1.29</Version>
         <Authors>bl</Authors>
         <Description>some base class for convenience</Description>
         <Copyright>copyright@2020 </Copyright>

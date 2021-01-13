@@ -2,15 +2,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-		<LangVersion>latest</LangVersion>
+        <LangVersion>latest</LangVersion>
         <Authors>bl(315297830@qq.com)</Authors>
         <Copyright>copy@2020 bl</Copyright>
         <NeutralLanguage>zh</NeutralLanguage>
         <Owners>bl</Owners>
         <Title>standard dictionary for personal use</Title>
         <PackOnBuild>true</PackOnBuild>
-        <PackageVersion>1.0.24</PackageVersion>
-        <Version>1.0.24</Version>
-        <FileVersion>1.0.24.0</FileVersion>
+        <PackageVersion>1.0.25</PackageVersion>
+        <Version>1.0.25</Version>
+        <FileVersion>1.0.25.0</FileVersion>
     </PropertyGroup>
 </Project>

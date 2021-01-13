@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using models;
+using BL.Files.Upload.API.GridFS;
 
 namespace example.api
 {
@@ -32,13 +33,12 @@ namespace example.api
                     builder.WithOrigins(origins).AllowAnyMethod().AllowAnyHeader();
                 });
             });
-            //db 
-            var connectionString = Configuration.GetConnectionString("Mongo");
-            BaseDbContext.RegistConventionPack(options => {
-                options.AddNotConvertObjectIdToStringTypes(typeof(Test2));
+            //db
+            var db = services.AddBLMongoDbContext<DbContext>(Configuration, opt =>
+            {
+                opt.AddNotConvertObjectIdToStringTypes(typeof(Test2));
             });
-            var db = BaseDbContext.CreateInstance<DbContext>(connectionString);
-            services.AddSingleton(db);
+            services.AddGridFSUpload(db._database, new MongoDB.Driver.GridFS.GridFSBucketOptions { ChunkSizeBytes = 1048576 });
             //same format of api results
             services.AddControllers(options =>
             {

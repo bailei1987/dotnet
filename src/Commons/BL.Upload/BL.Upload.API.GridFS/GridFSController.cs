@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver.GridFS;
+using BL.Files.Upload.API.GridFS.Models;
+using MongoDB.Driver;
 
 namespace BL.Files.Upload.API.GridFS.Controllers
 {
@@ -14,10 +17,13 @@ namespace BL.Files.Upload.API.GridFS.Controllers
     {
         private readonly GridFSBucket bucket;
         public GridFSController(GridFSBucket bucket) { this.bucket = bucket; }
+        private readonly FilterDefinitionBuilder<GridFSFileInfo> bf = Builders<GridFSFileInfo>.Filter;
 
+        [Authorize]
         [HttpPost]
         public IEnumerable<UploadItemResult> Post([FromForm] UploadDto dto)
         {
+            var user = HttpContext.GetLoginUserFromToken();
             if (string.IsNullOrWhiteSpace(dto.BusinessType)) throw new Exception("BusinessType can not be null");
             if (dto.File is null || dto.File.Count == 0) throw new Exception("no files find");
             var rsList = new List<UploadItemResult> { };
@@ -35,24 +41,42 @@ namespace BL.Files.Upload.API.GridFS.Controllers
                 {
                     BatchSize = dto.File.Count,
                     Metadata = new BsonDocument
-                        {
-                            { "contentType",item.ContentType}
-                        }
+                    {
+                        { "contentType",item.ContentType}
+                    }
                 };
-                if (!string.IsNullOrWhiteSpace(GridFSUploadBuildExtensions.BusinessApp)) uploadOptions.Metadata.AddRange(new BsonDocument { { "app", GridFSUploadBuildExtensions.BusinessApp } });
+                var bapp = dto.App ?? GridFSUploadBuildExtensions.BusinessApp;
+                if (string.IsNullOrWhiteSpace(bapp)) throw new Exception("BusinessApp can not be null");
+                uploadOptions.Metadata.AddRange(new BsonDocument { { "app", bapp } });
                 if (!string.IsNullOrWhiteSpace(dto.BusinessType)) uploadOptions.Metadata.AddRange(new BsonDocument { { "business", dto.BusinessType } });
-                if (!string.IsNullOrWhiteSpace(dto.Creator)) uploadOptions.Metadata.AddRange(new BsonDocument { { "creator", dto.Creator } });
                 if (!string.IsNullOrWhiteSpace(dto.Category)) uploadOptions.Metadata.AddRange(new BsonDocument { { "category", dto.Category } });
+                uploadOptions.Metadata.AddRange(new BsonDocument { { "creator", user.ToOperator().ToBsonDocument() } });
                 var oid = bucket.UploadFromStream(item.FileName, item.OpenReadStream(), uploadOptions);
-                rsList.Add(new UploadItemResult { FileId = oid.ToString(), FileName = item.FileName, ContentType = item.ContentType });
+                rsList.Add(new UploadItemResult { FileId = oid.ToString(), FileName = item.FileName, Length = item.Length, ContentType = item.ContentType });
             }
             return rsList;
         }
 
-        [HttpGet("{id}")]
-        public object Get(string id)
+        [HttpGet("{id}/DownloadStream")]
+        public object GetDownloadStream(string id)
         {
             return bucket.OpenDownloadStream(ObjectId.Parse(id), new GridFSDownloadOptions { Seekable = true });
+        }
+
+        [HttpGet("{id}/FileStream")]
+        public FileStreamResult GetFileStream(string id)
+        {
+            var stream = bucket.OpenDownloadStream(ObjectId.Parse(id), new GridFSDownloadOptions { Seekable = true });
+            return File(stream, stream.FileInfo.Metadata["contentType"].AsString, stream.FileInfo.Filename);
+        }
+
+        [HttpGet("{id}/FileContent")]
+        public FileContentResult GetFileContent(string id)
+        {
+            var fi = bucket.Find("{_id:ObjectId('" + id + "')}").SingleOrDefault() ?? throw new Exception("no data find");
+            if (fi.Length >= 1048576 * 5) throw new Exception("该文件超过5M,请使用流下载");
+            var bytes = bucket.DownloadAsBytes(ObjectId.Parse(id));
+            return File(bytes, fi.Metadata["contentType"].AsString, fi.Filename);
         }
 
         [HttpDelete("{id}")]
@@ -65,9 +89,9 @@ namespace BL.Files.Upload.API.GridFS.Controllers
         public class UploadDto
         {
             /// <summary>
-            /// 创建者信息
+            /// BusinessApp与该值至少要有一个.当该值存在时,优化取此值.
             /// </summary>
-            public string Creator { get; set; }
+            public string App { get; set; }
             /// <summary>
             /// 资源ID
             /// </summary>
@@ -91,6 +115,7 @@ namespace BL.Files.Upload.API.GridFS.Controllers
         {
             public string FileId { get; set; }
             public string FileName { get; set; }
+            public long Length { get; set; }
             public string ContentType { get; set; }
         }
         #endregion

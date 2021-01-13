@@ -1,23 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-	  <PackageVersion>2.1.28</PackageVersion>
-	  <Version>2.1.28</Version>
-	  <Authors>bl(315297830@qq.com)</Authors>
-	  <Copyright>copyright@2020 bl</Copyright>
-	  <Owners>bl(315297830@qq.com)</Owners>
-	  <PackageReleaseNotes>1.init</PackageReleaseNotes>
-	  <Summary>some dto use for from front to end</Summary>
-	  <Title>some dto use for from front to end</Title>
-	  <Description>some dto use for from front to end</Description>
-	  <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-	  <Version>1.0.6</Version>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BL.Common" Version="2.1.28" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-  </ItemGroup>
-
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <PackageVersion>2.1.28</PackageVersion>
+        <Version>2.1.28</Version>
+        <Authors>bl(315297830@qq.com)</Authors>
+        <Copyright>copyright@2020 bl</Copyright>
+        <Owners>bl(315297830@qq.com)</Owners>
+        <PackageReleaseNotes>1.init</PackageReleaseNotes>
+        <Summary>some dto use for from front to end</Summary>
+        <Title>some dto use for from front to end</Title>
+        <Description>some dto use for from front to end</Description>
+        <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+        <Version>1.0.6</Version>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="BL.Common" Version="2.1.28" />
+        <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    </ItemGroup>
 </Project>

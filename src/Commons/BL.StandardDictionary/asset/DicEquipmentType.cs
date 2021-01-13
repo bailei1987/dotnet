@@ -12,7 +12,6 @@ namespace BL.StandardDictionary
             return new[]{
                 new DicItem("1","教学仪器设备")
             };
-
         }
     }
 }

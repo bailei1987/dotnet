@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "example.api", "example.api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.WebApi.ResultProcess", "BL.WebApi.ResultProcess\BL.WebApi.ResultProcess.csproj", "{E7CE5974-5CB6-44B0-A291-E90159E74424}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Common", "BL.Common\BL.Common.csproj", "{DA773518-F41E-46BC-8757-4A88049AB011}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Common", "BL.Common\BL.Common.csproj", "{DA773518-F41E-46BC-8757-4A88049AB011}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.MongoDB", "BL.MongoDB\BL.MongoDB.csproj", "{91A87DD8-0303-4E59-9ACA-D14C0ADD0581}"
 EndProject

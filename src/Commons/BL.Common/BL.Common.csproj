@@ -1,16 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
-        <PackageVersion>2.1.29</PackageVersion>
-        <Version>2.1.29</Version>
+        <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+        <PackageVersion>2.1.30</PackageVersion>
+        <Version>2.1.30</Version>
         <Authors>bl</Authors>
         <Description>some base class for convenience</Description>
         <Copyright>copyright@2020 </Copyright>
         <Owners>bl</Owners>
         <Title>some basic classes</Title>
         <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-        <PackageReleaseNotes>update IMapClass and IMapClassFrom</PackageReleaseNotes>
+        <PackageReleaseNotes>add net5 targetframework support</PackageReleaseNotes>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
 </Project>

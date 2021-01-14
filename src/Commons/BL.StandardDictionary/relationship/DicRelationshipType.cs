@@ -1,6 +1,6 @@
 ﻿namespace BL.StandardDictionary
 {
-    public class DicRelationshipType:DicItem
+    public class DicRelationshipType : DicItem
     {
         protected override DicItem[] AllOption()
         {

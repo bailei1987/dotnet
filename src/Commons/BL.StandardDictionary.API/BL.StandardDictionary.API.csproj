@@ -11,6 +11,6 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="BL.StandardDictionary" Version="1.0.26" />
+        <PackageReference Include="BL.StandardDictionary" Version="1.0.27" />
     </ItemGroup>
 </Project>

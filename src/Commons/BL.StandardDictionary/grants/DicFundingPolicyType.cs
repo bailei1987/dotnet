@@ -3,7 +3,7 @@
     /// <summary>
     /// 资助政策
     /// </summary>
-    public class DicFundingPolicy : DicItem
+    public class DicFundingPolicyType : DicItem
     {
         protected override DicItem[] AllOption()
         {

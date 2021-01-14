@@ -3,7 +3,7 @@
     /// <summary>
     /// 教育阶段
     /// </summary>
-    public class DicEducationStage : DicItem
+    public class DicEducationStageType : DicItem
     {
         protected override DicItem[] AllOption()
         {

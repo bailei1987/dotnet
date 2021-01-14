@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
-        <PackageVersion>2.1.30</PackageVersion>
-        <Version>2.1.30</Version>
+        <PackageVersion>2.1.31</PackageVersion>
+        <Version>2.1.31</Version>
         <Authors>bl(315297830@qq.com)</Authors>
         <Copyright>copyright@2020 bl</Copyright>
         <Owners>bl(315297830@qq.com)</Owners>
@@ -15,7 +15,7 @@
         <Version>1.0.6</Version>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="BL.Common" Version="2.1.30" />
+        <PackageReference Include="BL.Common" Version="2.1.31" />
         <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.6.3" />
     <PackageReference Include="BL.Excel" Version="1.0.5" />
-    <PackageReference Include="BL.StandardDictionary.API" Version="1.0.22" />
+    <PackageReference Include="BL.StandardDictionary.API" Version="5.0.26" />
   </ItemGroup>
 
 

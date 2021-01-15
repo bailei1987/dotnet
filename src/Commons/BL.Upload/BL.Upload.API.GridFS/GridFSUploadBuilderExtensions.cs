@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
-
-namespace BL.Files.Upload.API.GridFS
+namespace BL.Upload.API.GridFS
 {
-
     public static class GridFSUploadBuildExtensions
     {
         public static IServiceCollection AddGridFSUpload(this IServiceCollection services, IMongoDatabase database, GridFSBucketOptions gridFSBucketOptions = null, string businessApp = null, bool useDefalutdb = false)

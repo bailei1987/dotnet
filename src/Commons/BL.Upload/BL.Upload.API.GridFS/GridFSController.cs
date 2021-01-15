@@ -8,6 +8,7 @@ using MongoDB.Bson;
 using MongoDB.Driver.GridFS;
 using BL.Files.Upload.API.GridFS.Models;
 using MongoDB.Driver;
+using BL.Upload.API.GridFS;
 
 namespace BL.Files.Upload.API.GridFS.Controllers
 {
@@ -111,13 +112,7 @@ namespace BL.Files.Upload.API.GridFS.Controllers
             [Required]
             public List<IFormFile> File { get; set; }
         }
-        public class UploadItemResult
-        {
-            public string FileId { get; set; }
-            public string FileName { get; set; }
-            public long Length { get; set; }
-            public string ContentType { get; set; }
-        }
+
         #endregion
     }
 }

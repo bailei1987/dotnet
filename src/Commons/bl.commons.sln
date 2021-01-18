@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.MongoDB.API", "BL.MongoD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Upload.API.GridFS", "BL.Upload\BL.Upload.API.GridFS\BL.Upload.API.GridFS.csproj", "{D24AD73A-9B7F-44DA-BBB7-0652880ED5F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Flows.API", "BL.Flow.API\BL.Flows.API.csproj", "{266D9D7F-60DD-4FD0-B4D6-3947D4B19282}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -156,6 +158,10 @@ Global
 		{D24AD73A-9B7F-44DA-BBB7-0652880ED5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D24AD73A-9B7F-44DA-BBB7-0652880ED5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D24AD73A-9B7F-44DA-BBB7-0652880ED5F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{266D9D7F-60DD-4FD0-B4D6-3947D4B19282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{266D9D7F-60DD-4FD0-B4D6-3947D4B19282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{266D9D7F-60DD-4FD0-B4D6-3947D4B19282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{266D9D7F-60DD-4FD0-B4D6-3947D4B19282}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

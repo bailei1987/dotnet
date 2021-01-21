@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net5.0</TargetFrameworks>
+        <PackageVersion>5.0.10</PackageVersion>
+        <Version>5.0.10</Version>
+        <Authors>bl(315297830@qq.com)</Authors>
+        <Copyright>copyright@2020 bl</Copyright>
+        <Owners>bl(315297830@qq.com)</Owners>
+        <PackageReleaseNotes>
+        </PackageReleaseNotes>
+        <Summary>flow sdk domain</Summary>
+        <Title>flow sdk domain </Title>
+        <Description>
+        </Description>
+        <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+        <OutputType>Library</OutputType>
+        <IsPackable>true</IsPackable>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+</Project>

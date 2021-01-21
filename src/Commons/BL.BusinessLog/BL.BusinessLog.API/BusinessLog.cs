@@ -7,6 +7,7 @@
 
         public BusinessApp App { get; set; }
         public string Business { get; set; }
+        public string Title { get; set; }
         public string OperateType { get; set; }
         public string Key { get; set; }
         public string Filter { get; set; }

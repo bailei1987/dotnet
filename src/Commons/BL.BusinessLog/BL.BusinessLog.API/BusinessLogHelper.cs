@@ -7,7 +7,7 @@ namespace BL.BusinessLog
 {
     public static class BusinessLogHelper
     {
-        private static void LogOperateOne(dynamic user, Enum business, string operateType, string id, object content = null, string update = null)
+        private static void LogOperateOne(dynamic user, Enum business, string operateType, string id, object content = null, string update = null, string title = null)
         {
             var time = DateTime.Now;
             string filter = null;
@@ -20,6 +20,7 @@ namespace BL.BusinessLog
             {
                 App = App,
                 Business = business.ToString(),
+                Title = title,
                 OperateType = operateType,
                 Operator = new BusinessOperator { Rid = user.Rid, Name = user.Name, Time = time },
                 Key = id,
@@ -31,34 +32,35 @@ namespace BL.BusinessLog
             };
             Coll.InsertOne(log);
         }
-        public static void LogInsertOne(dynamic user, Enum business, string id, object content = null)
+        public static void LogInsertOne(dynamic user, Enum business, string id, object content = null, string title = null)
         {
-            LogOperateOne(user, business, BusinessOperateType.InsertOne, id, content);
+            LogOperateOne(user, business, BusinessOperateType.InsertOne, id, content, title);
         }
-        public static void LogDeleteOne(dynamic user, Enum business, string id, object content = null)
+        public static void LogDeleteOne(dynamic user, Enum business, string id, object content = null, string title = null)
         {
-            LogOperateOne(user, business, BusinessOperateType.DeleteOne, id, content);
+            LogOperateOne(user, business, BusinessOperateType.DeleteOne, id, content, title);
         }
-        public static void LogUpdateOne(dynamic user, Enum business, string id, string update = null, object content = null)
+        public static void LogUpdateOne(dynamic user, Enum business, string id, string update = null, object content = null, string title = null)
         {
-            LogOperateOne(user, business, BusinessOperateType.UpdateOne, id, content, update);
+            LogOperateOne(user, business, BusinessOperateType.UpdateOne, id, content, update, title);
         }
-        public static void LogUpdateOne<T>(dynamic user, Enum business, string id, UpdateDefinition<T> updateDefinition = null, object content = null)
+        public static void LogUpdateOne<T>(dynamic user, Enum business, string id, UpdateDefinition<T> updateDefinition = null, object content = null, string title = null)
         {
-            LogOperateOne(user, business, BusinessOperateType.UpdateOne, id, content, GetJson(updateDefinition));
+            LogOperateOne(user, business, BusinessOperateType.UpdateOne, id, content, GetJson(updateDefinition), title);
         }
 
-        public static void LogDeleteMany<T>(dynamic user, Enum business, FilterDefinition<T> filterDefinition, long effectCount, string content = null)
+        public static void LogDeleteMany<T>(dynamic user, Enum business, FilterDefinition<T> filterDefinition, long effectCount, string content = null, string title = null)
         {
-            LogDeleteMany(user, business, GetJson(filterDefinition), effectCount, content);
+            LogDeleteMany(user, business, GetJson(filterDefinition), effectCount, content, title);
         }
-        public static void LogDeleteMany(dynamic user, Enum business, string filter, long effectCount, string content = null)
+        public static void LogDeleteMany(dynamic user, Enum business, string filter, long effectCount, string content = null, string title = null)
         {
             var time = DateTime.Now;
             var log = new BusinessLog
             {
                 App = App,
                 Business = business.ToString(),
+                Title = title,
                 OperateType = BusinessOperateType.DeleteMany,
                 Operator = new BusinessOperator { Rid = user.Rid, Name = user.Name, Time = time },
                 Filter = filter,
@@ -68,17 +70,18 @@ namespace BL.BusinessLog
             };
             Coll.InsertOne(log);
         }
-        public static void LogUpdateMany<T>(dynamic user, Enum business, FilterDefinition<T> filterDefinition, UpdateDefinition<T> updateDefinition, long effectCount, string content = null)
+        public static void LogUpdateMany<T>(dynamic user, Enum business, FilterDefinition<T> filterDefinition, UpdateDefinition<T> updateDefinition, long effectCount, string content = null, string title = null)
         {
-            LogUpdateMany(user, business, GetJson(filterDefinition), GetJson(updateDefinition), effectCount, content);
+            LogUpdateMany(user, business, GetJson(filterDefinition), GetJson(updateDefinition), effectCount, content, title);
         }
-        public static void LogUpdateMany(dynamic user, Enum business, string filter, string update, long effectCount, string content = null)
+        public static void LogUpdateMany(dynamic user, Enum business, string filter, string update, long effectCount, string content = null, string title = null)
         {
             var time = DateTime.Now;
             var log = new BusinessLog
             {
                 App = App,
                 Business = business.ToString(),
+                Title = title,
                 OperateType = BusinessOperateType.UpdateMany,
                 Operator = new BusinessOperator { Rid = user.Rid, Name = user.Name, Time = time },
                 Filter = filter,
@@ -90,7 +93,7 @@ namespace BL.BusinessLog
             Coll.InsertOne(log);
         }
 
-        public static void LogImport(dynamic user, Enum business, string[] ids, string content = null)
+        public static void LogImport(dynamic user, Enum business, string[] ids, string content = null, string title = null)
         {
             var time = DateTime.Now;
             if (ids is null) ids = new string[] { };
@@ -98,6 +101,7 @@ namespace BL.BusinessLog
             {
                 App = App,
                 Business = business.ToString(),
+                Title = title,
                 OperateType = BusinessOperateType.Import,
                 Operator = new BusinessOperator { Rid = user.Rid, Name = user.Name, Time = time },
                 Key = "[" + string.Join(",", ids) + "]",
@@ -137,7 +141,7 @@ namespace BL.BusinessLog
             App = app;
             Coll = db.Client.GetDatabase("blcommon").GetCollection<BusinessLog>("blogs");
         }
-        public static BusinessApp App;
+        private static BusinessApp App;
         private static IMongoCollection<BusinessLog> Coll;
         private static string GetJson<T>(FilterDefinition<T> filterDefinition)
         {

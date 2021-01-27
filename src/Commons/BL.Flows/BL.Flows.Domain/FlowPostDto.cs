@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BL.Flows.Domain
 {
@@ -6,5 +7,10 @@ namespace BL.Flows.Domain
     {
         [Required]
         public string FlowDef { get; set; }
+    }
+    public abstract class FlowDynamicPostDto : FlowPostDto
+    {
+        [Required]
+        public List<FlowReferenceItem> Operators { get; set; }
     }
 }

@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using BL.Flows.Domain;
 using MongoDB.Driver;
 
 namespace BL.Flows.Client
 {
+
     public static class FlowClient
     {
         private static IMongoDatabase _db;
@@ -15,7 +21,8 @@ namespace BL.Flows.Client
         private static IMongoCollection<FlowDef> _flowDefs;
         private static IMongoCollection<FlowRole> _flowRoles;
         private static IMongoCollection<FlowUserManageDept> _flowUserManageDepts;
-        public static void Init(IMongoDatabase database, bool useDefalutdb = true)
+        private static FlowMsgApiSetting _FlowMsgApiSetting;
+        public static void Init(IMongoDatabase database, bool useDefalutdb = true, FlowMsgApiSetting flowMsgApiSetting = null)
         {
             _db = useDefalutdb ? database.Client.GetDatabase("blcommon") : database;
             _flows = _db.GetCollection<Flow>(CollNames.Flow);
@@ -23,6 +30,7 @@ namespace BL.Flows.Client
             _flowDefs = _db.GetCollection<FlowDef>(CollNames.FlowDef);
             _flowRoles = _db.GetCollection<FlowRole>(CollNames.FlowRole);
             _flowUserManageDepts = _db.GetCollection<FlowUserManageDept>(CollNames.FlowUserManageDept);
+            _FlowMsgApiSetting = flowMsgApiSetting;
         }
 
         public static FlowNextResult Create(IClientSessionHandle session, FlowPostParam param)
@@ -69,6 +77,85 @@ namespace BL.Flows.Client
             //get next operate users
             var role = _flowRoles.Find(session, x => x.Id == obj.Process.Steps.First().Role.Rid).Project(x => new FlowNextResultRole(x.IsApplyerDept, x.Users)).SingleOrDefault() ?? throw new Exception("the first step's role of this flow can not find in flowRoles");
             return new(obj, role);
+        }
+
+        public static void DynamicCreate(IClientSessionHandle session, FlowDynamicPostParam param)
+        {
+            param.Creator.Validate();
+            if (param.Operators is null || param.Operators.Count == 0) throw new Exception("next operators can not be empty");
+            //
+            var flowDef = _flowDefs.Find(session, x => x.Id == param.FlowDef).SingleOrDefault() ?? throw new Exception("flowDef is null");
+            if (flowDef.ApproveType != ApproveType.Danymic) throw new Exception("flowDef approve must be dynamic");
+            //
+            var obj = new Flow
+            {
+                Id = param.BusinessKeyId,
+                Business = flowDef.BusinessType,
+                BusinessKeyId = param.BusinessKeyId,
+                DealStatus = false,
+                Status = new FlowStatus(),
+                CommonInfo = new FlowCommonInfo
+                {
+                    Title = param.Title,
+                    FlowDef = new FlowDefReference
+                    {
+                        Rid = flowDef.Id,
+                        Name = flowDef.Name,
+                        ApproveType = flowDef.ApproveType
+                    },
+                    Creator = param.Creator
+                },
+                BusinessContents = param.BusinessContents,
+                School = param.School
+            };
+            obj.BuildText();
+            obj.Process = new FlowProcess
+            {
+                Operators = new List<FlowReferenceItem>(),
+                OperatorsNow = param.Operators,
+                StepNow = 1,
+                Steps = new List<FlowStep> { }
+            };
+            _flows.ReplaceOne(session, x => x.Id == obj.Id, obj, new ReplaceOptions { IsUpsert = true });
+        }
+        public static void DynamicApprove(IClientSessionHandle session, string user, string id, string comment)
+        {
+            var flow = _flows.Find(session, x => x.Id == id).SingleOrDefault() ?? throw new Exception("no data find");
+            if (flow.CommonInfo.FlowDef.ApproveType != ApproveType.Danymic) throw new Exception("this method only use for dynamic approve type");
+            if (flow.Status.Pass != FlowStatusPass.审批中) throw new Exception("该流程已结束");
+            var operatorNow = flow.Process.OperatorsNow.Find(x => x.Rid == user) ?? throw new Exception("当前操作人非此步骤人员");
+            var step = new FlowStep
+            {
+                No = flow.Process.Steps.Count + 1,
+                Agree = true,
+                Comment = comment,
+                OperateTime = DateTime.Now,
+                Operator = operatorNow
+            };
+            flow.Process.Steps.Add(step);
+            flow.Process.Operators.Add(operatorNow);
+            var creator = flow.CommonInfo.Creator;
+            flow.Process.OperatorsNow.Clear();
+            flow.Process.OperatorsNow.Add(new FlowReferenceItem(creator.Rid, creator.Name));
+            _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
+        }
+        public static void DynamicNext(IClientSessionHandle session, string user, string id, List<FlowReferenceItem> operators = null)
+        {
+            var flow = _flows.Find(session, x => x.Id == id).SingleOrDefault() ?? throw new Exception("no data find");
+            if (flow.CommonInfo.FlowDef.ApproveType != ApproveType.Danymic) throw new Exception("this method only use for dynamic approve type");
+            if (flow.Status.Pass != FlowStatusPass.审批中) throw new Exception("该流程已结束");
+            var operatorNow = flow.Process.OperatorsNow.Find(x => x.Rid == user) ?? throw new Exception("当前操作人非此步骤人员");
+            if (operators is null || operators.Count == 0)
+            {
+                flow.Status = new FlowStatus { OverTime = DateTime.Now, Pass = FlowStatusPass.已通过 };
+            }
+            else
+            {
+                flow.Process.Operators.Add(operatorNow);
+                flow.Process.OperatorsNow.Clear();
+                flow.Process.OperatorsNow.AddRange(operators.Select(x => new FlowReferenceItem(x.Rid, x.Name)));
+            }
+            _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
         }
 
         public static FlowsNextResult CreateBatch(IClientSessionHandle session, FlowPostParamBatch param)
@@ -240,16 +327,145 @@ namespace BL.Flows.Client
         public static void Update(IClientSessionHandle session, Flow flow)
         {
             _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
+            CreateNotices(flow);
         }
         public static void Update(IClientSessionHandle session, IEnumerable<Flow> flows)
         {
             IEnumerable<ReplaceOneModel<Flow>> writes = flows.Select(x => new ReplaceOneModel<Flow>(Builders<Flow>.Filter.Eq(y => y.Id, x.Id), x) { IsUpsert = true });
             _flows.BulkWrite(session, writes, new BulkWriteOptions { IsOrdered = false });
+            foreach (var flow in flows) CreateNotices(flow);
         }
+        private static void CreateNotices(Flow flow)
+        {
+            if (flow.Status.Pass == FlowStatusPass.审批中)
+            {
+                if (flow.Process.StepNow > 1)//when flow first commit,stepnow is 1,do not need to notify appler. stepnow>1 is approver agree
+                {
+                    if (_FlowMsgApiSetting?.NotifyAppler is not null)
+                    {
+                        var step = flow.Process.Steps.Last(x => x.Agree is not null);
+                        _ = CreateNotifyApplyerMessage(new FlowApplyerMsgDto
+                        {
+                            Business = flow.Business,
+                            BusinessKeyId = flow.BusinessKeyId,
+                            Title = flow.CommonInfo.Title,
+                            Applyer = new FlowReferenceItem(flow.CommonInfo.Creator.Rid, flow.CommonInfo.Creator.Name),
+                            Approver = step.Operator,
+                            Agree = (bool)step.Agree,
+                            Comment = step.Comment,
+                            OperateTime = (DateTime)step.OperateTime,
+                            FlowStatusPass = flow.Status.Pass,
+                            School = flow.School
+                        });
+                    }
+                }
+                if (_FlowMsgApiSetting?.NotifyApprover is not null)
+                {
+                    if (flow.Process.OperatorsNow.Count > 0)
+                    {
+                        _ = CreateNotifyApproverMessage(new FlowApproverMsgDto
+                        {
+                            Business = flow.Business,
+                            Title = flow.CommonInfo.Title,
+                            BusinessKeyId = flow.BusinessKeyId,
+                            Users = flow.Process.OperatorsNow,
+                            School = flow.School
+                        });
+                    }
+                }
+            }
+            else if (flow.Status.Pass == FlowStatusPass.已通过 || flow.Status.Pass == FlowStatusPass.未通过)
+            {
+                if (_FlowMsgApiSetting?.NotifyAppler is not null)
+                {
+                    var step = flow.Process.Steps.Last(x => x.Agree is not null);
+                    _ = CreateNotifyApplyerMessage(new FlowApplyerMsgDto
+                    {
+                        Business = flow.Business,
+                        BusinessKeyId = flow.BusinessKeyId,
+                        Title = flow.CommonInfo.Title,
+                        Applyer = new FlowReferenceItem(flow.CommonInfo.Creator.Rid, flow.CommonInfo.Creator.Name),
+                        Approver = step.Operator,
+                        Agree = (bool)step.Agree,
+                        Comment = step.Comment,
+                        OperateTime = (DateTime)step.OperateTime,
+                        FlowStatusPass = flow.Status.Pass,
+                        School = flow.School
+                    });
+                }
+            }
+        }
+        public static async Task CreateNotifyApproverMessage(FlowApproverMsgDto dto)
+        {
+            try
+            {
+                var jsonSerializerOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+                jsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                var parm = JsonSerializer.Serialize(dto, jsonSerializerOptions);
+                var postcontent = new StringContent(parm, Encoding.UTF8, "application/json");
+                var httpClient = new HttpClient { };
+                var syncrs = await httpClient.PostAsync(_FlowMsgApiSetting.NotifyApprover, postcontent);
+                if (!syncrs.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"error to send msg to flow approvers,reason:{syncrs.StatusCode}:{syncrs.ReasonPhrase}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"消息推送失败:{ex}");
+            }
+        }
+        public static async Task CreateNotifyApplyerMessage(FlowApplyerMsgDto dto)
+        {
+            try
+            {
+                var jsonSerializerOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+                jsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                var parm = JsonSerializer.Serialize(dto, jsonSerializerOptions);
+                var postcontent = new StringContent(parm, Encoding.UTF8, "application/json");
+                var httpClient = new HttpClient { };
+                var syncrs = await httpClient.PostAsync(_FlowMsgApiSetting.NotifyAppler, postcontent);
+                if (!syncrs.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"error to send msg to flow applyer,reason:{syncrs.StatusCode}:{syncrs.ReasonPhrase}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"消息推送失败:{ex}");
+            }
+        }
+
 
 
     }
 
+    public class FlowMsgApiSetting
+    {
+        public string NotifyApprover { get; set; }
+        public string NotifyAppler { get; set; }
+    }
+    public class FlowApproverMsgDto
+    {
+        public string BusinessKeyId { get; set; }
+        public FlowBusiness Business { get; set; }
+        public string Title { get; set; }
+        public List<FlowReferenceItem> Users { get; set; }
+        public string School { get; set; }
+    }
+    public class FlowApplyerMsgDto
+    {
+        public string BusinessKeyId { get; set; }
+        public FlowBusiness Business { get; set; }
+        public string Title { get; set; }
+        public FlowReferenceItem Applyer { get; set; }
+        public FlowReferenceItem Approver { get; set; }
+        public bool Agree { get; set; }
+        public string Comment { get; set; }
+        public DateTime OperateTime { get; set; }
+        public FlowStatusPass FlowStatusPass { get; set; }
+        public string School { get; set; }
+    }
 
     #region dto_post
     public class FlowPostParamBase
@@ -261,6 +477,10 @@ namespace BL.Flows.Client
         [Required]
         public string Title { get; set; }
         public List<FlowBusinessContentsItem> BusinessContents { get; set; }
+    }
+    public class FlowDynamicPostParam : FlowPostParam
+    {
+        public List<FlowReferenceItem> Operators { get; set; }
     }
     public class FlowPostParam : FlowPostParamBase
     {

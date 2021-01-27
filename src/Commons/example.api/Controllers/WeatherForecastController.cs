@@ -48,5 +48,11 @@ namespace example.api.Controllers
             var list = ExcelHelper.GetDatas(file.OpenReadStream());
             return list;
         }
+
+        [HttpGet("Error")]
+        public void GetError()
+        {
+            throw new Exception("ExceptionMiddleware Test");
+        }
     }
 }

@@ -1,6 +1,6 @@
-using bl.filters;
 using BL.MongoDB;
 using BL.Upload.API.GridFS;
+using BL.WebApi.ResultProcess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -42,8 +42,8 @@ namespace example.api
             //same format of api results
             services.AddControllers(options =>
             {
-                options.Filters.Add<ExceptionMiddleware>();
-                options.Filters.Add<ExecuteMiddleware>();
+                options.Filters.Add<ExceptionFilter>();
+                options.Filters.Add<ActionExecuteFilter>();
             }).AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
@@ -69,6 +69,7 @@ namespace example.api
             {
                 app.UseDeveloperExceptionPage();
             }
+            //app.UseGlobalException();
             app.UseCors("AllowedHosts");
             app.UseHttpsRedirection();
 

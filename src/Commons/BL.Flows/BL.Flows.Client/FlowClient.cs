@@ -395,7 +395,7 @@ namespace BL.Flows.Client
                 }
             }
         }
-        public static async Task CreateNotifyApproverMessage(FlowApproverMsgDto dto)
+        private static async Task CreateNotifyApproverMessage(FlowApproverMsgDto dto)
         {
             try
             {
@@ -415,7 +415,7 @@ namespace BL.Flows.Client
                 Console.WriteLine($"消息推送失败:{ex}");
             }
         }
-        public static async Task CreateNotifyApplyerMessage(FlowApplyerMsgDto dto)
+        private static async Task CreateNotifyApplyerMessage(FlowApplyerMsgDto dto)
         {
             try
             {

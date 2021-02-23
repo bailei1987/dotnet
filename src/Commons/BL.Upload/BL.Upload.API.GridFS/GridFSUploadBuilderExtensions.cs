@@ -7,7 +7,7 @@ namespace BL.Upload.API.GridFS
 {
     public static class GridFSUploadBuildExtensions
     {
-        public static IServiceCollection AddGridFSUpload(this IServiceCollection services, IMongoDatabase database, GridFSBucketOptions gridFSBucketOptions = null, string businessApp = null, bool useDefalutdb = false)
+        public static IServiceCollection AddGridFSUpload(this IServiceCollection services, IMongoDatabase database, GridFSBucketOptions gridFSBucketOptions = null, string businessApp = null, bool useDefalutdb = true)
         {
             if (database is null) throw new("db cant be null");
             BusinessApp = businessApp;

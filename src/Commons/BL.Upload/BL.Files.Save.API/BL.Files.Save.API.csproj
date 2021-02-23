@@ -5,6 +5,7 @@
         <PackageVersion>5.0.0</PackageVersion>
         <PackageReleaseNotes>init</PackageReleaseNotes>
         <AssemblyName>BL.Files.Save.API</AssemblyName>
+		<LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

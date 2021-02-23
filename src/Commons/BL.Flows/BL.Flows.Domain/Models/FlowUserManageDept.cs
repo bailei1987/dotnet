@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BL.Flows.Domain
 {
@@ -15,7 +14,7 @@ namespace BL.Flows.Domain
         /// <summary>
         /// 分管部门列表
         /// </summary>
-        public List<FlowReferenceItem> Departments { get; set; } = new List<FlowReferenceItem>();
+        public List<FlowReferenceItem> Departments { get; set; } = new();
 
         public FlowOperator Creator { get; set; }
         public string School { get; set; }

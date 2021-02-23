@@ -8,21 +8,21 @@ namespace BL.Files.Save
         private static readonly string tipTitle = "BL.Files.Save.API FilesSaveOperate:";
         public static void SettingsCheck()
         {
-            if (FilesSaveSettings.Ok == false) throw new Exception($"{tipTitle} CheckSetting error,please check if use BL.Files.Save.API.UseBLFilesSave method in startup.cs");
+            if (FilesSaveSettings.Ok == false) throw new($"{tipTitle} CheckSetting error,please check if use BL.Files.Save.API.UseBLFilesSave method in startup.cs");
         }
         private static void ValidateSize(long length)
         {
-            if (length > FilesSaveSettings.MaxSize) throw new Exception($"{tipTitle} file size [{length}]({length / 1024}KB) excess the max size [{FilesSaveSettings.MaxSize}]({FilesSaveSettings.MaxSize / 1024}KB)");
+            if (length > FilesSaveSettings.MaxSize) throw new($"{tipTitle} file size [{length}]({length / 1024}KB) excess the max size [{FilesSaveSettings.MaxSize}]({FilesSaveSettings.MaxSize / 1024}KB)");
         }
 
         private static string CreateDirectory(FilesSaveOptions options)
         {
-            if (string.IsNullOrWhiteSpace(options.Directory)) throw new Exception($"{tipTitle} Directory cant be empty");
-            string savePath;
-            if (options.CreateDateDirectory) savePath = Path.Combine(Path.DirectorySeparatorChar.ToString(), FilesSaveSettings.RootFloder, options.Directory, DateTime.Now.ToString("yyyyMMdd"));
-            else savePath = Path.Combine(Path.DirectorySeparatorChar.ToString(), FilesSaveSettings.RootFloder, options.Directory);
+            if (string.IsNullOrWhiteSpace(options.Directory)) throw new($"{tipTitle} Directory cant be empty");
+            string savePath = options.CreateDateDirectory
+                ? Path.Combine(Path.DirectorySeparatorChar.ToString(), FilesSaveSettings.RootFloder, options.Directory, DateTime.Now.ToString("yyyyMMdd"))
+                : Path.Combine(Path.DirectorySeparatorChar.ToString(), FilesSaveSettings.RootFloder, options.Directory);
             var absolutePath = FilesSaveSettings.WebRootPath + savePath;
-            if (!Directory.Exists(absolutePath)) Directory.CreateDirectory(absolutePath);
+            if (!Directory.Exists(absolutePath)) _ = Directory.CreateDirectory(absolutePath);
             return absolutePath;
         }
         public static string SaveFrom(string base64String, FilesSaveOptions options)
@@ -35,13 +35,13 @@ namespace BL.Files.Save
             }
             catch
             {
-                throw new Exception("cant convert to byte[] from this string,need Base64String");
+                throw new("cant convert to byte[] from this string,need Base64String");
             }
             ValidateSize(imgBytes.Length);
             string directory = CreateDirectory(options);
-            string filePath;
-            if (!string.IsNullOrWhiteSpace(options.FileName)) filePath = directory + Path.DirectorySeparatorChar.ToString() + options.FileName;
-            else filePath = $"{directory}{Path.DirectorySeparatorChar}{Guid.NewGuid()}.{options.FileExtension.Replace(".", "")}";
+            string filePath = !string.IsNullOrWhiteSpace(options.FileName)
+                ? directory + Path.DirectorySeparatorChar.ToString() + options.FileName
+                : $"{directory}{Path.DirectorySeparatorChar}{Guid.NewGuid()}.{options.FileExtension.Replace(".", "")}";
             using var stream = new FileStream(filePath, FileMode.OpenOrCreate);
             stream.Write(imgBytes, 0, imgBytes.Length);
             return filePath;

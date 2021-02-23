@@ -1,22 +1,24 @@
-﻿using BL.Files;
-/// <summary>
-/// 压缩文件信息
-/// </summary>
-public class CompressItem : FileItemBase
+﻿namespace BL.Files
 {
-    public int Width { get; set; }
-    public int Height { get; set; }
-    public int Quality { get; set; }
-
-    public static CompressItem From(FileItemBase fileInfo)
+    /// <summary>
+    /// 压缩文件信息
+    /// </summary>
+    public class CompressItem : FileItemBase
     {
-        return new CompressItem()
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int Quality { get; set; }
+
+        public static CompressItem From(FileItemBase fileInfo)
         {
-            Length = fileInfo.Length,
-            No = fileInfo.No,
-            FullPath = fileInfo.FullPath,
-            UriPath = fileInfo.UriPath,
-            Path = fileInfo.Path
-        };
+            return new()
+            {
+                Length = fileInfo.Length,
+                No = fileInfo.No,
+                FullPath = fileInfo.FullPath,
+                UriPath = fileInfo.UriPath,
+                Path = fileInfo.Path
+            };
+        }
     }
 }

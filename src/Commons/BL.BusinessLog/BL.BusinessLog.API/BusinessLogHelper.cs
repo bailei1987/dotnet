@@ -22,7 +22,7 @@ namespace BL.BusinessLog
                 Business = business.ToString(),
                 Title = title,
                 OperateType = operateType,
-                Operator = new BusinessOperator { Rid = user.Rid, Name = user.Name, Time = time },
+                Operator = new() { Rid = user.Rid, Name = user.Name, Time = time },
                 Key = id,
                 Filter = filter,
                 Update = update,
@@ -62,7 +62,7 @@ namespace BL.BusinessLog
                 Business = business.ToString(),
                 Title = title,
                 OperateType = BusinessOperateType.DeleteMany,
-                Operator = new BusinessOperator { Rid = user.Rid, Name = user.Name, Time = time },
+                Operator = new() { Rid = user.Rid, Name = user.Name, Time = time },
                 Filter = filter,
                 EffectCount = effectCount,
                 Content = content?.ToJson(),
@@ -83,7 +83,7 @@ namespace BL.BusinessLog
                 Business = business.ToString(),
                 Title = title,
                 OperateType = BusinessOperateType.UpdateMany,
-                Operator = new BusinessOperator { Rid = user.Rid, Name = user.Name, Time = time },
+                Operator = new() { Rid = user.Rid, Name = user.Name, Time = time },
                 Filter = filter,
                 Update = update,
                 EffectCount = effectCount,
@@ -96,15 +96,15 @@ namespace BL.BusinessLog
         public static void LogImport(dynamic user, Enum business, string[] ids, string content = null, string title = null)
         {
             var time = DateTime.Now;
-            if (ids is null) ids = new string[] { };
+            if (ids is null) ids = Array.Empty<string>();
             var log = new BusinessLog
             {
                 App = App,
                 Business = business.ToString(),
                 Title = title,
                 OperateType = BusinessOperateType.Import,
-                Operator = new BusinessOperator { Rid = user.Rid, Name = user.Name, Time = time },
-                Key = "[" + string.Join(",", ids) + "]",
+                Operator = new() { Rid = user.Rid, Name = user.Name, Time = time },
+                Key = $"[{string.Join(",", ids)}]",
                 EffectCount = ids.Length,
                 Content = content?.ToJson(),
                 Text = $"[{user.Name}:{user.Rid}] [{time:yyyy-MM-dd}] [{BusinessOperateType.Import}] [{App.Name}]"
@@ -128,16 +128,13 @@ namespace BL.BusinessLog
                 x.Key,
                 x.Operator,
                 x.Text
-            })
-                .SortByDescending(x => x.Id)
-                .Skip((dto.PageIndex - 1) * dto.PageSize)
-                .Limit(dto.PageSize).ToList();
+            }).SortByDescending(x => x.Id).Skip((dto.PageIndex - 1) * dto.PageSize).Limit(dto.PageSize).ToList();
             return BusinessLogPageResult.WrapDynamic(total, list);
         }
 
         public static void ConfigureUseDefaultColl(IMongoDatabase db, BusinessApp app)
         {
-            if (db is null) throw new Exception("db cant be null");
+            if (db is null) throw new("db cant be null");
             App = app;
             Coll = db.Client.GetDatabase("blcommon").GetCollection<BusinessLog>("blogs");
         }

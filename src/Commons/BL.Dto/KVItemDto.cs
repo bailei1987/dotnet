@@ -12,7 +12,7 @@ namespace BL.Dto
 
         public KVItem GetMapClass()
         {
-            return new KVItem(K, V);
+            return new(K, V);
         }
     }
 }

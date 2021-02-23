@@ -20,11 +20,11 @@ namespace BL.MongoDB
                 connectionString = configuration.GetConnectionString("Mongo");
                 Console.WriteLine($"[{tipHead}]:get ConnectionStrings.Mongo in appsettings.json");
             }
-            if (string.IsNullOrWhiteSpace(connectionString)) throw new Exception($"[{tipHead}]:no [CONNECTIONSTRINGS_MONGO] setting in env and ConnectionStrings.Mongo in appsettings.json");
+            if (string.IsNullOrWhiteSpace(connectionString)) throw new($"[{tipHead}]:no [CONNECTIONSTRINGS_MONGO] setting in env and ConnectionStrings.Mongo in appsettings.json");
             BaseDbContext.RegistConventionPack(conventionPackOptionsAction, first);
             var db = BaseDbContext.CreateInstance<T>(connectionString);
             db.BuildTransactCollections();
-            services.AddSingleton(db);
+            _ = services.AddSingleton(db);
             return db;
         }
 
@@ -38,11 +38,11 @@ namespace BL.MongoDB
                 connectionString = configuration.GetConnectionString(connKey);
                 Console.WriteLine($"[{tipHead}]:get ConnectionStrings.{connKey} in appsettings.json");
             }
-            if (string.IsNullOrWhiteSpace(connectionString)) throw new Exception($"[{tipHead}]:no [{connKey}] setting in env and ConnectionStrings.{connKey} in appsettings.json");
+            if (string.IsNullOrWhiteSpace(connectionString)) throw new($"[{tipHead}]:no [{connKey}] setting in env and ConnectionStrings.{connKey} in appsettings.json");
             BaseDbContext.RegistConventionPack(conventionPackOptionsAction, first);
             var db = BaseDbContext.CreateInstance<T>(connectionString);
             db.BuildTransactCollections();
-            services.AddSingleton(db);
+            _ = services.AddSingleton(db);
             return db;
         }
 
@@ -56,11 +56,11 @@ namespace BL.MongoDB
                 connectionString = configuration.GetConnectionString("Mongo");
                 Console.WriteLine($"[{tipHead}]:get ConnectionStrings.Mongo in appsettings.json");
             }
-            if (string.IsNullOrWhiteSpace(connectionString)) throw new Exception($"[{tipHead}]:no [CONNECTIONSTRINGS_MONGO] setting in env and ConnectionStrings.Mongo in appsettings.json");
+            if (string.IsNullOrWhiteSpace(connectionString)) throw new($"[{tipHead}]:no [CONNECTIONSTRINGS_MONGO] setting in env and ConnectionStrings.Mongo in appsettings.json");
             BaseDbContext.RegistConventionPack(conventionPackOptionsAction, first);
             var db = BaseDbContext.CreateInstance<T>(connectionString);
             db.BuildTransactCollections();
-            services.AddSingleton(typeof(IDbSet), db);
+            _ = services.AddSingleton(typeof(IDbSet), db);
             return db;
         }
     }

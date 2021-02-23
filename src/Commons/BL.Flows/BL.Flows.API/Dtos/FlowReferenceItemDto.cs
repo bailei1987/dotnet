@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using BL.Flows.Domain;
+﻿using BL.Flows.Domain;
+using System.ComponentModel.DataAnnotations;
 
 namespace BL.Flows.API.Dtos
 {
@@ -12,7 +12,7 @@ namespace BL.Flows.API.Dtos
 
         public FlowReferenceItem GetMapClass()
         {
-            return new FlowReferenceItem(Rid, Name);
+            return new(Rid, Name);
         }
     }
 }

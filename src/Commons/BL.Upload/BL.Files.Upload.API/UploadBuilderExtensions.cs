@@ -20,22 +20,16 @@ namespace BL.Files.Upload.API
         /// <param name="collection">upload collection</param>
         public static IServiceCollection AddUpload(this IServiceCollection services, IMongoDatabase db, string collection)
         {
-            if (db is null || string.IsNullOrWhiteSpace(collection)) throw new Exception("uploads cant be null");
-            services.AddSingleton(db.GetCollection<Uploads>(collection));
-            services.Configure<FormOptions>(options =>
-            {
-                options.MultipartBodyLengthLimit = long.MaxValue;
-            });
+            if (db is null || string.IsNullOrWhiteSpace(collection)) throw new("uploads cant be null");
+            _ = services.AddSingleton(db.GetCollection<Uploads>(collection));
+            _ = services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = long.MaxValue);
             return services;
         }
         public static IServiceCollection AddUploadUseDefaultColl(this IServiceCollection services, IMongoDatabase db)
         {
             var coll = db.Client.GetDatabase("blcommon").GetCollection<Uploads>("uploads");
-            services.AddSingleton(coll);
-            services.Configure<FormOptions>(options =>
-            {
-                options.MultipartBodyLengthLimit = long.MaxValue;
-            });
+            _ = services.AddSingleton(coll);
+            _ = services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = long.MaxValue);
             return services;
         }
         /// <summary>
@@ -58,7 +52,7 @@ namespace BL.Files.Upload.API
                 var maxSize = configuration["UPLOADSETTINGS_MAXSIZE"];
                 if (!string.IsNullOrWhiteSpace(maxSize))
                 {
-                    if (long.TryParse(maxSize, out long tmaxSize) == false) throw new Exception($"{tipTitle} can not convert [UPLOADSETTINGS_MAXSIZE] in env to type long");
+                    if (long.TryParse(maxSize, out long tmaxSize) == false) throw new($"{tipTitle} can not convert [UPLOADSETTINGS_MAXSIZE] in env to type long");
                     else
                     {
                         UploadSettings.MaxSize = tmaxSize;
@@ -74,9 +68,9 @@ namespace BL.Files.Upload.API
             {
                 Console.WriteLine($"{tipTitle} no UPLOADSETTINGS_ROOTFLODER in env,try get settings from appsettings.json");
                 var sets = configuration.GetSection("UploadSettings");
-                if (sets is null) throw new Exception($"{tipTitle} cant not find UploadSettings in appsettings.json");
+                if (sets is null) throw new($"{tipTitle} cant not find UploadSettings in appsettings.json");
                 UploadSettings.RootFloder = sets.GetValue<string>("RootFloder");
-                if (string.IsNullOrWhiteSpace(UploadSettings.RootFloder)) throw new Exception($"{ tipTitle } cant not find UploadSettings.RootFloder or UploadSettings.RootFloder is empty in appsettings.json");
+                if (string.IsNullOrWhiteSpace(UploadSettings.RootFloder)) throw new($"{ tipTitle } cant not find UploadSettings.RootFloder or UploadSettings.RootFloder is empty in appsettings.json");
                 UploadSettings.MaxSize = sets.GetValue<long>("MaxSize");
                 Console.WriteLine($"{tipTitle} find UploadSettings.MaxSize in appsettings.json,use value [{UploadSettings.MaxSize}]");
             }
@@ -85,7 +79,7 @@ namespace BL.Files.Upload.API
             UploadSettings.WebRootPath = env.WebRootPath;
             UploadSettings.App = businessApp;
             //
-            app.UseStaticFiles();
+            _ = app.UseStaticFiles();
             return app;
         }
     }

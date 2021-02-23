@@ -7,8 +7,7 @@
         <Authors>bl(315297830@qq.com)</Authors>
         <Copyright>copyright@2020 bl</Copyright>
         <Owners>bl(315297830@qq.com)</Owners>
-        <PackageReleaseNotes>
-        </PackageReleaseNotes>
+		<LangVersion>latest</LangVersion>
         <Summary>flow sdk domain</Summary>
         <Title>flow sdk domain </Title>
         <Description>

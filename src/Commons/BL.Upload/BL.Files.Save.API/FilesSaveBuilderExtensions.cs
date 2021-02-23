@@ -21,16 +21,16 @@ namespace BL.Files.Save.API
             {
                 Console.WriteLine($"{tipTitle} no RootFloder in env,try get settings from appsettings.json");
                 var sets = configuration.GetSection("FilesSaveSettings");
-                if (sets is null) throw new Exception($"{tipTitle} cant find FilesSaveSettings.RootFloder in appsettings.json");
+                if (sets is null) throw new($"{tipTitle} cant find FilesSaveSettings.RootFloder in appsettings.json");
                 FilesSaveSettings.RootFloder = sets["RootFloder"];
-                if (string.IsNullOrWhiteSpace(FilesSaveSettings.RootFloder)) throw new Exception($"{tipTitle} cant find FilesSaveSettings.RootFloder in appsettings.json");
+                if (string.IsNullOrWhiteSpace(FilesSaveSettings.RootFloder)) throw new($"{tipTitle} cant find FilesSaveSettings.RootFloder in appsettings.json");
                 Console.WriteLine($"{tipTitle} find FilesSaveSettings.RootFloder in appsettings.json,use value [{FilesSaveSettings.RootFloder}] for Upload RootFloder)");
             }
             //
             var maxSize = configuration["FILESSAVE_SETTINGS_MAXSIZE"];
             if (!string.IsNullOrWhiteSpace(maxSize))
             {
-                if (long.TryParse(maxSize, out long tmaxSize) == false) throw new Exception($"{tipTitle} can not convert [FILESSAVE_SETTINGS_MAXSIZE] in env to type long");
+                if (long.TryParse(maxSize, out long tmaxSize) == false) throw new($"{tipTitle} can not convert [FILESSAVE_SETTINGS_MAXSIZE] in env to type long");
                 else
                 {
                     FilesSaveSettings.MaxSize = tmaxSize;
@@ -58,7 +58,7 @@ namespace BL.Files.Save.API
                         }
                         catch
                         {
-                            throw new Exception($"{tipTitle} can not convert [FilesSaveSettings.MaxSize] in appsettings.json to type long");
+                            throw new($"{tipTitle} can not convert [FilesSaveSettings.MaxSize] in appsettings.json to type long");
                         }
                     }
                 }
@@ -67,7 +67,7 @@ namespace BL.Files.Save.API
             FilesSaveSettings.WebRootPath = env.WebRootPath;
             FilesSaveSettings.Ok = true;
             //
-            app.UseStaticFiles();
+            _ = app.UseStaticFiles();
             return app;
         }
     }

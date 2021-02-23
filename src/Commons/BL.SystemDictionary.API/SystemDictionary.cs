@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BL.SystemDictionary
 {
@@ -12,7 +11,7 @@ namespace BL.SystemDictionary
     }
     public static class SystemDictionary
     {
-        private static Dictionary<string, List<SystemDictionaryKV>> dics = new Dictionary<string, List<SystemDictionaryKV>> { };
+        private static Dictionary<string, List<SystemDictionaryKV>> dics = new() { };
 
         public static void Init(Dictionary<string, List<SystemDictionaryKV>> dic)
         {
@@ -20,7 +19,7 @@ namespace BL.SystemDictionary
         }
         public static List<SystemDictionaryKV> Get(string type)
         {
-            return (dics.ContainsKey(type)) switch
+            return dics.ContainsKey(type) switch
             {
                 false => throw new KeyNotFoundException($"type [{type}] is not correct"),
                 _ => dics[type],
@@ -28,7 +27,7 @@ namespace BL.SystemDictionary
         }
         public static Dictionary<string, List<SystemDictionaryKV>> GetMany(string[] types)
         {
-            Dictionary<string, List<SystemDictionaryKV>> res = new Dictionary<string, List<SystemDictionaryKV>>();
+            Dictionary<string, List<SystemDictionaryKV>> res = new();
             foreach (var type in types)
             {
                 if (dics.TryGetValue(type, out List<SystemDictionaryKV> value)) res.Add(type, value);
@@ -40,7 +39,7 @@ namespace BL.SystemDictionary
             return dics.ContainsKey(type) switch
             {
                 false => throw new KeyNotFoundException($"type [{type}] is not correct"),
-                _ => dics[type].Find(x => x.V == v) ?? throw new Exception($"can not find item by v [{v}] in {type}'s items")
+                _ => dics[type].Find(x => x.V == v) ?? throw new($"can not find item by v [{v}] in {type}'s items")
             };
         }
         public static SystemDictionaryKV GetItemByK(string type, string k)
@@ -48,7 +47,7 @@ namespace BL.SystemDictionary
             return dics.ContainsKey(type) switch
             {
                 false => throw new KeyNotFoundException($"type [{type}] is not correct"),
-                _ => dics[type].Find(x => x.K == k) ?? throw new Exception($"can not find item by k [{k}] in {type}'s items")
+                _ => dics[type].Find(x => x.K == k) ?? throw new($"can not find item by k [{k}] in {type}'s items")
             };
         }
     }

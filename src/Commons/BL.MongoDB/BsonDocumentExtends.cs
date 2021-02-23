@@ -16,7 +16,7 @@ namespace BL.MongoDB
         public static BsonValue GetValueByHierarchicalNames(this BsonValue ele, string hierarchicalNames)
         {
             var names = hierarchicalNames.Split('.', ',', '_', '|');
-            if (names.Length == 0) throw new Exception("hierarchyNames is not correct");
+            if (names.Length == 0) throw new("hierarchyNames is not correct");
             for (int i = 0; i < names.Length; i++)
             {
                 if (ele.IsBsonDocument)

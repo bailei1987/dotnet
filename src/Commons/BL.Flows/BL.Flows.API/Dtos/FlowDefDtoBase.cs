@@ -1,8 +1,7 @@
 ﻿
+using BL.Flows.Domain;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using BL.Flows.API.Models;
-using BL.Flows.Domain;
 
 namespace BL.Flows.API.Dtos
 {
@@ -34,7 +33,7 @@ namespace BL.Flows.API.Dtos
 
         public FlowDefStep GetMapClass()
         {
-            return new FlowDefStep
+            return new()
             {
                 No = No,
                 Role = Role

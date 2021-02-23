@@ -6,8 +6,6 @@ using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 
 namespace BL.MongoDB
 {
@@ -27,7 +25,7 @@ namespace BL.MongoDB
             //if (_options.IsNotConvertObjectIdToStringType(classMap.ClassType)) return;
             var idMemberMap = classMap.IdMemberMap;
             if (idMemberMap == null || idMemberMap.IdGenerator != null) return;
-            if (idMemberMap.MemberType == typeof(string)) idMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(BsonType.ObjectId));
+            if (idMemberMap.MemberType == typeof(string)) _ = idMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(BsonType.ObjectId));
         }
     }
     /// <summary>
@@ -38,7 +36,7 @@ namespace BL.MongoDB
         public static T CreateInstance<T>(string connectionString, string db = null) where T : BaseDbContext
         {
             T t = Activator.CreateInstance<T>();
-            if (string.IsNullOrWhiteSpace(connectionString)) throw new Exception("connectionString is empty");
+            if (string.IsNullOrWhiteSpace(connectionString)) throw new("connectionString is empty");
             var mongoUrl = new MongoUrl(connectionString);
             t._client = new MongoClient(mongoUrl);
             var dbname = string.IsNullOrWhiteSpace(db) ? mongoUrl.DatabaseName : db;
@@ -64,7 +62,7 @@ namespace BL.MongoDB
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("you have already regist commonpack,please change param [first] to false from since second RegistConventionPack Method(or BL.MongoDB.Gen.AddBLDbContext etc..):" + ex.Message);
+                    throw new("you have already regist commonpack,please change param [first] to false from since second RegistConventionPack Method(or BL.MongoDB.Gen.AddBLDbContext etc..):" + ex.Message);
                 }
             }
             var idpack = new ConventionPack
@@ -81,12 +79,12 @@ namespace BL.MongoDB
         {
             return _database.GetCollection<BsonDocument>(collection);
         }
-        private static readonly ConventionPackOptions options = new ConventionPackOptions();
+        private static readonly ConventionPackOptions options = new();
     }
 
     public class ConventionPackOptions
     {
-        private readonly List<Type> NotConvertObjectIdToStringTypes = new List<Type>();
+        private readonly List<Type> NotConvertObjectIdToStringTypes = new();
         public void AddNotConvertObjectIdToStringTypes(params Type[] types)
         {
             NotConvertObjectIdToStringTypes.AddRange(types);

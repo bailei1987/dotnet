@@ -30,17 +30,12 @@ namespace BL.Files.Upload
     /// </summary>
     public class UploadedInfo
     {
-        public UploadedInfo()
-        {
-            Uploaded = new List<FilesItem>();
-            Deleted = new List<DeletedItem>();
-        }
         public Uploads Uploads
         {
             get;
             set;
         }
-        public List<FilesItem> Uploaded { get; set; }
-        public List<DeletedItem> Deleted { get; set; }
+        public List<FilesItem> Uploaded { get; set; } = new();
+        public List<DeletedItem> Deleted { get; set; } = new();
     }
 }

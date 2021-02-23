@@ -12,7 +12,7 @@ namespace BL.Flows.Domain
 
         public FlowOperator ToOperator()
         {
-            return new FlowOperator
+            return new()
             {
                 Name = Name,
                 Rid = Rid,

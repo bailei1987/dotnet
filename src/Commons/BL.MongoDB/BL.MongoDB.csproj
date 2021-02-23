@@ -21,7 +21,7 @@
 			5.example.api have some simple code for refering
 		</Description>
         <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-        <LangVersion>8.0</LangVersion>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="MongoDB.Driver" Version="2.11.5" />

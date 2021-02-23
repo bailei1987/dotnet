@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using BL.Flows.API.Models;
-using BL.Flows.Domain;
+﻿using BL.Flows.Domain;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace BL.Flows.API.Controllers
 {
@@ -18,7 +16,7 @@ namespace BL.Flows.API.Controllers
         [HttpPost]
         public void Post(FlowBusiness dto)
         {
-            if (coll.CountDocuments(x => x.K == dto.K || x.V == dto.V) > 0) throw new Exception("business has already exist");
+            if (coll.CountDocuments(x => x.K == dto.K || x.V == dto.V) > 0) throw new("business has already exist");
             coll.InsertOne(dto);
         }
 
@@ -31,10 +29,7 @@ namespace BL.Flows.API.Controllers
         [HttpDelete("{k}")]
         public void Delete(string k)
         {
-            coll.DeleteOne(x => x.K == k);
+            _ = coll.DeleteOne(x => x.K == k);
         }
-
-
-
     }
 }

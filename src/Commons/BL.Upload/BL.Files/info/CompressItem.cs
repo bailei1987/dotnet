@@ -10,7 +10,7 @@ public class CompressItem : FileItemBase
 
     public static CompressItem From(FileItemBase fileInfo)
     {
-        return new CompressItem()
+        return new()
         {
             Length = fileInfo.Length,
             No = fileInfo.No,

@@ -9,7 +9,7 @@ namespace BL.Flows.Domain
         public DateTime Time { get; set; }
         public void Validate()
         {
-            if (string.IsNullOrWhiteSpace(Rid) || string.IsNullOrWhiteSpace(Name) || Time == default) throw new Exception("creator is not correct");
+            if (string.IsNullOrWhiteSpace(Rid) || string.IsNullOrWhiteSpace(Name) || Time == default) throw new("creator is not correct");
         }
     }
 }

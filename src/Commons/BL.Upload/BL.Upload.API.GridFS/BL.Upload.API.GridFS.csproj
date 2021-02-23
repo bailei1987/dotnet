@@ -8,11 +8,8 @@
         <Copyright>copyright@2020 bl</Copyright>
         <Owners>bl(315297830@qq.com)</Owners>
         <PackageReleaseNotes>first init  </PackageReleaseNotes>
-        <Summary>
-        </Summary>
+		<LangVersion>latest</LangVersion>
         <Title>package some methods operate with MongoDB GridFS.</Title>
-        <Description>
-        </Description>
         <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
         <OutputType>Library</OutputType>
         <IsPackable>true</IsPackable>

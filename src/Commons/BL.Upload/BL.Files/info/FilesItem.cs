@@ -7,12 +7,8 @@ namespace BL.Files
     /// </summary>
     public class FilesItem
     {
-        public FilesItem()
-        {
-            Ts = new List<CompressItem>();
-        }
         public OriginalItem O { get; set; }
-        public List<CompressItem> Ts { get; set; }
+        public List<CompressItem> Ts { get; set; } = new List<CompressItem>();
         #region extentions for upload operate,not matter with database   
         /// <summary>
         /// 文件状态

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BL.Flows.Domain;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using BL.Flows.API.Models;
-using BL.Flows.Domain;
 
 namespace BL.Flows.API.Dtos
 {

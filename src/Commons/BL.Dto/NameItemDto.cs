@@ -10,7 +10,10 @@ namespace BL.Dto
 
         public ReferenceItem GetMapClass()
         {
-            return new ReferenceItem { Name = Name };
+            return new()
+            {
+                Name = Name
+            };
         }
     }
 }

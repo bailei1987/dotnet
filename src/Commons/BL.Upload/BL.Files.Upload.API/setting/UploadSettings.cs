@@ -11,16 +11,16 @@
         /// <summary>
         /// 当前运行目录(绝对路径) [上传前必需配置此项]
         /// </summary>
-        public static string WebRootPath;
+        public static string WebRootPath { get; set; }
 
         /// <summary>
         /// 文件上传根目录
         /// </summary>
-        public static string RootFloder;
+        public static string RootFloder { get; set; }
         /// <summary>
         /// 允许的最大文件大小
         /// </summary>
-        public static long MaxSize = long.MaxValue;
+        public static long MaxSize { get; set; } = long.MaxValue;
 
         /// <summary>
         /// 资源地址(http://域名.com )[上传前必需配置此项.由Controller Request获取]

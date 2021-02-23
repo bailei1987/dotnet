@@ -11,7 +11,7 @@
 
         public static OriginalItem From(FileItemBase fileInfo)
         {
-            return new OriginalItem()
+            return new()
             {
                 Length = fileInfo.Length,
                 No = fileInfo.No,

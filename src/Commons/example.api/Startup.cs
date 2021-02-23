@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using models;
+using System.Text.Json.Serialization;
 
 namespace example.api
 {
@@ -26,39 +26,23 @@ namespace example.api
         {
             string[] origins = Configuration.GetValue<string>("AllowedHosts").Split(",");
             //
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowedHosts", builder =>
-                {
-                    builder.WithOrigins(origins).AllowAnyMethod().AllowAnyHeader();
-                });
-            });
+            _ = services.AddCors(options => options.AddPolicy("AllowedHosts", builder => _ = builder.WithOrigins(origins).AllowAnyMethod().AllowAnyHeader()));
             //db
-            var db = services.AddBLMongoDbContext<DbContext>(Configuration, opt =>
-            {
-                opt.AddNotConvertObjectIdToStringTypes(typeof(Test2));
-            });
-            services.AddGridFSUpload(db._database, new MongoDB.Driver.GridFS.GridFSBucketOptions { ChunkSizeBytes = 1048576 });
+            var db = services.AddBLMongoDbContext<DbContext>(Configuration, opt => opt.AddNotConvertObjectIdToStringTypes(typeof(Test2)));
+            _ = services.AddGridFSUpload(db._database, new() { ChunkSizeBytes = 1048576 });
             //same format of api results
-            services.AddControllers(options =>
-            {
-                options.Filters.Add<ExceptionFilter>();
-                options.Filters.Add<ActionExecuteFilter>();
-            }).AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
-            }).SetCompatibilityVersion(CompatibilityVersion.Latest);
+            _ = services.AddControllers(options =>
+            options.Filters.Add<ActionExecuteFilter>()).AddJsonOptions(options =>
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())).SetCompatibilityVersion(CompatibilityVersion.Latest);
 
             //
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "example.API",
-                    Version = "v1",
-                    Description = ""
-                });
-            });
+            _ = services.AddSwaggerGen(options =>
+               options.SwaggerDoc("v1", new()
+               {
+                   Title = "example.API",
+                   Version = "v1",
+                   Description = ""
+               }));
 
         }
 
@@ -67,24 +51,22 @@ namespace example.api
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                _ = app.UseDeveloperExceptionPage();
             }
-            //app.UseGlobalException();
-            app.UseCors("AllowedHosts");
-            app.UseHttpsRedirection();
+            _ = app.UseGlobalException();
+            _ = app.UseCors("AllowedHosts");
+            _ = app.UseHttpsRedirection();
 
-            app.UseRouting();
+            _ = app.UseRouting();
 
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-            app.UseSwagger().UseSwaggerUI(c =>
-            {
-                string swaggerJsonBasePath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : "..";
-                c.SwaggerEndpoint($"{swaggerJsonBasePath}/swagger/v1/swagger.json", "My API");
-            });
+            _ = app.UseAuthorization();
+            _ = app.UseEndpoints(endpoints =>
+               _ = endpoints.MapControllers());
+            _ = app.UseSwagger().UseSwaggerUI(c =>
+               {
+                   string swaggerJsonBasePath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : "..";
+                   c.SwaggerEndpoint($"{swaggerJsonBasePath}/swagger/v1/swagger.json", "My API");
+               });
         }
     }
 }

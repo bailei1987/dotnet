@@ -12,7 +12,7 @@ namespace BL.Dto
 
         public UploadImageInfo GetMapClass()
         {
-            return new UploadImageInfo
+            return new()
             {
                 UploadId = UploadId,
                 Url = Url

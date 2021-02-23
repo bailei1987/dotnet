@@ -15,7 +15,7 @@ namespace BL.Dto
 
         public YearNo GetMapClass()
         {
-            return new YearNo { Year=Year,No=No };
+            return new() { Year = Year, No = No };
         }
     }
 }

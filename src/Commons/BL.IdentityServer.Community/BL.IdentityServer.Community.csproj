@@ -4,6 +4,7 @@
 		<TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
 		<PackageVersion>5.0.3</PackageVersion>
 		<Version>5.0.3</Version>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />

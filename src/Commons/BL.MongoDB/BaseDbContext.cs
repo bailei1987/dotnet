@@ -27,7 +27,7 @@ namespace BL.MongoDB
             //if (_options.IsNotConvertObjectIdToStringType(classMap.ClassType)) return;
             var idMemberMap = classMap.IdMemberMap;
             if (idMemberMap == null || idMemberMap.IdGenerator != null) return;
-            if (idMemberMap.MemberType == typeof(string)) idMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(BsonType.ObjectId));
+            if (idMemberMap.MemberType == typeof(string)) _ = idMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(BsonType.ObjectId));
         }
     }
     /// <summary>
@@ -39,7 +39,7 @@ namespace BL.MongoDB
         public static T CreateInstance<T>(NetCoreAppSetting dbSettings) where T : BaseDbContext
         {
             T t = Activator.CreateInstance<T>();
-            if (dbSettings.Servers.Count == 0) throw new Exception("BaseDbContext Init error! host,port,db must not null");
+            if (dbSettings.Servers.Count == 0) throw new("BaseDbContext Init error! host,port,db must not null");
             MongoCredential credential = null;
             if (dbSettings.Credential != null || dbSettings.Credential.User != null || dbSettings.Credential.Pwd != null) credential = MongoCredential.CreateCredential("admin", dbSettings.Credential.User, dbSettings.Credential.Pwd);
             var settings = new MongoClientSettings
@@ -48,10 +48,10 @@ namespace BL.MongoDB
                 ReplicaSetName = dbSettings.ReplSetName
             };
             if (dbSettings.Servers.Count > 1 && !string.IsNullOrWhiteSpace(dbSettings.ReplSetName)) settings.Servers = dbSettings.Servers.Select(x => new MongoServerAddress(x.Host, x.Port));
-            else settings.Server = new MongoServerAddress(dbSettings.Servers[0].Host, dbSettings.Servers[0].Port);
-            if (dbSettings.ServerSelectionTimeout != null && dbSettings.ServerSelectionTimeout != 0)
+            else settings.Server = new(dbSettings.Servers[0].Host, dbSettings.Servers[0].Port);
+            if (dbSettings.ServerSelectionTimeout is not null and not 0)
             {
-                settings.ServerSelectionTimeout = new TimeSpan(0, 0, 0, 0, dbSettings.ServerSelectionTimeout.Value);
+                settings.ServerSelectionTimeout = new(0, 0, 0, 0, dbSettings.ServerSelectionTimeout.Value);
             }
             t._client = new MongoClient(settings);
             t._database = t._client.GetDatabase(dbSettings.Db);
@@ -60,7 +60,7 @@ namespace BL.MongoDB
         public static T CreateInstance<T>(string connectionString, string db = null) where T : BaseDbContext
         {
             T t = Activator.CreateInstance<T>();
-            if (string.IsNullOrWhiteSpace(connectionString)) throw new Exception("connectionString is empty");
+            if (string.IsNullOrWhiteSpace(connectionString)) throw new("connectionString is empty");
             var mongoUrl = new MongoUrl(connectionString);
             t._client = new MongoClient(mongoUrl);
             var dbname = string.IsNullOrWhiteSpace(db) ? mongoUrl.DatabaseName : db;
@@ -71,7 +71,7 @@ namespace BL.MongoDB
         [Obsolete]
         public BaseDbContext(NetCoreAppSetting dbSettings)
         {
-            if (dbSettings.Servers.Count == 0) throw new Exception("BaseDbContext Init error! host,port,db must not null");
+            if (dbSettings.Servers.Count == 0) throw new("BaseDbContext Init error! host,port,db must not null");
             MongoCredential credential = null;
             if (dbSettings.Credential != null || dbSettings.Credential.User != null || dbSettings.Credential.Pwd != null) credential = MongoCredential.CreateCredential("admin", dbSettings.Credential.User, dbSettings.Credential.Pwd);
             var settings = new MongoClientSettings
@@ -80,10 +80,10 @@ namespace BL.MongoDB
                 ReplicaSetName = dbSettings.ReplSetName
             };
             if (dbSettings.Servers.Count > 1 && !string.IsNullOrWhiteSpace(dbSettings.ReplSetName)) settings.Servers = dbSettings.Servers.Select(x => new MongoServerAddress(x.Host, x.Port));
-            else settings.Server = new MongoServerAddress(dbSettings.Servers[0].Host, dbSettings.Servers[0].Port);
-            if (dbSettings.ServerSelectionTimeout != null && dbSettings.ServerSelectionTimeout != 0)
+            else settings.Server = new(dbSettings.Servers[0].Host, dbSettings.Servers[0].Port);
+            if (dbSettings.ServerSelectionTimeout is not null and not 0)
             {
-                settings.ServerSelectionTimeout = new TimeSpan(0, 0, 0, 0, dbSettings.ServerSelectionTimeout.Value);
+                settings.ServerSelectionTimeout = new(0, 0, 0, 0, dbSettings.ServerSelectionTimeout.Value);
             }
             _client = new MongoClient(settings);
             _database = _client.GetDatabase(dbSettings.Db);
@@ -108,7 +108,7 @@ namespace BL.MongoDB
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("you have already regist commonpack,please change param [first] to false from since second RegistConventionPack Method(or BL.MongoDB.Gen.AddBLDbContext etc..):" + ex.Message);
+                    throw new("you have already regist commonpack,please change param [first] to false from since second RegistConventionPack Method(or BL.MongoDB.Gen.AddBLDbContext etc..):" + ex.Message);
                 }
             }
             var idpack = new ConventionPack
@@ -123,7 +123,7 @@ namespace BL.MongoDB
         }
         public void BuildTransactCollections()
         {
-            if (_database is null) throw new Exception("_database not prepared,please use this method after DbContext instantiation");
+            if (_database is null) throw new("_database not prepared,please use this method after DbContext instantiation");
             var transcolls = GetTransactColletions();
             if (transcolls.Length > 0)
             {
@@ -165,12 +165,12 @@ namespace BL.MongoDB
         {
             return _database.GetCollection<BsonDocument>(collection);
         }
-        private static readonly ConventionPackOptions options = new ConventionPackOptions();
+        private static readonly ConventionPackOptions options = new();
     }
 
     public class ConventionPackOptions
     {
-        private readonly List<Type> NotConvertObjectIdToStringTypes = new List<Type>();
+        private readonly List<Type> NotConvertObjectIdToStringTypes = new();
         public void AddNotConvertObjectIdToStringTypes(params Type[] types)
         {
             NotConvertObjectIdToStringTypes.AddRange(types);

@@ -7,7 +7,7 @@ namespace BL.MongoDB
         public string ReplSetName { get; set; }
         public string Db { get; set; }
         public int? ServerSelectionTimeout { get; set; }
-        public List<ServerItem> Servers { get; set; } = new List<ServerItem>();
+        public List<ServerItem> Servers { get; set; } = new();
         public Credential Credential { get; set; }
     }
     public class ServerItem

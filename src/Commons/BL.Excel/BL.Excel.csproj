@@ -13,6 +13,7 @@
 		<Version>1.0.5</Version>
 		<PackageReleaseNotes>add empty row judge</PackageReleaseNotes>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

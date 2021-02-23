@@ -15,7 +15,7 @@ namespace BL.Dto
 
         public YMNumber GetMapClass()
         {
-            return new YMNumber { Y=Y,M=M };
+            return new() { Y = Y, M = M };
         }
     }
     /// <summary>
@@ -28,8 +28,8 @@ namespace BL.Dto
 
         public YMNumber GetMapClass()
         {
-            var obj = new YMNumber { Str=Str};
-            obj.FillByStr();
+            var obj = new YMNumber { Str = Str };
+            _ = obj.FillByStr();
             return obj;
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Http.Features;
+﻿using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
@@ -10,21 +9,18 @@ namespace BL.Upload.API.GridFS
     {
         public static IServiceCollection AddGridFSUpload(this IServiceCollection services, IMongoDatabase database, GridFSBucketOptions gridFSBucketOptions = null, string businessApp = null, bool useDefalutdb = false)
         {
-            if (database is null) throw new Exception("db cant be null");
+            if (database is null) throw new("db cant be null");
             BusinessApp = businessApp;
             var bucket = new GridFSBucket(useDefalutdb ? database.Client.GetDatabase("blcommon") : database, gridFSBucketOptions);
-            services.Configure<FormOptions>(options =>
-            {
-                options.MultipartBodyLengthLimit = long.MaxValue;
-                options.ValueLengthLimit = int.MaxValue;
-            });
-            services.Configure<KestrelServerOptions>(options =>
-            {
-                options.Limits.MaxRequestBodySize = int.MaxValue;
-            });
-            services.AddSingleton(bucket);
+            _ = services.Configure<FormOptions>(options =>
+              {
+                  options.MultipartBodyLengthLimit = long.MaxValue;
+                  options.ValueLengthLimit = int.MaxValue;
+              });
+            _ = services.Configure<KestrelServerOptions>(options => options.Limits.MaxRequestBodySize = int.MaxValue);
+            _ = services.AddSingleton(bucket);
             return services;
         }
-        public static string BusinessApp;
+        public static string BusinessApp { get; set; }
     }
 }

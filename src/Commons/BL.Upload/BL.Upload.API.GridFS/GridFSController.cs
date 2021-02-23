@@ -18,15 +18,14 @@ namespace BL.Files.Upload.API.GridFS.Controllers
     {
         private readonly GridFSBucket bucket;
         public GridFSController(GridFSBucket bucket) { this.bucket = bucket; }
-        private readonly FilterDefinitionBuilder<GridFSFileInfo> bf = Builders<GridFSFileInfo>.Filter;
 
         [Authorize]
         [HttpPost]
         public IEnumerable<UploadItemResult> Post([FromForm] UploadDto dto)
         {
             var user = HttpContext.GetLoginUserFromToken();
-            if (string.IsNullOrWhiteSpace(dto.BusinessType)) throw new Exception("BusinessType can not be null");
-            if (dto.File is null || dto.File.Count == 0) throw new Exception("no files find");
+            if (string.IsNullOrWhiteSpace(dto.BusinessType)) throw new("BusinessType can not be null");
+            if (dto.File is null || dto.File.Count == 0) throw new("no files find");
             var rsList = new List<UploadItemResult> { };
             if (!string.IsNullOrWhiteSpace(dto.DeleteIds))
             {
@@ -41,19 +40,25 @@ namespace BL.Files.Upload.API.GridFS.Controllers
                 var uploadOptions = new GridFSUploadOptions
                 {
                     BatchSize = dto.File.Count,
-                    Metadata = new BsonDocument
+                    Metadata = new()
                     {
-                        { "contentType",item.ContentType}
+                        { "contentType", item.ContentType }
                     }
                 };
                 var bapp = dto.App ?? GridFSUploadBuildExtensions.BusinessApp;
-                if (string.IsNullOrWhiteSpace(bapp)) throw new Exception("BusinessApp can not be null");
-                uploadOptions.Metadata.AddRange(new BsonDocument { { "app", bapp } });
-                if (!string.IsNullOrWhiteSpace(dto.BusinessType)) uploadOptions.Metadata.AddRange(new BsonDocument { { "business", dto.BusinessType } });
-                if (!string.IsNullOrWhiteSpace(dto.Category)) uploadOptions.Metadata.AddRange(new BsonDocument { { "category", dto.Category } });
-                uploadOptions.Metadata.AddRange(new BsonDocument { { "creator", user.ToOperator().ToBsonDocument() } });
+                if (string.IsNullOrWhiteSpace(bapp)) throw new("BusinessApp can not be null");
+                _ = uploadOptions.Metadata.AddRange(new BsonDocument { { "app", bapp } });
+                if (!string.IsNullOrWhiteSpace(dto.BusinessType)) _ = uploadOptions.Metadata.AddRange(new BsonDocument { { "business", dto.BusinessType } });
+                if (!string.IsNullOrWhiteSpace(dto.Category)) _ = uploadOptions.Metadata.AddRange(new BsonDocument { { "category", dto.Category } });
+                _ = uploadOptions.Metadata.AddRange(new BsonDocument { { "creator", user.ToOperator().ToBsonDocument() } });
                 var oid = bucket.UploadFromStream(item.FileName, item.OpenReadStream(), uploadOptions);
-                rsList.Add(new UploadItemResult { FileId = oid.ToString(), FileName = item.FileName, Length = item.Length, ContentType = item.ContentType });
+                rsList.Add(new()
+                {
+                    FileId = oid.ToString(),
+                    FileName = item.FileName,
+                    Length = item.Length,
+                    ContentType = item.ContentType
+                });
             }
             return rsList;
         }
@@ -61,21 +66,24 @@ namespace BL.Files.Upload.API.GridFS.Controllers
         [HttpGet("{id}/DownloadStream")]
         public object GetDownloadStream(string id)
         {
-            return bucket.OpenDownloadStream(ObjectId.Parse(id), new GridFSDownloadOptions { Seekable = true });
+            return bucket.OpenDownloadStream(ObjectId.Parse(id), new()
+            {
+                Seekable = true
+            });
         }
 
         [HttpGet("{id}/FileStream")]
         public FileStreamResult GetFileStream(string id)
         {
-            var stream = bucket.OpenDownloadStream(ObjectId.Parse(id), new GridFSDownloadOptions { Seekable = true });
+            var stream = bucket.OpenDownloadStream(ObjectId.Parse(id), new () { Seekable = true });
             return File(stream, stream.FileInfo.Metadata["contentType"].AsString, stream.FileInfo.Filename);
         }
 
         [HttpGet("{id}/FileContent")]
         public FileContentResult GetFileContent(string id)
         {
-            var fi = bucket.Find("{_id:ObjectId('" + id + "')}").SingleOrDefault() ?? throw new Exception("no data find");
-            if (fi.Length >= 1048576 * 5) throw new Exception("该文件超过5M,请使用流下载");
+            var fi = bucket.Find("{_id:ObjectId('" + id + "')}").SingleOrDefault() ?? throw new("no data find");
+            if (fi.Length >= 1048576 * 5) throw new("该文件超过5M,请使用流下载");
             var bytes = bucket.DownloadAsBytes(ObjectId.Parse(id));
             return File(bytes, fi.Metadata["contentType"].AsString, fi.Filename);
         }

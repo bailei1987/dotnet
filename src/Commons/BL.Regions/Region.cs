@@ -6,20 +6,14 @@ namespace BL.Regions
 {
     public class Region
     {
-        public Region()
-        {
-            Codes = new List<string>();
-            Names = new List<string>();
-        }
         public string Str { get; set; }
-        public List<string> Codes { get; set; }
-        public List<string> Names { get; set; }
+        public List<string> Codes { get; set; } = new();
+        public List<string> Names { get; set; } = new();
         public string Text
         {
             get
             {
-                if (Names.Count > 0) return string.Join('/', Names);
-                else return null;
+                return Names.Count > 0 ? string.Join('/', Names) : null;
             }
         }
 
@@ -53,8 +47,7 @@ namespace BL.Regions
 
         public static string GetCodesStr(Region region)
         {
-            if (region is null) return null;
-            return string.Join(',', region.Codes);
+            return region is null ? null : string.Join(',', region.Codes);
         }
         public string FillByCodesOrNames(int type)
         {
@@ -71,7 +64,7 @@ namespace BL.Regions
                 others = Codes;
             }
             if (vals == null || vals.Count == 0) return null;
-            List<string> msgs = new List<string>();
+            List<string> msgs = new();
             vals = vals.FindAll(x => string.IsNullOrWhiteSpace(x) == false);
             Str = string.Join("/", vals);
             if (vals.Count > 3)
@@ -184,7 +177,7 @@ namespace BL.Regions
         {
             if (string.IsNullOrWhiteSpace(Str)) return;
             var alls = Regions.AllLongNameAsKey();
-            alls.TryGetValue(Str, out RegionItem region);
+            _ = alls.TryGetValue(Str, out RegionItem region);
             if (region != null)
             {
                 Codes = region.Codes;
@@ -208,7 +201,6 @@ namespace BL.Regions
             Codes?.Clear();
             return FillByCodesOrNames(2);
         }
-
 
         public bool IsIntegrated()
         {

@@ -28,17 +28,17 @@ namespace BL.Flows.Domain
         /// <summary>
         /// 流程通用信息
         /// </summary>
-        public FlowCommonInfo CommonInfo { get; set; } = new FlowCommonInfo();
+        public FlowCommonInfo CommonInfo { get; set; } = new();
 
         /// <summary>
         /// 流程进度情况
         /// </summary>
-        public FlowProcess Process { get; set; } = new FlowProcess();
+        public FlowProcess Process { get; set; } = new();
 
         /// <summary>
         /// 流程状态
         /// </summary>
-        public FlowStatus Status { get; set; } = new FlowStatus();
+        public FlowStatus Status { get; set; } = new();
 
         /// <summary>
         /// 处理状态(用于流程结束后,业务系统需做后续处理)
@@ -47,7 +47,7 @@ namespace BL.Flows.Domain
 
         public void AddContentsItem(string label, string value)
         {
-            BusinessContents.Add(new FlowBusinessContentsItem(label, value));
+            BusinessContents.Add(new(label, value));
         }
     }
 }

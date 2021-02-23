@@ -25,16 +25,11 @@ namespace BL.Files.Upload
         {
             _ = Path.GetTempPath();
             _ = Path.DirectorySeparatorChar.ToString();
-            if (UploadSettings.UploadParam.HasDateDirecotry)
-            {
-                SavePath = Path.Combine(Path.DirectorySeparatorChar.ToString(), UploadSettings.RootFloder, UploadSettings.UploadParam.Directory, DateTime.Now.ToString("yyyyMMdd"), Guid.NewGuid().ToString());
-            }
-            else
-            {
-                SavePath = Path.Combine(Path.DirectorySeparatorChar.ToString(), UploadSettings.RootFloder, UploadSettings.UploadParam.Directory, Guid.NewGuid().ToString());
-            }
+            SavePath = UploadSettings.UploadParam.HasDateDirecotry
+                ? Path.Combine(Path.DirectorySeparatorChar.ToString(), UploadSettings.RootFloder, UploadSettings.UploadParam.Directory, DateTime.Now.ToString("yyyyMMdd"), Guid.NewGuid().ToString())
+                : Path.Combine(Path.DirectorySeparatorChar.ToString(), UploadSettings.RootFloder, UploadSettings.UploadParam.Directory, Guid.NewGuid().ToString());
             var absolutePath = UploadSettings.WebRootPath + SavePath;
-            if (!Directory.Exists(absolutePath)) Directory.CreateDirectory(absolutePath);
+            if (!Directory.Exists(absolutePath)) _ = Directory.CreateDirectory(absolutePath);
         }
         private void Validate()
         {
@@ -46,7 +41,7 @@ namespace BL.Files.Upload
             //throw new Exception("SaveOriginal");
             //string path = Path.Combine(SavePath, Guid.NewGuid().ToString() + "_" + Original + uploadFile.Extension);
             var no = Uploads.Files.Count + 1;
-            string path = Path.Combine(SavePath, $"{no.ToString()}_{Original}{uploadFile.Extension}");
+            string path = Path.Combine(SavePath, $"{no}_{Original}{uploadFile.Extension}");
             using (var newStream = new FileStream(UploadSettings.WebRootPath + path, FileMode.OpenOrCreate))
             {
                 uploadFile.FileStream.CopyTo(newStream);
@@ -70,7 +65,7 @@ namespace BL.Files.Upload
         {
             Validate();
             CreatePaths();
-            UploadedInfo uploadedInfo = new UploadedInfo();
+            UploadedInfo uploadedInfo = new();
             foreach (var file in UploadSettings.UploadParam.UploadFiles)
             {
                 var item = new FilesItem();
@@ -86,12 +81,12 @@ namespace BL.Files.Upload
         }
         private List<DeletedItem> DeleteOldFiles()
         {
-            List<DeletedItem> list = new List<DeletedItem>();
+            List<DeletedItem> list = new();
             if (UploadSettings.UploadParam.DeleteFiles != null)
             {
                 foreach (var item in UploadSettings.UploadParam.DeleteFiles)
                 {
-                    DeletedItem deleted = new DeletedItem()
+                    DeletedItem deleted = new()
                     {
                         Path = item.Path,
                         PhysicalPath = $"{UploadSettings.WebRootPath.TrimEnd('/')}/{item.Path.TrimStart('/')}"
@@ -117,7 +112,7 @@ namespace BL.Files.Upload
         public static FileOperateBase CreateOperate(Uploads uploads, UploadSettings uploadSettings)
         {
             FileOperateBase fileOperate = null;
-            if (uploadSettings.UploadParam.UploadType == UploadType.SingleImage || uploadSettings.UploadParam.UploadType == UploadType.MutipleImage)
+            if (uploadSettings.UploadParam.UploadType is UploadType.SingleImage or UploadType.MutipleImage)
             {
                 fileOperate = new ImageFileOperate();
             }
@@ -152,7 +147,7 @@ namespace BL.Files.Upload
 
                 foreach (var item in param.ImageCompressSettings)
                 {
-                    CompressItem compress = new CompressItem()
+                    CompressItem compress = new()
                     {
                         Quality = item.Quality,
                         Width = item.Width ?? imgWidth,
@@ -171,21 +166,19 @@ namespace BL.Files.Upload
         }
         protected long SaveThumImg(string suffix, Image imgSource, string filename, int width, int height, int quality)
         {
-            suffix = (suffix.Substring(1) == "jpg" ? "jpeg" : suffix.Substring(1));
+            suffix = suffix[1..] == "jpg" ? "jpeg" : suffix[1..];
             ImageCodecInfo imageCodecInfo = GetEncoderInfo($"image/{suffix}");
-            EncoderParameter ep = new EncoderParameter(Encoder.Quality, quality);
-            EncoderParameters eps = new EncoderParameters(1);
+            EncoderParameter ep = new(Encoder.Quality, quality);
+            EncoderParameters eps = new(1);
             eps.Param[0] = ep;
-            Bitmap imgNew = new Bitmap(width, height);
+            Bitmap imgNew = new(width, height);
             Graphics g = Graphics.FromImage(imgNew);
             g.DrawImage(imgSource, 0, 0, width, height);
             imgNew.Save(UploadSettings.WebRootPath + Path.Combine(SavePath, filename), imageCodecInfo, eps);//保存物理文件
-            using (MemoryStream stream = new MemoryStream())//获取大小
-            {
-                imgNew.Save(stream, imageCodecInfo, eps);
-                long length = stream.Length;
-                return length;
-            }
+            using MemoryStream stream = new();//获取大小
+            imgNew.Save(stream, imageCodecInfo, eps);
+            long length = stream.Length;
+            return length;
         }
         private ImageCodecInfo GetEncoderInfo(string mimeType)
         {

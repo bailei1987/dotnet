@@ -9,7 +9,7 @@ namespace BL.Regions
     {
         public string Value { get; set; }
         public string Label { get; set; }
-        public List<RegionCascaderItem> Children { get; set; } = new List<RegionCascaderItem>();
+        public List<RegionCascaderItem> Children { get; set; } = new();
         public bool? Loading { get; set; }
     }
 }

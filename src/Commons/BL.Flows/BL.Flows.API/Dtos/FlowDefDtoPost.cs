@@ -1,7 +1,5 @@
-﻿using System;
+﻿using BL.Flows.Domain;
 using System.Linq;
-using BL.Flows.API.Models;
-using BL.Flows.Domain;
 
 namespace BL.Flows.API.Dtos
 {
@@ -9,7 +7,7 @@ namespace BL.Flows.API.Dtos
     {
         public FlowDef GetMapClass()
         {
-            var obj = new FlowDef
+            return new()
             {
                 Name = Name,
                 StepsCount = StepsCount,
@@ -17,7 +15,6 @@ namespace BL.Flows.API.Dtos
                 BusinessType = BusinessType,
                 Steps = Steps.Select(x => x.GetMapClass()).ToList()
             };
-            return obj;
         }
     }
 }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using BL.Flows.API.Models;
+﻿using BL.Flows.API.Models;
 using BL.Flows.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using System.Linq;
 
 namespace BL.Flows.API.Controllers
 {
@@ -14,25 +11,24 @@ namespace BL.Flows.API.Controllers
     [ApiController]
     public class FlowController : ControllerBase
     {
-        private readonly IMongoDatabase db;
+        //private readonly IMongoDatabase db;
         private readonly IMongoCollection<Flow> coll;
-        private readonly IMongoCollection<FlowBusiness> _flowBusinesses;
-        private readonly IMongoCollection<FlowDef> _flowDefs;
-        private readonly IMongoCollection<FlowRole> _flowRoles;
-        private readonly IMongoCollection<FlowUserManageDept> _flowUserManageDepts;
+        //private readonly IMongoCollection<FlowBusiness> _flowBusinesses;
+        //private readonly IMongoCollection<FlowDef> _flowDefs;
+        //private readonly IMongoCollection<FlowRole> _flowRoles;
+        //private readonly IMongoCollection<FlowUserManageDept> _flowUserManageDepts;
 
         public FlowController(IMongoDatabase db)
         {
-            this.db = db;
+            //this.db = db;
             coll = db.GetCollection<Flow>(CollNames.Flow);
-            _flowBusinesses = db.GetCollection<FlowBusiness>(CollNames.FlowBusiness);
-            _flowDefs = db.GetCollection<FlowDef>(CollNames.FlowDef);
-            _flowRoles = db.GetCollection<FlowRole>(CollNames.FlowRole);
-            _flowUserManageDepts = db.GetCollection<FlowUserManageDept>(CollNames.FlowUserManageDept);
+            //_flowBusinesses = db.GetCollection<FlowBusiness>(CollNames.FlowBusiness);
+            //_flowDefs = db.GetCollection<FlowDef>(CollNames.FlowDef);
+            //_flowRoles = db.GetCollection<FlowRole>(CollNames.FlowRole);
+            //_flowUserManageDepts = db.GetCollection<FlowUserManageDept>(CollNames.FlowUserManageDept);
         }
 
         private readonly FilterDefinitionBuilder<Flow> bf = Builders<Flow>.Filter;
-        private readonly UpdateDefinitionBuilder<Flow> bu = Builders<Flow>.Update;
 
         //[HttpPost("ForInnerUsing/NextOperatorsAssign")] // 按分管分配下一步操作人
         //public void NextOperatorsAssign(IClientSessionHandle session, Flow flow, bool isApplyerDept, List<FlowReferenceItem> operators)

@@ -11,6 +11,6 @@
         <Title>some basic classes</Title>
         <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
         <PackageReleaseNotes>add net5 targetframework support</PackageReleaseNotes>
-        <LangVersion>default</LangVersion>
+		<LangVersion>latest</LangVersion>
     </PropertyGroup>
 </Project>

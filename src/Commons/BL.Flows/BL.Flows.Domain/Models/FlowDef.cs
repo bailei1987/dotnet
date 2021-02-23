@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BL.Flows.Domain
 {
@@ -10,7 +8,7 @@ namespace BL.Flows.Domain
         public int StepsCount { get; set; }
         public ApproveType ApproveType { get; set; }
         public FlowBusiness BusinessType { get; set; }
-        public List<FlowDefStep> Steps { get; set; } = new List<FlowDefStep>();
+        public List<FlowDefStep> Steps { get; set; } = new();
 
         public string Id { get; set; }
         public FlowOperator Creator { get; set; }

@@ -23,7 +23,7 @@
         <Title>for simple webapi action result process</Title>
         <Copyright>copyright@2020 bl</Copyright>
         <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-        <LangVersion>9.0</LangVersion>
+		<LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

@@ -13,7 +13,7 @@ namespace BL.Dto
 
         public OperatorItem GetMapClass()
         {
-            return new OperatorItem(Rid, Name) { Time = DateTime.Now };
+            return new(Rid, Name) { Time = DateTime.Now };
         }
     }
 }

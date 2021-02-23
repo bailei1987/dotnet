@@ -5,6 +5,7 @@
         <PackageVersion>5.0.0</PackageVersion>
         <PackageReleaseNotes>change filename create logic</PackageReleaseNotes>
         <AssemblyName>BL.Files.Upload.API</AssemblyName>
+		<LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BL.WebApi.ResultProcess
@@ -24,28 +25,24 @@ namespace BL.WebApi.ResultProcess
             {
                 await HandleExceptionAsync(context, ex);
             }
-
         }
         private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            var result = JsonSerializer.Serialize(new
+            context.Response.ContentType = "application/json";
+            return context.Response.WriteAsync(JsonSerializer.Serialize(new
             {
                 StatusCode = HttpStatusCode.InternalServerError,
                 Msg = ex.Message,
                 Data = default(object)
             },
             typeof(object),
-            new JsonSerializerOptions
+            new()
             {
                 PropertyNameCaseInsensitive = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 WriteIndented = true,
-                Converters= { new System.Text.Json.Serialization.JsonStringEnumConverter() }
-            });
-            var code = HttpStatusCode.OK; // 将返回状态码置为200
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)code;
-            return context.Response.WriteAsync(result);
+                Converters = { new JsonStringEnumConverter() }
+            }));
         }
     }
     /// <summary>

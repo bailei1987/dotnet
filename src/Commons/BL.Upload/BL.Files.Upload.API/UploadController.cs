@@ -25,8 +25,8 @@ namespace BL.Files.Upload.API.Controllers
         [RequestSizeLimit(100_000_000)]
         public UploadedInfo Post([FromForm] UploadDto dto)
         {
-            if (string.IsNullOrWhiteSpace(dto.BusinessType)) throw new Exception("BusinessType need to point");
-            if (dto.UploadType != UploadType.SingleImage && dto.UploadType != UploadType.Files) throw new Exception("UploadType need be SingleImage|Files");
+            if (string.IsNullOrWhiteSpace(dto.BusinessType)) throw new("BusinessType need to point");
+            if (dto.UploadType is not UploadType.SingleImage and not UploadType.Files) throw new("UploadType need be SingleImage|Files");
             //==制作Uploads
             Uploads uploads = null;
             bool isExists = true;
@@ -38,7 +38,7 @@ namespace BL.Files.Upload.API.Controllers
             if (uploads == null)//重新制作
             {
                 isExists = false;
-                uploads = new Uploads()
+                uploads = new()
                 {
                     Id = dto.UploadId,
                     BusinessType = dto.BusinessType,
@@ -50,7 +50,7 @@ namespace BL.Files.Upload.API.Controllers
             }
             //==生成设置
             var requestUrl = $"{Request.Scheme}://{Request.Host}";
-            UploadSettings settings = new UploadSettings()
+            UploadSettings settings = new()
             {
                 UriPath = requestUrl
             };
@@ -65,7 +65,7 @@ namespace BL.Files.Upload.API.Controllers
                         DeleteFiles = uploads.GetFiles()
                     };
 
-                    if (dto.CompressesJSON != null) pam1.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    if (dto.CompressesJSON != null) pam1.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
                     settings.UploadParam = pam1;
                     uploads.ClearFiles();
@@ -79,21 +79,24 @@ namespace BL.Files.Upload.API.Controllers
                     };
                     settings.UploadParam = pam2;
 
-                    if (dto.CompressesJSON != null) pam2.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    if (dto.CompressesJSON != null) pam2.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
-                    if (dto.DeleteFilesJSON != null) pam2.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    if (dto.DeleteFilesJSON != null) pam2.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
                     if (pam2.DeleteFiles != null) uploads.RemoveFiles(settings.UploadParam.DeleteFiles);
                     break;
                 case UploadType.Files:
-                    settings.UploadParam = new UploadParam
+                    settings.UploadParam = new()
                     {
                         UploadType = dto.UploadType,
                         UploadFiles = dto.File.Select(x => new UploadFileInfo() { FileName = x.FileName, Length = x.Length, Extension = Path.GetExtension(x.FileName), FileStream = x.OpenReadStream() }),
                         Directory = !string.IsNullOrEmpty(dto.Directory) ? dto.Directory : dto.BusinessType
                     };
 
-                    if (dto.DeleteFilesJSON != null) settings.UploadParam.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    if (dto.DeleteFilesJSON != null) settings.UploadParam.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new()
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
 
                     if (settings.UploadParam.DeleteFiles != null) uploads.RemoveFiles(settings.UploadParam.DeleteFiles);
                     break;
@@ -102,7 +105,7 @@ namespace BL.Files.Upload.API.Controllers
             var rs = FileOperateBase.CreateOperate(uploads, settings).Save();
             //==更新结果至数据库
             if (!isExists) _uploads.InsertOne(uploads);
-            else _uploads.ReplaceOne(x => x.Id == dto.UploadId, uploads);
+            else _ = _uploads.ReplaceOne(x => x.Id == dto.UploadId, uploads);
             //==返回结果至前端
             return rs;
         }
@@ -119,7 +122,7 @@ namespace BL.Files.Upload.API.Controllers
         [HttpDelete("{uploadId}")]
         public IEnumerable<DeletedItem> Delete(string uploadId)
         {
-            List<DeletedItem> rs = new List<DeletedItem>();
+            List<DeletedItem> rs = new();
             //
             var upload = _uploads.Find(x => x.Id == uploadId).SingleOrDefault();
             if (upload == null) return rs;
@@ -129,18 +132,18 @@ namespace BL.Files.Upload.API.Controllers
                 rs.Add(DeletePhysical($"{UploadSettings.WebRootPath.TrimEnd('/')}/{item.Path.TrimStart('/')}"));
             }
             //
-            _uploads.DeleteOne(x => x.Id == uploadId);
+            _ = _uploads.DeleteOne(x => x.Id == uploadId);
             return rs;
         }
 
         [HttpPut("{uploadId}")]
         public UploadedInfo Put(string uploadId, IEnumerable<FileItemBase> deleteFiles)
         {
-            UploadedInfo rs = new UploadedInfo
+            UploadedInfo rs = new()
             {
                 Uploads = _uploads.Find(x => x.Id == uploadId).SingleOrDefault()
             };
-            if (rs.Uploads == null) throw new Exception("no uploads found");
+            if (rs.Uploads == null) throw new("no uploads found");
             //
             var files = rs.Uploads.Files.FindAll(x => deleteFiles.Select(f => f.Path).Contains(x.O.Path));
             foreach (var item in files)
@@ -152,21 +155,18 @@ namespace BL.Files.Upload.API.Controllers
                 }
             }
             //remove files info
-            rs.Uploads.Files.RemoveAll(x => deleteFiles.Select(f => f.Path).Contains(x.O.Path));
+            _ = rs.Uploads.Files.RemoveAll(x => deleteFiles.Select(f => f.Path).Contains(x.O.Path));
             //update to db
-            if (rs.Uploads.Files.Count == 0)
-            {
-                _uploads.DeleteOne(x => x.Id == rs.Uploads.Id);
-            }
-            else
-            {
-                _uploads.ReplaceOne(x => x.Id == rs.Uploads.Id, rs.Uploads);
-            }
+            if (rs.Uploads.Files.Count == 0) DeleteOne(rs.Uploads.Id);
+            else RelaceOne(rs);
             return rs;
         }
 
+        private void DeleteOne(string id) => _uploads.DeleteOne(x => x.Id == id);
+        private void RelaceOne(UploadedInfo rs) => _uploads.ReplaceOne(x => x.Id == rs.Uploads.Id, rs.Uploads);
 
-        private DeletedItem DeletePhysical(string physicalPath)
+
+        private static DeletedItem DeletePhysical(string physicalPath)
         {
             var rs = new DeletedItem
             {
@@ -189,9 +189,9 @@ namespace BL.Files.Upload.API.Controllers
         [HttpGet("CheckSetting")]
         public void CheckSetting()
         {
-            if (_uploads is null) throw new Exception("_uploads is null,please setting db and collectionName");
-            if (string.IsNullOrWhiteSpace(UploadSettings.WebRootPath)) throw new Exception("UploadSettings.WebRootPath is not setting,please check appsettings");
-            if (string.IsNullOrWhiteSpace(UploadSettings.RootFloder)) throw new Exception("UploadSettings.RootFloder is not setting,please check appsettings");
+            if (_uploads is null) throw new("_uploads is null,please setting db and collectionName");
+            if (string.IsNullOrWhiteSpace(UploadSettings.WebRootPath)) throw new("UploadSettings.WebRootPath is not setting,please check appsettings");
+            if (string.IsNullOrWhiteSpace(UploadSettings.RootFloder)) throw new("UploadSettings.RootFloder is not setting,please check appsettings");
         }
 
     }

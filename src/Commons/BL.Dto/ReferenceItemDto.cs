@@ -12,7 +12,7 @@ namespace BL.Dto
 
         public ReferenceItem GetMapClass()
         {
-            return new ReferenceItem(Rid, Name);
+            return new(Rid, Name);
         }
     }
 }

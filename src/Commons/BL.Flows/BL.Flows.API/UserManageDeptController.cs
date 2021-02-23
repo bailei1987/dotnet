@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
-using BL.Flows.API.Dtos;
+﻿using BL.Flows.API.Dtos;
 using BL.Flows.API.Models;
 using BL.Flows.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using System.Linq;
 
 namespace BL.Flows.API.Controllers
 {
@@ -48,7 +47,7 @@ namespace BL.Flows.API.Controllers
                 x.Id,
                 x.User,
                 x.Departments
-            }).SingleOrDefault() ?? throw new Exception("no data find");
+            }).SingleOrDefault() ?? throw new("no data find");
         }
 
         [Authorize]
@@ -56,7 +55,7 @@ namespace BL.Flows.API.Controllers
         public void Post(FlowUserManageDeptDtoPost dto)
         {
             var user = HttpContext.GetFlowLoginUserFromToken();
-            if (coll.CountDocuments(x => x.User.Rid == dto.User.Rid) > 0) throw new Exception("已添加该用户设置,请使用编辑");
+            if (coll.CountDocuments(x => x.User.Rid == dto.User.Rid) > 0) throw new("已添加该用户设置,请使用编辑");
             var obj = dto.GetMapClass();
             obj.Creator = user.ToOperator();
             obj.School = user.School;
@@ -68,13 +67,13 @@ namespace BL.Flows.API.Controllers
         public void Put(string id, FlowUserManageDeptDtoPut dto)
         {
             var update = bu.Set(x => x.User, dto.User).Set(x => x.Departments, dto.Departments);
-            if (coll.UpdateOne(x => x.Id == id, update).MatchedCount == 0) throw new Exception("no data find");
+            if (coll.UpdateOne(x => x.Id == id, update).MatchedCount == 0) throw new("no data find");
         }
 
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            coll.DeleteOne(x => x.Id == id);
+            _ = coll.DeleteOne(x => x.Id == id);
         }
 
         #endregion basic

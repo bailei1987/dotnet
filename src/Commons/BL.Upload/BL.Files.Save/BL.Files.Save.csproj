@@ -5,6 +5,7 @@
 	  <PackageVersion>1.0.0</PackageVersion>
 	  <PackageReleaseNotes>init</PackageReleaseNotes>
 	  <AssemblyName>BL.Files.Save</AssemblyName>
+	  <LangVersion>latest</LangVersion>
   </PropertyGroup>
 	<PropertyGroup>
 		<Authors>bl(315297830@qq.com)</Authors>

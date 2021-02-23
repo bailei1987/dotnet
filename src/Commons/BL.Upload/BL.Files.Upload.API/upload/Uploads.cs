@@ -9,10 +9,6 @@ namespace BL.Files.Upload
     /// </summary>
     public class Uploads
     {
-        public Uploads()
-        {
-            Files = new List<FilesItem>();
-        }
         /// <summary>
         /// 
         /// </summary>
@@ -41,11 +37,11 @@ namespace BL.Files.Upload
         /// <summary>
         /// 上传文件信息
         /// </summary>
-        public List<FilesItem> Files { get; set; }
+        public List<FilesItem> Files { get; set; } = new();
 
         public virtual void RemoveFiles(IEnumerable<FileItemBase> files)
         {
-            Files.RemoveAll(x => files.Select(f => f.Path).Contains(x.O.Path));
+            _ = Files.RemoveAll(x => files.Select(f => f.Path).Contains(x.O.Path));
         }
         public virtual void ClearFiles()
         {
@@ -57,7 +53,7 @@ namespace BL.Files.Upload
         }
         public virtual IEnumerable<FileItemBase> GetFiles()
         {
-            List<FileItemBase> list = new List<FileItemBase>();
+            List<FileItemBase> list = new();
             foreach (var item in Files)
             {
                 if (item.O != null) list.Add(item.O);

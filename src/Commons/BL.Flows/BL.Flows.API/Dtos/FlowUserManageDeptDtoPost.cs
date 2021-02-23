@@ -1,5 +1,4 @@
-﻿using BL.Flows.API.Models;
-using BL.Flows.Domain;
+﻿using BL.Flows.Domain;
 
 namespace BL.Flows.API.Dtos
 {
@@ -7,12 +6,11 @@ namespace BL.Flows.API.Dtos
     {
         public FlowUserManageDept GetMapClass()
         {
-            var obj = new FlowUserManageDept
+            return new()
             {
                 User = User,
                 Departments = Departments
             };
-            return obj;
         }
     }
 }

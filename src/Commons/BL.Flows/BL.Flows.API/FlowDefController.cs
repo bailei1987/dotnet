@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BL.Flows.API.Dtos;
+﻿using BL.Flows.API.Dtos;
 using BL.Flows.API.Models;
 using BL.Flows.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BL.Flows.API.Controllers
 {
@@ -47,7 +46,7 @@ namespace BL.Flows.API.Controllers
                 x.StepsCount,
                 x.ApproveType,
                 x.BusinessType
-            }).SingleOrDefault() ?? throw new Exception("no data find");
+            }).SingleOrDefault() ?? throw new("no data find");
         }
 
         [Authorize]
@@ -55,7 +54,7 @@ namespace BL.Flows.API.Controllers
         public void Post(FlowDefDtoPost dto)
         {
             var user = HttpContext.GetFlowLoginUserFromToken();
-            if (coll.CountDocuments(x => x.School == user.School && x.Name == dto.Name) > 0) throw new Exception("该流程名称已存在");
+            if (coll.CountDocuments(x => x.School == user.School && x.Name == dto.Name) > 0) throw new("该流程名称已存在");
             var obj = dto.GetMapClass();
             obj.Creator = user.ToOperator();
             obj.School = user.School;
@@ -67,8 +66,8 @@ namespace BL.Flows.API.Controllers
         public void Put(string id, FlowDefDtoPut dto)
         {
             var obj = coll.Find(x => x.Id == id).SingleOrDefault();
-            if (obj == null) throw new Exception("no data find");
-            coll.UpdateOne(x => x.Id == id, bu.Set(x => x.Name, dto.Name)
+            if (obj == null) throw new("no data find");
+            _ = coll.UpdateOne(x => x.Id == id, bu.Set(x => x.Name, dto.Name)
                 .Set(x => x.ApproveType, dto.ApproveType)
                 .Set(x => x.BusinessType, dto.BusinessType)
                 .Set(x => x.StepsCount, dto.StepsCount)
@@ -79,7 +78,7 @@ namespace BL.Flows.API.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            if (coll.DeleteOne(x => x.Id == id).DeletedCount == 0) throw new Exception("no data find");
+            if (coll.DeleteOne(x => x.Id == id).DeletedCount == 0) throw new("no data find");
         }
 
         #endregion basic

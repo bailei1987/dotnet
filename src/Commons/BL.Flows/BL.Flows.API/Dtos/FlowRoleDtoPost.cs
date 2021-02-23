@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using BL.Flows.API.Models;
-using BL.Flows.Domain;
+﻿using BL.Flows.Domain;
 
 namespace BL.Flows.API.Dtos
 {
@@ -8,16 +6,15 @@ namespace BL.Flows.API.Dtos
     {
         public FlowRole GetMapClass()
         {
-            var obj = new FlowRole
+            return new()
             {
                 Desc = Desc,
                 IsApplyerDept = IsApplyerDept,
                 IsFlowRole = IsFlowRole,
                 IsSystematic = false,
                 Name = Name,
-                Users = new List<FlowReferenceItem>()
+                Users = new()
             };
-            return obj;
         }
     }
 }

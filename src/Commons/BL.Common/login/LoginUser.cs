@@ -12,7 +12,7 @@ namespace BL.Common
 
         public OperatorItem ToOperator()
         {
-            return new OperatorItem
+            return new()
             {
                 Name = Name,
                 Rid = Rid,

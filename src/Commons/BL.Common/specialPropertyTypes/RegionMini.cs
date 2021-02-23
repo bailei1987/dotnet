@@ -4,19 +4,11 @@ namespace BL.Common
 {
     public class RegionMini : IIntegrate
     {
-        public RegionMini()
-        {
-            Codes = new List<string>();
-            Names = new List<string>();
-        }
-        public List<string> Codes { get; set; }
-        public List<string> Names { get; set; }
+        public List<string> Codes { get; set; } = new();
+        public List<string> Names { get; set; } = new();
         public string Text
         {
-            get
-            {
-                return Names.Count > 0 ? string.Join("/", Names) : null;
-            }
+            get => Names.Count > 0 ? string.Join("/", Names) : null;
         }
 
         public override string ToString()

@@ -9,8 +9,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using BL.Flows.Domain;
-using MongoDB.Driver;
 
 namespace BL.Flows.Client
 {
@@ -118,7 +116,7 @@ namespace BL.Flows.Client
                 StepNow = 1,
                 Steps = new List<FlowStep> { }
             };
-            _flows.ReplaceOne(session, x => x.Id == obj.Id, obj, new ReplaceOptions { IsUpsert = true });
+            _ = _flows.ReplaceOne(session, x => x.Id == obj.Id, obj, new ReplaceOptions { IsUpsert = true });
         }
         public static void DynamicApprove(IClientSessionHandle session, string user, string id, string comment)
         {
@@ -139,7 +137,7 @@ namespace BL.Flows.Client
             var creator = flow.CommonInfo.Creator;
             flow.Process.OperatorsNow.Clear();
             flow.Process.OperatorsNow.Add(new FlowReferenceItem(creator.Rid, creator.Name));
-            _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
+            _ = _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
         }
         public static void DynamicNext(IClientSessionHandle session, string user, string id, List<FlowReferenceItem> operators = null)
         {
@@ -157,7 +155,7 @@ namespace BL.Flows.Client
                 flow.Process.OperatorsNow.Clear();
                 flow.Process.OperatorsNow.AddRange(operators.Select(x => new FlowReferenceItem(x.Rid, x.Name)));
             }
-            _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
+            _ = _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
         }
 
         public static FlowsNextResult CreateBatch(IClientSessionHandle session, FlowPostParamBatch param)
@@ -313,13 +311,13 @@ namespace BL.Flows.Client
 
         public static void Update(IClientSessionHandle session, Flow flow)
         {
-            _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
+            _ = _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
             CreateNotices(flow);
         }
         public static void Update(IClientSessionHandle session, IEnumerable<Flow> flows)
         {
             IEnumerable<ReplaceOneModel<Flow>> writes = flows.Select(x => new ReplaceOneModel<Flow>(Builders<Flow>.Filter.Eq(y => y.Id, x.Id), x) { IsUpsert = true });
-            _flows.BulkWrite(session, writes, new BulkWriteOptions { IsOrdered = false });
+            _ = _flows.BulkWrite(session, writes, new BulkWriteOptions { IsOrdered = false });
             foreach (var flow in flows) CreateNotices(flow);
         }
         private static void CreateNotices(Flow flow)
@@ -331,12 +329,12 @@ namespace BL.Flows.Client
                     if (_FlowMsgApiSetting?.NotifyAppler is not null)
                     {
                         var step = flow.Process.Steps.Last(x => x.Agree is not null);
-                        _ = CreateNotifyApplyerMessage(new FlowApplyerMsgDto
+                        _ = CreateNotifyApplyerMessage(new()
                         {
                             Business = flow.Business,
                             BusinessKeyId = flow.BusinessKeyId,
                             Title = flow.CommonInfo.Title,
-                            Applyer = new FlowReferenceItem(flow.CommonInfo.Creator.Rid, flow.CommonInfo.Creator.Name),
+                            Applyer = new(flow.CommonInfo.Creator.Rid, flow.CommonInfo.Creator.Name),
                             Approver = step.Operator,
                             Agree = (bool)step.Agree,
                             Comment = step.Comment,
@@ -350,7 +348,7 @@ namespace BL.Flows.Client
                 {
                     if (flow.Process.OperatorsNow.Count > 0)
                     {
-                        _ = CreateNotifyApproverMessage(new FlowApproverMsgDto
+                        _ = CreateNotifyApproverMessage(new()
                         {
                             Business = flow.Business,
                             Title = flow.CommonInfo.Title,
@@ -361,17 +359,17 @@ namespace BL.Flows.Client
                     }
                 }
             }
-            else if (flow.Status.Pass == FlowStatusPass.已通过 || flow.Status.Pass == FlowStatusPass.未通过)
+            else if (flow.Status.Pass is FlowStatusPass.已通过 or FlowStatusPass.未通过)
             {
                 if (_FlowMsgApiSetting?.NotifyAppler is not null)
                 {
                     var step = flow.Process.Steps.Last(x => x.Agree is not null);
-                    _ = CreateNotifyApplyerMessage(new FlowApplyerMsgDto
+                    _ = CreateNotifyApplyerMessage(new()
                     {
                         Business = flow.Business,
                         BusinessKeyId = flow.BusinessKeyId,
                         Title = flow.CommonInfo.Title,
-                        Applyer = new FlowReferenceItem(flow.CommonInfo.Creator.Rid, flow.CommonInfo.Creator.Name),
+                        Applyer = new(flow.CommonInfo.Creator.Rid, flow.CommonInfo.Creator.Name),
                         Approver = step.Operator,
                         Agree = (bool)step.Agree,
                         Comment = step.Comment,

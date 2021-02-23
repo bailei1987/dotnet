@@ -24,7 +24,7 @@ namespace BL.Common.Date
                 0 => type == 1 ? "日" : "天",
                 _ => "错误"
             };
-            return pre + name;
+            return $"{pre}{name}";
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace BL.Common.Date
                 DayOfWeek.Sunday => type == 1 ? "日" : "天",
                 _ => "错误"
             };
-            return pre + name;
+            return $"{pre}{name}";
         }
 
         /// <summary>

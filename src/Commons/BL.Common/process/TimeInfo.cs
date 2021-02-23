@@ -15,7 +15,7 @@ namespace BL.Common
         }
         public void Over()
         {
-            if (Start == null) throw new Exception("Start not set");
+            if (Start == null) throw new("Start not set");
             End = DateTime.Now;
             Long = End - Start;
             Ms = Long.Value.TotalMilliseconds;

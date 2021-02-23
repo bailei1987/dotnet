@@ -1,6 +1,6 @@
 ﻿namespace BL.Common
 {
-    public class IdRidNameItem: IGetReferenceItem
+    public class IdRidNameItem : IGetReferenceItem
     {
         public IdRidNameItem() { }
         public string Id { get; set; }
@@ -8,7 +8,7 @@
         public string Name { get; set; }
         public ReferenceItem GetReferenceItem()
         {
-            return new ReferenceItem(Rid, Name);
+            return new(Rid, Name);
         }
         public override string ToString()
         {

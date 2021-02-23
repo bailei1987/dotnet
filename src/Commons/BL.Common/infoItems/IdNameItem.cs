@@ -12,11 +12,11 @@ namespace BL.Common
         public string Name { get; set; }
         public IdNameItem GetIdNameItem()
         {
-            return new IdNameItem(Id, Name);
+            return new(Id, Name);
         }
         public ReferenceItem GetReferenceItem()
         {
-            return new ReferenceItem(Id, Name);
+            return new(Id, Name);
         }
         public override string ToString()
         {

@@ -20,7 +20,7 @@ namespace BL.Common
 
         public ReferenceItem GetReferenceItem()
         {
-            return new ReferenceItem(Rid, Name);
+            return new(Rid, Name);
         }
         public bool Equal(ReferenceItem target)
         {

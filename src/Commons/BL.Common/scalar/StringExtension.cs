@@ -6,8 +6,7 @@ namespace BL.Common
     {
         public static string ToCamel(this string s)
         {
-            if (string.IsNullOrEmpty(s)) return s;
-            return s[0].ToString().ToLower() + s.Substring(1);
+            return string.IsNullOrEmpty(s) ? s : s[0].ToString().ToLower() + s[1..];
         }
 
         /// <summary>
@@ -21,9 +20,9 @@ namespace BL.Common
             value = value.Replace("/", "-").Replace(".", "-").Replace("。", "-").Replace(",", "-").Replace(" ", "-").Replace("|", "-");
             if (value.Split('-').Length == 1 && value.Length == 8)
                 value = string.Join("-", value.Substring(0, 4), value.Substring(4, 2), value.Substring(6, 2));
-            return (DateTime.TryParse(value, out DateTime date)) switch
+            return DateTime.TryParse(value, out DateTime date) switch
             {
-                false => force ? throw new Exception("string format is not correct,must like:2020/10/01,2020-10-01,20201001,2020.10.01") : (DateTime?)null,
+                false => force ? throw new("string format is not correct,must like:2020/10/01,2020-10-01,20201001,2020.10.01") : (DateTime?)null,
                 _ => date,
             };
         }
@@ -39,7 +38,7 @@ namespace BL.Common
                 value = string.Join("-", value.Substring(0, 4), value.Substring(4, 2), value.Substring(6, 2));
             return DateTime.TryParse(value, out _)
                 ? value
-                : force ? throw new FormatException("string format is not correct,must like:2020/10/01,2020-10-01,20201001,2020.10.01") : (string)null;
+                : force ? throw new("string format is not correct,must like:2020/10/01,2020-10-01,20201001,2020.10.01") : (string)null;
         }
     }
 }

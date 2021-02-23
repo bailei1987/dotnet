@@ -39,7 +39,7 @@
 
         public override string ToString()
         {
-            return Year + No.ToString().PadLeft(2, '0');
+            return $"{Year}{No.ToString().PadLeft(2, '0')}";
         }
 
         public bool IsIntegrated()
@@ -52,14 +52,14 @@
             if (string.IsNullOrWhiteSpace(value)) return null;
             if (value.Length == 6)
             {
-                if (int.TryParse(value, out int yn) == false) return null;
-                return new YearNo { Year = yn / 100, No = yn % 100 };
+                return int.TryParse(value, out int yn) == false ? null : new() { Year = yn / 100, No = yn % 100 };
             }
             string[] strs = value.Split('/', '-', '_', ' ', '|');
-            if (strs.Length != 2) return null;
-            if (int.TryParse(strs[0], out int y) == false) return null;
-            if (int.TryParse(strs[1], out int n) == false) return null;
-            return new YearNo { Year = y, No = n };
+            return strs.Length != 2
+                ? null
+                : int.TryParse(strs[0], out int y) == false
+                ? null
+                : int.TryParse(strs[1], out int n) == false ? null : new() { Year = y, No = n };
         }
     }
 }

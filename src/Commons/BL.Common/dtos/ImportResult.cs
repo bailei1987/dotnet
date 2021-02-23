@@ -6,10 +6,10 @@ namespace BL.Common
 {
     public class ImportResult<T> where T : ImportDataItem
     {
-        public List<T> Items { get; set; } = new List<T>();
+        public List<T> Items { get; set; } = new();
         public List<T> Errors { get { return Items.FindAll(x => x.Status == ImportDataItemStatus.Error); } }
-        public List<T> WaitImports { get; } = new List<T>();
-        public List<T> WaitUpdates { get; } = new List<T>();
+        public List<T> WaitImports { get; } = new();
+        public List<T> WaitUpdates { get; } = new();
 
         public int Total { get { return Items.Count; } }
         public int SuccessCount { get { return Items.Count(x => x.Status == ImportDataItemStatus.Success); } }
@@ -24,7 +24,7 @@ namespace BL.Common
             items.ForEach(x =>
             {
                 x.SetStatus(ImportDataItemStatus.Error, msg);
-                WaitImports.Remove(x);
+                _ = WaitImports.Remove(x);
             });
             return items.Count > 0;
         }
@@ -34,7 +34,7 @@ namespace BL.Common
             items.ForEach(x =>
             {
                 x.SetStatus(ImportDataItemStatus.Ignore, msg);
-                WaitImports.Remove(x);
+                _ = WaitImports.Remove(x);
             });
             return items.Count > 0;
         }
@@ -44,7 +44,7 @@ namespace BL.Common
             items.ForEach(x =>
             {
                 x.SetStatus(ImportDataItemStatus.WaitUpdate, msg);
-                WaitImports.Remove(x);
+                _ = WaitImports.Remove(x);
                 WaitUpdates.Add(x);
             });
             return items.Count > 0;
@@ -52,11 +52,8 @@ namespace BL.Common
 
         public bool ValidateItems()
         {
-            if (WaitImports.Count != Items.Count) throw new Exception("Validate All Items must only use when all items are WaitImports");
-            WaitImports.ForEach(x =>
-            {
-                x.Validate();
-            });
+            if (WaitImports.Count != Items.Count) throw new("Validate All Items must only use when all items are WaitImports");
+            WaitImports.ForEach(x => x.Validate());
             return WaitImports.RemoveAll(x => x.Status == ImportDataItemStatus.Error || x.Msg != null) == 0;
         }
         /// <summary>
@@ -89,7 +86,7 @@ namespace BL.Common
         public static ImportResult<T> Create<T>(List<T> list) where T : ImportDataItem
         {
             var result = new ImportResult<T>();
-            if (list is null || list.Count == 0) throw new Exception("import list cant be null or empty");
+            if (list is null || list.Count == 0) throw new("import list cant be null or empty");
             list.ForEach(x => x.SetStatus(ImportDataItemStatus.WaitImport));
             result.Items = list;
             result.WaitImports.AddRange(list);
@@ -123,5 +120,4 @@ namespace BL.Common
         Error = -1,
         Ignore = 2
     }
-
 }

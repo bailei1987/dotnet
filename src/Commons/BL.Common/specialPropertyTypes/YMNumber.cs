@@ -12,10 +12,7 @@ namespace BL.Common
         public string Format { get; set; }
         public string FormatStr
         {
-            get
-            {
-                return Y != null ? Y.ToString() + (Format ?? "/") + (M == null ? null : M < 10 ? "0" + M.ToString() : M.ToString()) : null;
-            }
+            get => Y != null ? Y.ToString() + (Format ?? "/") + (M == null ? null : M < 10 ? "0" + M.ToString() : M.ToString()) : null;
         }
         public override string ToString()
         {
@@ -33,7 +30,7 @@ namespace BL.Common
             if (string.IsNullOrWhiteSpace(value)) return null;
             else if (value.Length == 6 && int.TryParse(value, out int date))
             {
-                ym = new YMNumber
+                ym = new()
                 {
                     Y = date / 100,
                     M = date % 100,
@@ -44,7 +41,7 @@ namespace BL.Common
             }
             else if (value.Length == 4 && int.TryParse(value, out int year))
             {
-                ym = new YMNumber
+                ym = new()
                 {
                     Y = year,
                     Format = format

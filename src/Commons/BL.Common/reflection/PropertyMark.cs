@@ -1,5 +1,4 @@
-﻿using BL.Common.Scalar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace BL.Common.Reflection
@@ -73,16 +72,16 @@ namespace BL.Common.Reflection
         public FilterMark(FilterMarkAttribute attr)
         {
             Placeholder = attr.Placeholder;
-            TextFilter = new List<KVItem>();
+            TextFilter = new();
             foreach (string str in attr.TextFilter.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 string[] strs = str.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                TextFilter.Add(new KVItem(strs[0], strs[1]));
+                TextFilter.Add(new(strs[0], strs[1]));
             }
-            SelectFilter = new List<KVName>();
+            SelectFilter = new();
             foreach (string str in attr.SelectFilter.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                SelectFilter.Add(new KVName(str.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)));
+                SelectFilter.Add(new(str.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)));
             }
         }
         public string Placeholder { get; set; }
@@ -120,11 +119,11 @@ namespace BL.Common.Reflection
         /// <param name="str">标题:C#字段名,</param>
         public TableColumnsAttribute(string str)
         {
-            List = new List<KVItem>();
+            List = new();
             foreach (string s in str.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 string[] array = s.Split(new char[] { ':', '：' }, StringSplitOptions.RemoveEmptyEntries);
-                List.Add(new KVItem(array[0], array[1]));
+                List.Add(new(array[0], array[1]));
             }
         }
         public List<KVItem> List { get; set; }
@@ -147,7 +146,7 @@ namespace BL.Common.Reflection
         {
             Title = title;
             NameArray = name.Split(new char[] { '.', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            CamelList = new List<string>();
+            CamelList = new();
             foreach (string str in NameArray)
             {
                 CamelList.Add(str.ToCamel());

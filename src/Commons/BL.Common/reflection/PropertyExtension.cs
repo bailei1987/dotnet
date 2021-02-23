@@ -9,7 +9,7 @@ namespace BL.Common.Reflection
         {
             if (type.IsGenericType) type = type.GenericTypeArguments[0].UnderlyingSystemType;
             var props = type.GetProperties();
-            Dictionary<string, PropertyMarkAttribute> dic = new Dictionary<string, PropertyMarkAttribute>();
+            Dictionary<string, PropertyMarkAttribute> dic = new();
             foreach (var item in props)
             {
                 var v = (PropertyMarkAttribute[])item.GetCustomAttributes(typeof(PropertyMarkAttribute), false);

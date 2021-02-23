@@ -40,5 +40,11 @@ namespace example.api.Controllers
 
         [HttpGet("Error")]
         public void GetError() => throw new("ExceptionMiddleware Test");
+
+        [HttpGet("enum")]
+        public Enums GetEnums()
+        {
+            return Enums.测试1;
+        }
     }
 }

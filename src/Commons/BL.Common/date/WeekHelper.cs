@@ -65,5 +65,16 @@ namespace BL.Common.Date
             DayOfWeek.Wednesday => 3,
             _ => 7,
         };
+
+        public static int GetWeekNoFromPoint(DateTime point, DateTime? date)
+        {
+            if (date is null) date = DateTime.Now;
+            if (date < point) throw new Exception("要计算的日期不能小于起始日期");
+            int dayDiff = point.DayOfWeek == DayOfWeek.Sunday ? 6 : (int)point.DayOfWeek - 1;
+            var first_monday = point.AddDays(-dayDiff);
+            var daysCount = (date.Value - first_monday).Days;
+            var weekno = daysCount / 7 + (daysCount % 7 == 0 ? 0 : 1);
+            return weekno;
+        }
     }
 }

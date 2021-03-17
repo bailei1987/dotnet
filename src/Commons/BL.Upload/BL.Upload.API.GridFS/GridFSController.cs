@@ -107,6 +107,29 @@ namespace BL.Files.Upload.API.GridFS.Controllers
             return rsList;
         }
 
+        /// <summary>
+        /// different name version of HttpGet("{id}/DownloadStream")]
+        /// </summary>
+        [HttpGet("{id}/Stream")]
+        public object GetStream(string id)
+        {
+            return bucket.OpenDownloadStream(ObjectId.Parse(id), new()
+            {
+                Seekable = true
+            });
+        }
+        /// <summary>
+        /// different name version of [HttpGet("{id}/FileStream")]
+        /// </summary>
+        [HttpGet("{id}/Download")]
+        public FileStreamResult GetDownload(string id)
+        {
+            var stream = bucket.OpenDownloadStream(ObjectId.Parse(id), new() { Seekable = true });
+            return File(stream, stream.FileInfo.Metadata["contentType"].AsString, stream.FileInfo.Filename);
+        }
+
+        #region OpenOrDownload
+
         [HttpGet("{id}/DownloadStream")]
         public object GetDownloadStream(string id)
         {
@@ -131,6 +154,7 @@ namespace BL.Files.Upload.API.GridFS.Controllers
             var bytes = bucket.DownloadAsBytes(ObjectId.Parse(id));
             return File(bytes, fi.Metadata["contentType"].AsString, fi.Filename);
         }
+        #endregion
 
         [HttpDelete("{id}")]
         public void Delete(string id)

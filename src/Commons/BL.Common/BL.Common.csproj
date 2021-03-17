@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
-        <PackageVersion>2.1.32</PackageVersion>
-        <Version>2.1.32</Version>
-        <Authors>bl</Authors>
-        <Description>some base class for convenience</Description>
-        <Copyright>copyright@2020 </Copyright>
-        <Owners>bl</Owners>
-        <Title>some basic classes</Title>
-        <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-        <PackageReleaseNotes>add net5 targetframework support</PackageReleaseNotes>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+		<PackageVersion>2.1.33</PackageVersion>
+		<Version>2.1.33</Version>
+		<Authors>bl</Authors>
+		<Description>some base class for convenience</Description>
+		<Copyright>copyright@2020 </Copyright>
+		<Owners>bl</Owners>
+		<Title>some basic classes</Title>
+		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+		<PackageReleaseNotes>add week method</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
-    </PropertyGroup>
+	</PropertyGroup>
 </Project>

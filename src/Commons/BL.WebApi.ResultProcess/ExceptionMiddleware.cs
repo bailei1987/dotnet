@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BL.WebApi.ResultProcess
@@ -40,8 +39,7 @@ namespace BL.WebApi.ResultProcess
             {
                 PropertyNameCaseInsensitive = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                WriteIndented = true,
-                Converters = { new JsonStringEnumConverter() }
+                WriteIndented = true
             }));
         }
     }

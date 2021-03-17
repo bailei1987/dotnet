@@ -24,6 +24,6 @@
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
+      <PackageReference Include="MongoDB.Driver" Version="2.12.0" />
     </ItemGroup>
 </Project>

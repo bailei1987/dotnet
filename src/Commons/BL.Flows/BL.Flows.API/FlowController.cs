@@ -132,6 +132,7 @@ namespace BL.Flows.API.Controllers
             var user = HttpContext.GetFlowLoginUserFromToken();
             var filter = bf.Eq(x => x.School, user.School);
             if (dto.Businesses != null && dto.Businesses.Length > 0) filter &= bf.In(x => x.Business.K, dto.Businesses);
+            if (dto.ExceptDynamic) filter &= bf.Ne(x => x.CommonInfo.FlowDef.ApproveType, ApproveType.Danymic);
             if (dto.IsApproved) filter &= bf.ElemMatch(x => x.Process.Operators, o => o.Rid == user.Rid);
             else filter &= bf.ElemMatch(x => x.Process.OperatorsNow, o => o.Rid == user.Rid);
             if (!string.IsNullOrWhiteSpace(dto.SearchKey)) filter &= bf.Where(x => x.CommonInfo.Creator.Name.Contains(dto.SearchKey) || x.CommonInfo.Title.Contains(dto.SearchKey));
@@ -165,6 +166,7 @@ namespace BL.Flows.API.Controllers
 
         public class MyApprovePageInfo : FlowKeywordPageInfo
         {
+            public bool ExceptDynamic { get; set; } = true;
             public string[] Businesses { get; set; }
             public bool IsApproved { get; set; }
         }

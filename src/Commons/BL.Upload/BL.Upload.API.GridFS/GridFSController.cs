@@ -37,6 +37,7 @@ namespace BL.Files.Upload.API.GridFS.Controllers
             }
             foreach (var item in dto.File)
             {
+                if (item.ContentType is null) throw new Exception("ContentType in File is null");
                 var uploadOptions = new GridFSUploadOptions
                 {
                     BatchSize = dto.File.Count,
@@ -63,6 +64,49 @@ namespace BL.Files.Upload.API.GridFS.Controllers
             return rsList;
         }
 
+        [HttpPost("UnAuthorize")]
+        public IEnumerable<UploadItemResult> PostUnAuthorize([FromForm] UploadUnAuthorizeDto dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.BusinessType)) throw new("BusinessType can not be null");
+            if (dto.File is null || dto.File.Count == 0) throw new("no files find");
+            var rsList = new List<UploadItemResult> { };
+            if (!string.IsNullOrWhiteSpace(dto.DeleteIds))
+            {
+                var delete_ids = dto.DeleteIds.Split(',', '|', ';');
+                foreach (var did in delete_ids)
+                {
+                    bucket.Delete(ObjectId.Parse(did));
+                }
+            }
+            foreach (var item in dto.File)
+            {
+                if (item.ContentType is null) throw new Exception("ContentType in File is null");
+                var uploadOptions = new GridFSUploadOptions
+                {
+                    BatchSize = dto.File.Count,
+                    Metadata = new()
+                    {
+                        { "contentType", item.ContentType }
+                    }
+                };
+                var bapp = dto.App ?? GridFSUploadBuildExtensions.BusinessApp;
+                if (string.IsNullOrWhiteSpace(bapp)) throw new("BusinessApp can not be null");
+                _ = uploadOptions.Metadata.AddRange(new BsonDocument { { "app", bapp } });
+                if (!string.IsNullOrWhiteSpace(dto.BusinessType)) _ = uploadOptions.Metadata.AddRange(new BsonDocument { { "business", dto.BusinessType } });
+                if (!string.IsNullOrWhiteSpace(dto.Category)) _ = uploadOptions.Metadata.AddRange(new BsonDocument { { "category", dto.Category } });
+                _ = uploadOptions.Metadata.AddRange(new BsonDocument { { "creator", new { rid = dto.UserRid, name = dto.UserName }.ToBsonDocument() } });
+                var oid = bucket.UploadFromStream(item.FileName, item.OpenReadStream(), uploadOptions);
+                rsList.Add(new()
+                {
+                    FileId = oid.ToString(),
+                    FileName = item.FileName,
+                    Length = item.Length,
+                    ContentType = item.ContentType
+                });
+            }
+            return rsList;
+        }
+
         [HttpGet("{id}/DownloadStream")]
         public object GetDownloadStream(string id)
         {
@@ -75,7 +119,7 @@ namespace BL.Files.Upload.API.GridFS.Controllers
         [HttpGet("{id}/FileStream")]
         public FileStreamResult GetFileStream(string id)
         {
-            var stream = bucket.OpenDownloadStream(ObjectId.Parse(id), new () { Seekable = true });
+            var stream = bucket.OpenDownloadStream(ObjectId.Parse(id), new() { Seekable = true });
             return File(stream, stream.FileInfo.Metadata["contentType"].AsString, stream.FileInfo.Filename);
         }
 
@@ -119,6 +163,11 @@ namespace BL.Files.Upload.API.GridFS.Controllers
             /// </summary>
             [Required]
             public List<IFormFile> File { get; set; }
+        }
+        public class UploadUnAuthorizeDto : UploadDto
+        {
+            public string UserRid { get; set; }
+            public string UserName { get; set; }
         }
 
         #endregion

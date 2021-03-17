@@ -136,7 +136,7 @@ namespace BL.Flows.Client
             flow.Process.Operators.Add(operatorNow);
             var creator = flow.CommonInfo.Creator;
             flow.Process.OperatorsNow.Clear();
-            flow.Process.OperatorsNow.Add(new FlowReferenceItem(creator.Rid, creator.Name));
+            //flow.Process.OperatorsNow.Add(new FlowReferenceItem(creator.Rid, creator.Name));
             _ = _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
         }
         public static void DynamicNext(IClientSessionHandle session, string user, string id, List<FlowReferenceItem> operators = null)
@@ -144,14 +144,14 @@ namespace BL.Flows.Client
             var flow = _flows.Find(session, x => x.Id == id).SingleOrDefault() ?? throw new Exception("no data find");
             if (flow.CommonInfo.FlowDef.ApproveType != ApproveType.Danymic) throw new Exception("this method only use for dynamic approve type");
             if (flow.Status.Pass != FlowStatusPass.审批中) throw new Exception("该流程已结束");
-            var operatorNow = flow.Process.OperatorsNow.Find(x => x.Rid == user) ?? throw new Exception("当前操作人非此步骤人员");
+            //var operatorNow = flow.Process.OperatorsNow.Find(x => x.Rid == user) ?? throw new Exception("当前操作人非此步骤人员");
             if (operators is null || operators.Count == 0)
             {
                 flow.Status = new FlowStatus { OverTime = DateTime.Now, Pass = FlowStatusPass.已通过 };
             }
             else
             {
-                flow.Process.Operators.Add(operatorNow);
+                flow.Process.Operators.Add(new FlowReferenceItem { Rid = flow.CommonInfo.Creator.Rid, Name = flow.CommonInfo.Creator.Name });
                 flow.Process.OperatorsNow.Clear();
                 flow.Process.OperatorsNow.AddRange(operators.Select(x => new FlowReferenceItem(x.Rid, x.Name)));
             }

@@ -55,7 +55,7 @@ namespace example.api
             }
             _ = app.UseGlobalException();
             _ = app.UseCors("AllowedHosts");
-            _ = app.UseHttpsRedirection();
+            //_ = app.UseHttpsRedirection();
 
             _ = app.UseRouting();
 

@@ -11,7 +11,7 @@ namespace BL.WebApi.ResultProcess
     public class ResponseTimeMiddleware
     {
         // Name of the Response Header, Custom Headers starts with "X-"
-        private const string RESPONSE_HEADER_RESPONSE_TIME = "X-Response-Time-ms";
+        private const string RESPONSE_HEADER_RESPONSE_TIME = "X-Response-Time";
         // Handle to the next Middleware in the pipeline
         private readonly RequestDelegate next;
         public ResponseTimeMiddleware(RequestDelegate next)
@@ -28,7 +28,7 @@ namespace BL.WebApi.ResultProcess
                 watch.Stop();
                 var responseTimeForCompleteRequest = watch.ElapsedMilliseconds;
                 // Add the Response time information in the Response headers.
-                context.Response.Headers[RESPONSE_HEADER_RESPONSE_TIME] = responseTimeForCompleteRequest.ToString();
+                context.Response.Headers[RESPONSE_HEADER_RESPONSE_TIME] = $"{responseTimeForCompleteRequest} ms";
                 return Task.CompletedTask;
             });
             // Call the next delegate/middleware in the pipeline

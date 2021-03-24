@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BL.WebApi.ResultProcess
 {
+    /// <summary>
+    /// 全局异常中间件
+    /// </summary>
     class ExceptionMiddleware
     {
         private readonly RequestDelegate next;

@@ -53,6 +53,7 @@ namespace example.api
             {
                 _ = app.UseDeveloperExceptionPage();
             }
+            _ = app.UseResponseTime();
             _ = app.UseGlobalException();
             _ = app.UseCors("AllowedHosts");
             //_ = app.UseHttpsRedirection();

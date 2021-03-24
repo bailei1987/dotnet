@@ -6,6 +6,10 @@ namespace BL.WebApi.ResultProcess
 {
     public class ActionExecuteFilter : ActionFilterAttribute
     {
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            base.OnActionExecuting(context);
+        }
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             if (context.Exception is null)

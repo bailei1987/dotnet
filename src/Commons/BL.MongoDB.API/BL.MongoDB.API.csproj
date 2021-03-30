@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-    <PropertyGroup>
-        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
-        <PackageVersion>5.0.3</PackageVersion>
-        <Version>5.0.3</Version>
-        <Authors>bl(315297830@qq.com)</Authors>
-        <Copyright>copyright@2020 bl</Copyright>
-        <Owners>bl(315297830@qq.com)</Owners>
-        <PackageReleaseNotes>add UnwindObj </PackageReleaseNotes>
-        <Summary>provide smaplly method to create DbContext from docker or appsettings.json and some useful mappings like UTC to Local,ObjecctId to string,Enum to string etc and other extention methods.</Summary>
-        <Title>this package can help you not to need install MongoDB.Driver on Domain layer.All conventions are packed.(combination of BL.MongoDB and BL.MongoDB.Gen)</Title>
-        <Description>use [CONNECTIONSTRINGS_MONGO] in environment variable(like docker container) or [ConnectionStrings.Mongo] in appsettings.json to create DbContext,prefer using [CONNECTIONSTRINGS_MONGO] in env</Description>
-        <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-        <OutputType>Library</OutputType>
-        <IsPackable>true</IsPackable>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+		<PackageVersion>5.0.4</PackageVersion>
+		<Version>5.0.4</Version>
+		<Authors>bl(315297830@qq.com)</Authors>
+		<Copyright>copyright@2020 bl</Copyright>
+		<Owners>bl(315297830@qq.com)</Owners>
+		<PackageReleaseNotes>update official driver to 2.12;Registe decimal128 Serializer by default,</PackageReleaseNotes>
+		<Summary>provide smaplly method to create DbContext from docker or appsettings.json and some useful mappings like UTC to Local,ObjecctId to string,Enum to string etc and other extention methods.</Summary>
+		<Title>this package can help you not to need install MongoDB.Driver on Domain layer.All conventions are packed.(combination of BL.MongoDB and BL.MongoDB.Gen)</Title>
+		<Description>use [CONNECTIONSTRINGS_MONGO] in environment variable(like docker container) or [ConnectionStrings.Mongo] in appsettings.json to create DbContext,prefer using [CONNECTIONSTRINGS_MONGO] in env</Description>
+		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+		<OutputType>Library</OutputType>
+		<IsPackable>true</IsPackable>
 		<LangVersion>latest</LangVersion>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="MongoDB.Driver" Version="2.12.0" />
-    </ItemGroup>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="MongoDB.Driver" Version="2.12.1" />
+	</ItemGroup>
 </Project>

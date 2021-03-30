@@ -76,5 +76,13 @@ namespace BL.Common.Date
             var weekno = daysCount / 7 + (daysCount % 7 == 0 ? 0 : 1);
             return weekno;
         }
+        public static (DateTime, DateTime) GetWeekRange(DateTime date)
+        {
+            date = date.Date;
+            int dayDiff = date.DayOfWeek == DayOfWeek.Sunday ? 6 : (int)date.DayOfWeek - 1;
+            var monday = date.AddDays(-dayDiff);
+            var sunday = monday.AddDays(6);
+            return (monday, sunday);
+        }
     }
 }

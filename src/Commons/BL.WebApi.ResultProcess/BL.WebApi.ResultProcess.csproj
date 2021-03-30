@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Authors>bl(315297830@qq.com)</Authors>
-        <Description>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>bl(315297830@qq.com)</Authors>
+		<Description>
 			use for C# asp.net core web api.
 			include
 			1.process to standard format result like {statusCode:200,msg:"success",data:"anydatas"}
 			2.deal with exception to standard result too like {statusCode:500,msg:'object reference of null..etc',data:null}
 			3.TextJsonConvert,for use System.Text.Json,like "2017" from front-end to back-end int property "Year"
 		</Description>
-        <PackageReleaseNotes>
+		<PackageReleaseNotes>
 			some optimize change for test,please do not update this version
 		</PackageReleaseNotes>
-        <PackOnBuild>true</PackOnBuild>
-        <PackageVersion>5.0.3</PackageVersion>
-        <FileVersion>5.0.3</FileVersion>
-        <Version>5.0.3</Version>
-        <Owners>bl(315297830@qq.com)</Owners>
-        <Title>for simple webapi action result process</Title>
-        <Copyright>copyright@2020 bl</Copyright>
-        <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-        <LangVersion>latest</LangVersion>
-    </PropertyGroup>
-    <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    </ItemGroup>
+		<PackOnBuild>true</PackOnBuild>
+		<PackageVersion>5.0.4</PackageVersion>
+		<FileVersion>5.0.4</FileVersion>
+		<Version>5.0.4</Version>
+		<Owners>bl(315297830@qq.com)</Owners>
+		<Title>for simple webapi action result process</Title>
+		<Copyright>copyright@2020 bl</Copyright>
+		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 </Project>

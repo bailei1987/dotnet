@@ -59,6 +59,7 @@ namespace BL.MongoDB
                     };
                     ConventionRegistry.Register("commonpack", pack, x => true);
                     BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer(DateTimeKind.Local));//to local time
+                    BsonSerializer.RegisterSerializer(new DecimalSerializer(BsonType.Decimal128));//decimal to decimal default
                 }
                 catch (Exception ex)
                 {

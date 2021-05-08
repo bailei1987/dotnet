@@ -63,8 +63,8 @@ public class Cat
 
 ### Create your DbContext in Example.Infrasetructure
 
-*nomally,this project only need one Class : DbContext
-*if you do not want this layer,you can directly create DbContext at API project and use BL.MongoDB.API package.
+* nomally,this project only need one Class : DbContext
+* if you do not want this layer,you can directly create DbContext at API project and use BL.MongoDB.API package.
 
 ```C#
 using BL.MongoDB;

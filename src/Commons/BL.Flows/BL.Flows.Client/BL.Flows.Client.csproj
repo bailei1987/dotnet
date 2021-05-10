@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net5.0</TargetFrameworks>
-		<PackageVersion>5.0.21</PackageVersion>
-		<Version>5.0.21</Version>
+		<PackageVersion>5.0.22</PackageVersion>
+		<Version>5.0.22</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>
@@ -16,6 +16,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="MongoDB.Driver" Version="2.11.5" />
-		<PackageReference Include="BL.Flows.Domain" Version="5.0.18" />
+		<PackageReference Include="BL.Flows.Domain" Version="5.0.19" />
 	</ItemGroup>
 </Project>

@@ -44,6 +44,10 @@ namespace BL.Flows.Domain
         /// 处理状态(用于流程结束后,业务系统需做后续处理)
         /// </summary>
         public bool DealStatus { get; set; }
+        /// <summary>
+        /// 撤销人
+        /// </summary>
+        public FlowOperator Canceler { get; set; }
 
         public void AddContentsItem(string label, string value)
         {

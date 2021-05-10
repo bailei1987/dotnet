@@ -72,8 +72,8 @@ namespace BL.Common.Date
             if (date < point) throw new Exception("要计算的日期不能小于起始日期");
             int dayDiff = point.DayOfWeek == DayOfWeek.Sunday ? 6 : (int)point.DayOfWeek - 1;
             var first_monday = point.AddDays(-dayDiff);
-            var daysCount = (date.Value - first_monday).Days;
-            var weekno = daysCount / 7 + (daysCount % 7 == 0 ? 0 : 1);
+            var daysCount = (date.Value - first_monday).TotalDays;
+            var weekno = (int)(daysCount / 7) + (daysCount % 7 == 0 ? 0 : 1);
             return weekno;
         }
         public static (DateTime, DateTime) GetWeekRange(DateTime date)

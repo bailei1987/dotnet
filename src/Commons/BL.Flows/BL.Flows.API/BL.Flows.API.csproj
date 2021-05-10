@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
 		<TargetFrameworks>net5.0</TargetFrameworks>
-		<PackageVersion>5.0.18</PackageVersion>
-		<Version>5.0.18</Version>
+		<PackageVersion>5.0.21</PackageVersion>
+		<Version>5.0.21</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>

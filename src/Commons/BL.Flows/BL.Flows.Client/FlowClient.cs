@@ -311,7 +311,7 @@ namespace BL.Flows.Client
 
         public static void Update(IClientSessionHandle session, Flow flow)
         {
-            _ = _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
+            _flows.ReplaceOne(session, x => x.Id == flow.Id, flow, new ReplaceOptions { IsUpsert = true });
             CreateNotices(flow);
         }
         public static void Update(IClientSessionHandle session, IEnumerable<Flow> flows)
@@ -320,6 +320,17 @@ namespace BL.Flows.Client
             _ = _flows.BulkWrite(session, writes, new BulkWriteOptions { IsOrdered = false });
             foreach (var flow in flows) CreateNotices(flow);
         }
+
+        public static void Cancel(IClientSessionHandle session, string id, string uid, string uname)
+        {
+            var flow = _flows.Find(session, x => x.Id == id).SingleOrDefault() ?? throw new("no data find");
+            if (flow.Canceler != null) throw new Exception("error,this flow already cancelled,");
+            flow.DealStatus = false;
+            flow.Canceler = new FlowOperator { Rid = uid, Name = uname, Time = DateTime.Now };
+            flow.Status.Pass = FlowStatusPass.已撤销;
+            _flows.ReplaceOne(session, x => x.Id == id, flow);
+        }
+
         private static void CreateNotices(Flow flow)
         {
             if (flow.Status.Pass == FlowStatusPass.审批中)

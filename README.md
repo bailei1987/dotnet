@@ -41,8 +41,10 @@ ConnectionStrings:{
 ### Install Package use Nuget Package Manager
 
 * packages:
-*   BL.MongoDB  : install on Example.Infrasetructure
+*  BL.MongoDB  : install on Example.Infrasetructure
 *  BL.MongoDB.Gen  : install on Example.API
+
+* Alternantly you can only install BL.MongoDB.API on Example.API and create DbContext class at API project. Tt combined two upon packages;
 
 ### Create your Model in Example.Domain
 
@@ -61,7 +63,8 @@ public class Cat
 
 ### Create your DbContext in Example.Infrasetructure
 
-nomally,this project only need one Class : DbContext
+* nomally,this project only need one Class : DbContext
+* if you do not want this layer,you can directly create DbContext at API project and use BL.MongoDB.API package.
 
 ```C#
 using BL.MongoDB;
@@ -85,7 +88,7 @@ using MongoDB.Driver;
 ConfigureServices in Startup.cs
 
 ```C#
-  services.AddBLMongoDbSet<DbContext>(Configuration,option=> {
+  services.AddBLMongoDbContext<DbContext>(Configuration,option=> {
        option.AddNotConvertObjectIdToStringTypes(typeof(Person));//if you want use your own value as mongodb _id,you can add that class type at here.
   });
 ```

@@ -177,6 +177,7 @@ namespace BL.Flows.API.Controllers
         {
             var user = HttpContext.GetFlowLoginUserFromToken();
             var filter = bf.Eq(x => x.School, user.School) & bf.Eq(x => x.CommonInfo.Creator.Rid, user.Rid);
+            if (dto.ExceptDynamic) filter &= bf.Ne(x => x.CommonInfo.FlowDef.ApproveType, ApproveType.Danymic);
             if (dto.Businesses != null && dto.Businesses.Length > 0) filter &= bf.In(x => x.Business.K, dto.Businesses);
             if (!string.IsNullOrWhiteSpace(dto.SearchKey)) filter &= bf.Where(x => x.CommonInfo.Title.Contains(dto.SearchKey));
             var query = coll.Find(filter);
@@ -207,10 +208,30 @@ namespace BL.Flows.API.Controllers
 
         public class MyApplyPageInfo : FlowKeywordPageInfo
         {
+            public bool ExceptDynamic { get; set; } = true;
             public string[] Businesses { get; set; }
         }
 
-
+        [Authorize]
+        [HttpPost("MyCounts")]
+        public FlowMyCountsOD GetMyCounts()
+        {
+            var user = HttpContext.GetFlowLoginUserFromToken();
+            var counts = new FlowMyCountsOD();
+            var f1 = bf.Eq(x => x.School, user.School) & bf.Ne(x => x.CommonInfo.FlowDef.ApproveType, ApproveType.Danymic) & bf.Eq(x => x.CommonInfo.Creator.Rid, user.Rid);
+            counts.ApplyCount = coll.CountDocuments(f1);
+            var f2 = bf.Eq(x => x.School, user.School) & bf.Ne(x => x.CommonInfo.FlowDef.ApproveType, ApproveType.Danymic) & bf.ElemMatch(x => x.Process.OperatorsNow, y => y.Rid == user.Rid);
+            counts.NeedApproveCount = coll.CountDocuments(f2);
+            var f3 = bf.Eq(x => x.School, user.School) & bf.Ne(x => x.CommonInfo.FlowDef.ApproveType, ApproveType.Danymic) & bf.ElemMatch(x => x.Process.Operators, y => y.Rid == user.Rid);
+            counts.ApprovedCount = coll.CountDocuments(f3);
+            return counts;
+        }
+        public class FlowMyCountsOD
+        {
+            public long ApplyCount { get; set; }
+            public long NeedApproveCount { get; set; }
+            public long ApprovedCount { get; set; }
+        }
 
         //[Authorize]
         //[HttpGet("{id}/Business")]

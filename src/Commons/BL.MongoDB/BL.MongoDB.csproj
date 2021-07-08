@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
-        <PackageVersion>3.1.2</PackageVersion>
-        <Version>3.1.2</Version>
-        <Authors>bl(315297830@qq.com)</Authors>
-        <Copyright>copyright@2020 bl</Copyright>
-        <Owners>bl(315297830@qq.com)</Owners>
-        <PackageReleaseNotes>update MongoDB.Driver,optimize extend method BsonValue.GetValue(this BsonValue value, Type totype = null).this method always use with GetValueByHierarchicalNames(this BsonValue ele, string hierarchicalNames).using for get value from BsonDocument directly </PackageReleaseNotes>
-        <Summary>Sample mongodb connection helper.Use this package in Infrasetructure layer,you dont need install MongoDB.Driver on Domain layer again.</Summary>
-        <Title>Sample mongodb connection helper</Title>
-        <Description>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<PackageVersion>3.1.3</PackageVersion>
+		<Version>3.1.3</Version>
+		<Authors>bl(315297830@qq.com)</Authors>
+		<Copyright>copyright@2020 bl</Copyright>
+		<Owners>bl(315297830@qq.com)</Owners>
+		<PackageReleaseNotes>add decimal convert to store decimal use decimal in db</PackageReleaseNotes>
+		<Summary>Sample mongodb connection helper.Use this package in Infrasetructure layer,you dont need install MongoDB.Driver on Domain layer again.</Summary>
+		<Title>Sample mongodb connection helper</Title>
+		<Description>
 			A sample useful MongoDB Driver Helper.Only rely MongoDB.Driver.Include function below:
 			1.BaseDbContext.cs:you can create your DbContext inherit BaseDbContext
 			package some useful mongodb-to-C# mapping,like ObjectId&lt;=&gt;string,UTC&lt;=&gt;LocalTime,Enum&lt;=&gt;string,property name to camel field..etc
@@ -20,10 +20,10 @@
 			4.you can simply using BL.MongoDB.Gen's AddBLMongoDbContext method in ConfigureServices(startup.cs) to create your DbContext
 			5.example.api have some simple code for refering
 		</Description>
-        <PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
-        <LangVersion>latest</LangVersion>
-    </PropertyGroup>
-    <ItemGroup>
-      <PackageReference Include="MongoDB.Driver" Version="2.12.0" />
-    </ItemGroup>
+		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="MongoDB.Driver" Version="2.12.4" />
+	</ItemGroup>
 </Project>

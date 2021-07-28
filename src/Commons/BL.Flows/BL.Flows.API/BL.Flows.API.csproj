@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFrameworks>net5.0</TargetFrameworks>
-		<PackageVersion>5.0.22</PackageVersion>
-		<Version>5.0.22</Version>
+		<TargetFrameworks>net6.0</TargetFrameworks>
+		<PackageVersion>6.0.0</PackageVersion>
+		<Version>6.0.0</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>
@@ -17,9 +17,9 @@
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="MongoDB.Driver" Version="2.11.5" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.2" />
-		<PackageReference Include="BL.Flows.Domain" Version="5.0.18" />
+		<PackageReference Include="MongoDB.Driver" Version="2.13.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-preview.6.21355.2" />
+		<PackageReference Include="BL.Flows.Domain" Version="6.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Models\" />

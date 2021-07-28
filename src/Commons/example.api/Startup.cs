@@ -3,7 +3,6 @@ using BL.Upload.API.GridFS;
 using BL.WebApi.ResultProcess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,8 +31,7 @@ namespace example.api
             _ = services.AddGridFSUpload(db._database, new() { ChunkSizeBytes = 1048576 });
             //same format of api results
             _ = services.AddControllers(options =>
-            options.Filters.Add<ActionExecuteFilter>()).AddJsonOptions(options =>
-            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())).SetCompatibilityVersion(CompatibilityVersion.Latest);
+            options.Filters.Add<ActionExecuteFilter>()).AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             //
             _ = services.AddSwaggerGen(options =>

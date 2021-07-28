@@ -38,7 +38,7 @@ namespace BL.WebApi.ResultProcess
                 Data = default(object)
             },
             typeof(object),
-            new()
+            new JsonSerializerOptions()
             {
                 PropertyNameCaseInsensitive = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,

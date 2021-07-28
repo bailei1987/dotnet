@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+        <TargetFrameworks>net6.0</TargetFrameworks>
         <Authors>bl</Authors>
-        <PackageVersion>5.0.1</PackageVersion>
-        <Version>5.0.1</Version>
+        <PackageVersion>6.0.0</PackageVersion>
+        <Version>6.0.0</Version>
 		<LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
-        <PackageReference Include="BL.Common" Version="2.1.31" />
+        <PackageReference Include="MongoDB.Driver" Version="2.13.0" />
+        <PackageReference Include="BL.Common" Version="6.0.0" />
     </ItemGroup>
 </Project>

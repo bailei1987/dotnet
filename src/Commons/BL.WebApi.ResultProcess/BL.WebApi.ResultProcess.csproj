@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks>net6.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Description>
@@ -15,9 +15,9 @@
 			some optimize change for test,please do not update this version
 		</PackageReleaseNotes>
 		<PackOnBuild>true</PackOnBuild>
-		<PackageVersion>5.0.4</PackageVersion>
-		<FileVersion>5.0.4</FileVersion>
-		<Version>5.0.4</Version>
+		<PackageVersion>6.0.0</PackageVersion>
+		<FileVersion>6.0.0</FileVersion>
+		<Version>6.0.0</Version>
 		<Owners>bl(315297830@qq.com)</Owners>
 		<Title>for simple webapi action result process</Title>
 		<Copyright>copyright@2020 bl</Copyright>

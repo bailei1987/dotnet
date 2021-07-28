@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+        <TargetFrameworks>net6.0</TargetFrameworks>
     </PropertyGroup>
     <PropertyGroup>
-        <PackageVersion>5.0.1</PackageVersion>
-        <Version>5.0.1</Version>
+        <PackageVersion>6.0.0</PackageVersion>
+        <Version>6.0.0</Version>
         <Authors>bl(315297830@qq.com)</Authors>
         <Description>log insert,update,delete to mongodb for business</Description>
         <Copyright>copyright@2020 </Copyright>
@@ -21,6 +21,6 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
+        <PackageReference Include="MongoDB.Driver" Version="2.13.0" />
     </ItemGroup>
 </Project>

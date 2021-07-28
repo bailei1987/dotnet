@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+        <TargetFrameworks>net6.0</TargetFrameworks>
         <Authors>bl(315297830@qq.com)</Authors>
-        <PackageVersion>1.0.27</PackageVersion>
-        <Version>1.0.27</Version>
-        <FileVersion>1.0.27.0</FileVersion>
+        <PackageVersion>6.0.0</PackageVersion>
+        <Version>6.0.0</Version>
+        <FileVersion>6.0.0</FileVersion>
 		<LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="BL.Common" Version="2.1.32" />
-        <PackageReference Include="BL.StandardDictionary" Version="1.0.27" />
+        <PackageReference Include="BL.Common" Version="6.0.0" />
+        <PackageReference Include="BL.StandardDictionary" Version="6.0.0" />
     </ItemGroup>
 </Project>

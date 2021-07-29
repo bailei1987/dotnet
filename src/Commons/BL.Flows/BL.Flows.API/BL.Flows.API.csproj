@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFrameworks>net6.0</TargetFrameworks>
-		<PackageVersion>6.0.0</PackageVersion>
-		<Version>6.0.0</Version>
+		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
+		<PackageVersion>6.0.1</PackageVersion>
+		<Version>6.0.1</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>
@@ -16,11 +16,23 @@
 		<OutputType>Library</OutputType>
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
-	<ItemGroup>
+	
+	<ItemGroup Condition=" '$(TargetFramework)' =='net6.0' ">
 		<PackageReference Include="MongoDB.Driver" Version="2.13.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-preview.6.21355.2" />
 		<PackageReference Include="BL.Flows.Domain" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-preview.6.21355.2" />
 	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
+		<PackageReference Include="MongoDB.Driver" Version="2.13.0" />
+		<PackageReference Include="BL.Flows.Domain" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.8" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
+		<PackageReference Include="MongoDB.Driver" Version="2.13.0" />
+		<PackageReference Include="BL.Flows.Domain" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.17" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<Folder Include="Models\" />
 		<Folder Include="Dtos\" />

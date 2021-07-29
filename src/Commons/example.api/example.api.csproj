@@ -7,13 +7,13 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="BL.MongoDB.API" Version="6.0.0" />
-		<PackageReference Include="BL.Upload.API.GridFS" Version="6.0.0" />
-		<PackageReference Include="BL.WebApi.ResultProcess" Version="6.0.0" />
+		<PackageReference Include="BL.MongoDB.API" Version="6.0.1" />
+		<PackageReference Include="BL.Upload.API.GridFS" Version="6.0.1" />
+		<PackageReference Include="BL.WebApi.ResultProcess" Version="6.0.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.4" />
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.4" />
-		<PackageReference Include="BL.Excel" Version="6.0.0" />
-		<PackageReference Include="BL.StandardDictionary.API" Version="6.0.0" />
+		<PackageReference Include="BL.Excel" Version="6.0.1" />
+		<PackageReference Include="BL.StandardDictionary.API" Version="6.0.1" />
 	</ItemGroup>
 	<ProjectExtensions>
 		<VisualStudio>

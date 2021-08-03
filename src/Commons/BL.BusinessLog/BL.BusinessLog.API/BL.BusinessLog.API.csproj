@@ -4,8 +4,8 @@
         <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
     </PropertyGroup>
     <PropertyGroup>
-        <PackageVersion>6.0.1</PackageVersion>
-        <Version>6.0.1</Version>
+        <PackageVersion>6.0.2</PackageVersion>
+        <Version>6.0.2</Version>
         <Authors>bl(315297830@qq.com)</Authors>
         <Description>log insert,update,delete to mongodb for business</Description>
         <Copyright>copyright@2020 </Copyright>

@@ -11,19 +11,19 @@ namespace Regions.API.Controllers
     public class RegionController : ControllerBase
     {
         [HttpGet]
-        public static IEnumerable<RegionCascaderItem> GetProvinceCityDistrict(int? level = null)
+        public IEnumerable<RegionCascaderItem> GetProvinceCityDistrict(int? level = null)
         {
             return RegionHelper.GetProvinceCityDistrict(level);
         }
 
         [HttpGet("GetChilds")]
-        public static IEnumerable<RegionCascaderItem> GetChilds(string parentCode = null)
+        public IEnumerable<RegionCascaderItem> GetChilds(string parentCode = null)
         {
             return RegionHelper.GetChilds(parentCode);
         }
 
         [HttpPost("ByCodes")]
-        public static object GetByCodes(List<string[]> codes)
+        public object GetByCodes(List<string[]> codes)
         {
             return RegionHelper.GetByCodes(codes);
         }

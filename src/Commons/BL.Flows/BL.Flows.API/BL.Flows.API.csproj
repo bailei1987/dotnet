@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
-		<PackageVersion>6.0.2</PackageVersion>
-		<Version>6.0.2</Version>
+		<PackageVersion>6.0.3</PackageVersion>
+		<Version>6.0.3</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>

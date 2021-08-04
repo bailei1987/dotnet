@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
         <Authors>bl(315297830@qq.com)</Authors>
-        <PackageVersion>6.0.2</PackageVersion>
-        <Version>6.0.2</Version>
+        <PackageVersion>6.0.3</PackageVersion>
+        <Version>6.0.3</Version>
 		<LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>

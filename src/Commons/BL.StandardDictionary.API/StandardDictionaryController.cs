@@ -8,7 +8,7 @@ using System.Linq;
 namespace StandardDictionary.API.Controllers
 {
     [Route("[controller]")]
-    public class StandardDictionaryController : Controller
+    public class StandardDictionaryController : ControllerBase
     {
         [HttpGet]
         public DicItem[] Get(string key)

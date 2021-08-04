@@ -13,7 +13,11 @@
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.5" />
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.5" />
 		<PackageReference Include="BL.Excel" Version="6.0.1" />
-		<PackageReference Include="BL.StandardDictionary.API" Version="6.0.2" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BL.StandardDictionary.API\BL.StandardDictionary.API.csproj" />
 	</ItemGroup>
 	<ProjectExtensions>
 		<VisualStudio>

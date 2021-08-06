@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BL.StandardDictionary.API\BL.StandardDictionary.API.csproj" />
+	  <ProjectReference Include="..\BL.WebApi.ResultProcess\BL.WebApi.ResultProcess.csproj" />
 	</ItemGroup>
 	<ProjectExtensions>
 		<VisualStudio>

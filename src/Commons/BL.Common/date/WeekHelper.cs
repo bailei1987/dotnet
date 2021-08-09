@@ -66,10 +66,16 @@ namespace BL.Common.Date
             _ => 7,
         };
 
+        /// <summary>
+        /// 当要计算的日期小于起始日期时,返回-1
+        /// </summary>
+        /// <param name="point">起始日期</param>
+        /// <param name="date">要计算的日期</param>
+        /// <returns></returns>
         public static int GetWeekNoFromPoint(DateTime point, DateTime? date)
         {
             if (date is null) date = DateTime.Now;
-            if (date < point) throw new Exception("要计算的日期不能小于起始日期");
+            if (date < point) return -1;
             int dayDiff = point.DayOfWeek == DayOfWeek.Sunday ? 6 : (int)point.DayOfWeek - 1;
             var first_monday = point.AddDays(-dayDiff);
             var daysCount = (date.Value - first_monday).TotalDays;

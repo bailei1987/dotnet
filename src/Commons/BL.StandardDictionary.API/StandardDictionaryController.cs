@@ -8,16 +8,16 @@ using System.Linq;
 namespace StandardDictionary.API.Controllers
 {
     [Route("[controller]")]
-    public class StandardDictionaryController : Controller
+    public class StandardDictionaryController : ControllerBase
     {
         [HttpGet]
-        public static DicItem[] Get(string key)
+        public DicItem[] Get(string key)
         {
             var dic = DicItem.GetDics(key).ElementAt(0).Value;
             return dic;
         }
         [HttpGet("Many")]
-        public static Dictionary<string, DicItem[]> GetMany(string keys)
+        public Dictionary<string, DicItem[]> GetMany(string keys)
         {
             var dics = DicItem.GetDics(keys.Split(","));
             return dics;

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Description>get excel data to List&lt;Dictionary&lt;string,object&gt;&gt;</Description>
 		<Copyright>copyrite@bl</Copyright>
@@ -9,15 +9,15 @@
 		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
 		<Summary>get excel data</Summary>
 		<Title>BL.Excel,depend on ExcelDataReader</Title>
-		<PackageVersion>1.0.5</PackageVersion>
-		<Version>1.0.5</Version>
+		<PackageVersion>6.0.1</PackageVersion>
+		<Version>6.0.1</Version>
 		<PackageReleaseNotes>add empty row judge</PackageReleaseNotes>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ExcelDataReader" Version="3.6.0" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+		<PackageReference Include="ExcelDataReader" Version="3.7.0-develop00310" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0-preview.6.21352.12" />
 	</ItemGroup>
 </Project>

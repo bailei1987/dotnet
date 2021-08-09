@@ -65,7 +65,7 @@ namespace BL.Files.Upload.API.Controllers
                         DeleteFiles = uploads.GetFiles()
                     };
 
-                    if (dto.CompressesJSON != null) pam1.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    if (dto.CompressesJSON != null) pam1.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
                     settings.UploadParam = pam1;
                     uploads.ClearFiles();
@@ -79,9 +79,9 @@ namespace BL.Files.Upload.API.Controllers
                     };
                     settings.UploadParam = pam2;
 
-                    if (dto.CompressesJSON != null) pam2.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    if (dto.CompressesJSON != null) pam2.ImageCompressSettings = JsonSerializer.Deserialize<IEnumerable<ImageCompressSetting>>(dto.CompressesJSON, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
-                    if (dto.DeleteFilesJSON != null) pam2.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    if (dto.DeleteFilesJSON != null) pam2.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
                     if (pam2.DeleteFiles != null) uploads.RemoveFiles(settings.UploadParam.DeleteFiles);
                     break;
@@ -93,7 +93,7 @@ namespace BL.Files.Upload.API.Controllers
                         Directory = !string.IsNullOrEmpty(dto.Directory) ? dto.Directory : dto.BusinessType
                     };
 
-                    if (dto.DeleteFilesJSON != null) settings.UploadParam.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new()
+                    if (dto.DeleteFilesJSON != null) settings.UploadParam.DeleteFiles = JsonSerializer.Deserialize<IEnumerable<FileItemBase>>(dto.DeleteFilesJSON, new JsonSerializerOptions()
                     {
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     });

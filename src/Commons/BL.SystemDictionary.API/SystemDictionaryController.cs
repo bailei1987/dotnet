@@ -12,12 +12,12 @@ namespace SystemDictonary.API.Controllers
         public SystemDictionaryController() { }
 
         [HttpGet("{type}")]
-        public static IEnumerable<SystemDictionaryKV> Get(string type)
+        public IEnumerable<SystemDictionaryKV> Get(string type)
         {
             return SystemDictionary.Get(type);
         }
         [HttpGet("Many/{types}")]
-        public static Dictionary<string, List<SystemDictionaryKV>> GetMany(string types)
+        public Dictionary<string, List<SystemDictionaryKV>> GetMany(string types)
         {
             return SystemDictionary.GetMany(types.Split(',', '|', ' '));
         }

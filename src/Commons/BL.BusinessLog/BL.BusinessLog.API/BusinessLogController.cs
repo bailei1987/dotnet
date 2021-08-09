@@ -7,7 +7,7 @@ namespace BL.BusinessLog.API.Controllers
     public class BusinessLogController : ControllerBase
     {
         [HttpPost("Page")]
-        public static BusinessLogPageResult<object> Page(BusinessLogKeywordPageInfo dto)
+        public BusinessLogPageResult<object> Page(BusinessLogKeywordPageInfo dto)
         {
             return BusinessLogHelper.Page(dto);
         }

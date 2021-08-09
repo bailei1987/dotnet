@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
+		<PackageVersion>6.0.1</PackageVersion>
+		<Version>6.0.1</Version>
 	</PropertyGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
-		<PackageVersion>3.1.3</PackageVersion>
-		<Version>3.1.3</Version>
+		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
+		<PackageVersion>6.0.1</PackageVersion>
+		<Version>6.0.1</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>
@@ -24,6 +24,6 @@
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="MongoDB.Driver" Version="2.12.4" />
+		<PackageReference Include="MongoDB.Driver" Version="2.13.0" />
 	</ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ namespace BL.Excel.API.Controllers
     public class ExcelController : Controller
     {
         [HttpPost]
-        public static List<Dictionary<string, object>> Post([FromForm] IFormFile file)
+        public List<Dictionary<string, object>> Post([FromForm] IFormFile file)
         {
             if (file == null) throw new("未找到文件");
             var list = ExcelHelper.GetDatas(file.OpenReadStream());

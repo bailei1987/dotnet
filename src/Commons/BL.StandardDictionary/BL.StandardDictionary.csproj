@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+        <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <Authors>bl(315297830@qq.com)</Authors>
         <Copyright>copy@2020 bl</Copyright>
@@ -9,8 +9,7 @@
         <Owners>bl</Owners>
         <Title>standard dictionary for personal use</Title>
         <PackOnBuild>true</PackOnBuild>
-        <PackageVersion>1.0.27</PackageVersion>
-        <Version>1.0.27</Version>
-        <FileVersion>1.0.27.0</FileVersion>
+        <PackageVersion>6.0.1</PackageVersion>
+        <Version>6.0.1</Version>
     </PropertyGroup>
 </Project>

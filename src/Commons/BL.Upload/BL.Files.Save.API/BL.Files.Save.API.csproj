@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
-        <PackageVersion>5.0.0</PackageVersion>
+        <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
+        <PackageVersion>6.0.1</PackageVersion>
         <PackageReleaseNotes>init</PackageReleaseNotes>
         <AssemblyName>BL.Files.Save.API</AssemblyName>
 		<LangVersion>latest</LangVersion>
@@ -11,7 +11,7 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="BL.Files.Save" Version="1.0.0" />
+        <PackageReference Include="BL.Files.Save" Version="6.0.1" />
     </ItemGroup>
     <PropertyGroup>
         <Authors>bl(315297830@qq.com)</Authors>

@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
-		<PackageVersion>6.0.1</PackageVersion>
-		<Version>6.0.1</Version>
+		<PackageVersion>6.0.7</PackageVersion>
+		<Version>6.0.7</Version>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
@@ -13,7 +13,7 @@
 
 	<ItemGroup Condition=" '$(TargetFramework)' =='net6.0' ">
 		<PackageReference Include="BL.Common" Version="6.0.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-preview.6.21355.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-preview.7.21378.6" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
 		<PackageReference Include="BL.Common" Version="6.0.1" />

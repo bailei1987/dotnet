@@ -15,8 +15,8 @@
 			some optimize change for test,please do not update this version
 		</PackageReleaseNotes>
 		<PackOnBuild>true</PackOnBuild>
-		<PackageVersion>6.0.1</PackageVersion>
-		<Version>6.0.1</Version>
+		<PackageVersion>6.0.7</PackageVersion>
+		<Version>6.0.7</Version>
 		<Owners>bl(315297830@qq.com)</Owners>
 		<Title>for simple webapi action result process</Title>
 		<Copyright>copyright@2020 bl</Copyright>
@@ -27,6 +27,6 @@
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-	  <PackageReference Include="System.Text.Json" Version="6.0.0-preview.6.21352.12" />
+	  <PackageReference Include="System.Text.Json" Version="6.0.0-preview.7.21377.19" />
 	</ItemGroup>
 </Project>

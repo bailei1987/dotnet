@@ -9,8 +9,8 @@
 		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
 		<Summary>get excel data</Summary>
 		<Title>BL.Excel,depend on ExcelDataReader</Title>
-		<PackageVersion>6.0.1</PackageVersion>
-		<Version>6.0.1</Version>
+		<PackageVersion>6.0.7</PackageVersion>
+		<Version>6.0.7</Version>
 		<PackageReleaseNotes>add empty row judge</PackageReleaseNotes>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
 		<LangVersion>latest</LangVersion>
@@ -18,6 +18,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="ExcelDataReader" Version="3.7.0-develop00310" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0-preview.6.21352.12" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0-preview.7.21377.19" />
 	</ItemGroup>
 </Project>

@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
-		<PackageVersion>6.0.3</PackageVersion>
-		<Version>6.0.3</Version>
+		<PackageVersion>6.0.7</PackageVersion>
+		<Version>6.0.7</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>
@@ -18,9 +18,9 @@
 	</PropertyGroup>
 	
 	<ItemGroup Condition=" '$(TargetFramework)' =='net6.0' ">
-		<PackageReference Include="MongoDB.Driver" Version="2.13.0" />
+		<PackageReference Include="MongoDB.Driver" Version="2.13.1" />
 		<PackageReference Include="BL.Flows.Domain" Version="6.0.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-preview.6.21355.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-preview.7.21378.6" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
 		<PackageReference Include="MongoDB.Driver" Version="2.13.0" />

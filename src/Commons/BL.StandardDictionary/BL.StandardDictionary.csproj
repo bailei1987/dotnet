@@ -9,7 +9,7 @@
         <Owners>bl</Owners>
         <Title>standard dictionary for personal use</Title>
         <PackOnBuild>true</PackOnBuild>
-        <PackageVersion>6.0.1</PackageVersion>
-        <Version>6.0.1</Version>
+        <PackageVersion>6.0.2</PackageVersion>
+        <Version>6.0.2</Version>
     </PropertyGroup>
 </Project>

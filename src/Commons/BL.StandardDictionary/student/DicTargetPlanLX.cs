@@ -16,6 +16,8 @@
                 new DicItem("06","三校生"),
                 new DicItem("07","单招"),
                 new DicItem("08","单报"),
+                new DicItem("09","统招"),
+                new DicItem("10","扩招"),
                 new DicItem("99","其他"),
             };
 

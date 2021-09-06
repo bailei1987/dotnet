@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
-        <LangVersion>latest</LangVersion>
-        <Authors>bl(315297830@qq.com)</Authors>
-        <Copyright>copy@2020 bl</Copyright>
-        <NeutralLanguage>zh</NeutralLanguage>
-        <Owners>bl</Owners>
-        <Title>standard dictionary for personal use</Title>
-        <PackOnBuild>true</PackOnBuild>
-        <PackageVersion>6.0.2</PackageVersion>
-        <Version>6.0.2</Version>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<Authors>bl(315297830@qq.com)</Authors>
+		<Copyright>copy@2020 bl</Copyright>
+		<NeutralLanguage>zh</NeutralLanguage>
+		<Owners>bl</Owners>
+		<Title>standard dictionary for personal use</Title>
+		<PackOnBuild>true</PackOnBuild>
+		<PackageVersion>6.0.3</PackageVersion>
+		<Version>6.0.3</Version>
+	</PropertyGroup>
 </Project>

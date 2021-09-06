@@ -12,7 +12,7 @@
                 new DicItem("02","民语言类"),
                 new DicItem("03","双语类"),
                 new DicItem("04","普通类"),
-                new DicItem("05","职升专"),
+                new DicItem("05","直升专"),
                 new DicItem("06","三校生"),
                 new DicItem("07","单招"),
                 new DicItem("08","单报"),

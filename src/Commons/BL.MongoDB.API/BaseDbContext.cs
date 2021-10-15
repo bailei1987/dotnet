@@ -15,14 +15,8 @@ namespace BL.MongoDB
     /// </summary>
     public class StringObjectIdIdGeneratorConventionThatWorks : ConventionBase, IPostProcessingConvention
     {
-        //private readonly ConventionPackOptions _options = null;
-        //public StringObjectIdIdGeneratorConventionThatWorks(ConventionPackOptions options)
-        //{
-        //    _options = options;
-        //}
         public void PostProcess(BsonClassMap classMap)
         {
-            //if (_options.IsNotConvertObjectIdToStringType(classMap.ClassType)) return;
             var idMemberMap = classMap.IdMemberMap;
             if (idMemberMap == null || idMemberMap.IdGenerator != null) return;
             if (idMemberMap.MemberType == typeof(string)) _ = idMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(BsonType.ObjectId));
@@ -55,7 +49,7 @@ namespace BL.MongoDB
                         new CamelCaseElementNameConvention(),//property to camel
                         new IgnoreExtraElementsConvention(true),//
                         new NamedIdMemberConvention("Id","ID"),//_id mapping Id or ID
-                        new EnumRepresentationConvention(BsonType.String),//save enum value as string
+                        new EnumRepresentationConvention(BsonType.String),//save enum value as string     
                     };
                     ConventionRegistry.Register("commonpack", pack, x => true);
                     BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer(DateTimeKind.Local));//to local time
@@ -70,7 +64,7 @@ namespace BL.MongoDB
             {
                 new StringObjectIdIdGeneratorConventionThatWorks()//Id[string] mapping ObjectId
             };
-            ConventionRegistry.Register("idpack" + Guid.NewGuid().ToString(), idpack, x => options.IsNotConvertObjectIdToStringType(x) == false);
+            ConventionRegistry.Register("idpack" + Guid.NewGuid().ToString(), idpack, x => options.IsIdExcept(x) == false);
         }
 
         public BaseDbContext() { }
@@ -85,14 +79,16 @@ namespace BL.MongoDB
 
     public class ConventionPackOptions
     {
-        private readonly List<Type> NotConvertObjectIdToStringTypes = new();
-        public void AddNotConvertObjectIdToStringTypes(params Type[] types)
+        //Indicate the types which do not use MongoDB Auto ObjectId.
+        private readonly List<Type> _idExcepts = new();
+        public ConventionPackOptions AddIdExcepts(params Type[] types)
         {
-            NotConvertObjectIdToStringTypes.AddRange(types);
+            _idExcepts.AddRange(types);
+            return this;
         }
-        public bool IsNotConvertObjectIdToStringType(Type type)
+        public bool IsIdExcept(Type type)
         {
-            return NotConvertObjectIdToStringTypes.Contains(type);
+            return _idExcepts.Contains(type);
         }
     }
 }

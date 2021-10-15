@@ -1,10 +1,9 @@
-﻿using BL.Excel;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using models;
 using MongoDB.Driver;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace example.api.Controllers
 {
@@ -24,8 +23,8 @@ namespace example.api.Controllers
         {
             _ = db.Test1s.DeleteMany(x => true);
             _ = db.Test2s.DeleteMany(x => true);
-            var test1 = new Test1 { Name = "小白", Sex = ESex.MM };
-            var test2 = new Test2 { Id = "xh", Name = "小黑", Sex = ESex.MM };
+            var test1 = new Test1 { Name = "小白", Sex = ESex.MM, Grade = EGrade.一年级 };
+            var test2 = new Test2 { Id = "xh", Name = "小黑", Sex = ESex.MM, Grade = EGrade.初一 };
             db.Test1s.InsertOne(test1);
             db.Test2s.InsertOne(test2);
             var t1 = db.Test1s.Find(x => true).Single();
@@ -35,16 +34,16 @@ namespace example.api.Controllers
         [HttpGet]
         public string Get() => "WeatherForecast.API";
 
-        [HttpPost]
-        public List<Dictionary<string, object>> GetExcelDatas([FromForm] IFormFile file) => file == null ? throw new("未找到文件") : ExcelHelper.GetDatas(file.OpenReadStream());
+        //[HttpPost]
+        //public List<Dictionary<string, object>> GetExcelDatas([FromForm] IFormFile file) => file == null ? throw new("未找到文件") : ExcelHelper.GetDatas(file.OpenReadStream());
 
-        [HttpGet("Error")]
-        public void GetError() => throw new("ExceptionMiddleware Test");
+        //[HttpGet("Error")]
+        //public void GetError() => throw new("ExceptionMiddleware Test");
 
-        [HttpGet("enum")]
-        public Enums GetEnums()
-        {
-            return Enums.测试1;
-        }
+        //[HttpGet("enum")]
+        //public Enums GetEnums()
+        //{
+        //    return Enums.测试1;
+        //}
     }
 }

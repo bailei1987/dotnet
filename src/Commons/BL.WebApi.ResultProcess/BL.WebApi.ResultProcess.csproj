@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
+		<TargetFrameworks>net5.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Description>
@@ -12,11 +12,11 @@
 			3.TextJsonConvert,for use System.Text.Json,like "2017" from front-end to back-end int property "Year"
 		</Description>
 		<PackageReleaseNotes>
-			some optimize change for test,please do not update this version
+			remove other support,now only support net5.0
 		</PackageReleaseNotes>
 		<PackOnBuild>true</PackOnBuild>
-		<PackageVersion>6.0.7</PackageVersion>
-		<Version>6.0.7</Version>
+		<PackageVersion>6.5.7</PackageVersion>
+		<Version>6.5.7</Version>
 		<Owners>bl(315297830@qq.com)</Owners>
 		<Title>for simple webapi action result process</Title>
 		<Copyright>copyright@2020 bl</Copyright>
@@ -25,8 +25,8 @@
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-	  <PackageReference Include="System.Text.Json" Version="6.0.0-preview.7.21377.19" />
+		<!--<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="System.Text.Json" Version="6.0.0-preview.7.21377.19" />-->
 	</ItemGroup>
 </Project>

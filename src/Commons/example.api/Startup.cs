@@ -1,5 +1,5 @@
+using System.Text.Json.Serialization;
 using BL.MongoDB;
-using BL.Upload.API.GridFS;
 using BL.WebApi.ResultProcess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using models;
-using System.Text.Json.Serialization;
 
 namespace example.api
 {
@@ -27,11 +26,13 @@ namespace example.api
             //
             _ = services.AddCors(options => options.AddPolicy("AllowedHosts", builder => _ = builder.WithOrigins(origins).AllowAnyMethod().AllowAnyHeader()));
             //db
-            var db = services.AddBLMongoDbContext<DbContext>(Configuration, opt => opt.AddNotConvertObjectIdToStringTypes(typeof(Test2)));
-            _ = services.AddGridFSUpload(db._database, new() { ChunkSizeBytes = 1048576 });
+            var db = services.AddBLMongoDbContext<DbContext>(Configuration, opt => opt.AddIdExcepts(typeof(Test2)));
             //same format of api results
-            _ = services.AddControllers(options =>
-            options.Filters.Add<ActionExecuteFilter>()).AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ActionExecuteFilter>();
+                options.Filters.Add<ExceptionFilter>();
+            }).AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             //
             _ = services.AddSwaggerGen(options =>
@@ -51,8 +52,6 @@ namespace example.api
             {
                 _ = app.UseDeveloperExceptionPage();
             }
-           
-            _ = app.UseGlobalException();
             _ = app.UseResponseTime();
 
             _ = app.UseCors("AllowedHosts");

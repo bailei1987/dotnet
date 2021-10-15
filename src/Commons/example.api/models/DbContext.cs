@@ -16,6 +16,7 @@ namespace models
         public string Id { get; set; }
         public string Name { get; set; }
         public ESex Sex { get; set; }
+        public EGrade Grade { get; set; }
     }
     public enum ESex
     {
@@ -27,5 +28,11 @@ namespace models
         public string Id { get; set; }
         public string Name { get; set; }
         public ESex Sex { get; set; }
+        public EGrade Grade { get; set; }
+    }
+    public enum EGrade
+    {
+        一年级 = 1,
+        初一 = 7
     }
 }

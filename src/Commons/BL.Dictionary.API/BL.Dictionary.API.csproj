@@ -11,7 +11,7 @@
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="MongoDB.Driver" Version="2.13.1" />
+        <PackageReference Include="MongoDB.Driver" Version="2.19.0" />
         <PackageReference Include="BL.Common" Version="6.0.1" />
     </ItemGroup>
 </Project>

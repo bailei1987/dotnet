@@ -2,12 +2,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
-		<PackageVersion>6.0.7</PackageVersion>
-		<Version>6.0.7</Version>
+		<PackageVersion>6.219.20</PackageVersion>
+		<Version>6.219.20</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>
-		<PackageReleaseNotes>add decimal convert to store decimal use decimal in db</PackageReleaseNotes>
+		<PackageReleaseNotes>update reference of MongoDB.Diver to 2.19.2</PackageReleaseNotes>
 		<Summary>Sample mongodb connection helper.Use this package in Infrasetructure layer,you dont need install MongoDB.Driver on Domain layer again.</Summary>
 		<Title>Sample mongodb connection helper</Title>
 		<Description>
@@ -21,9 +21,10 @@
 			5.example.api have some simple code for refering
 		</Description>
 		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="MongoDB.Driver" Version="2.13.1" />
+		<PackageReference Include="MongoDB.Driver" Version="2.19.2" />
 	</ItemGroup>
 </Project>

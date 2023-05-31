@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFrameworks>net5.0</TargetFrameworks>
-		<PackageVersion>6.5.1</PackageVersion>
-		<Version>6.5.1</Version>
+		<TargetFrameworks>net6.0;net5.0</TargetFrameworks>
+		<PackageVersion>6.219.20</PackageVersion>
+		<Version>6.219.20</Version>
 		<Authors>bl(315297830@qq.com)</Authors>
 		<Copyright>copyright@2020 bl</Copyright>
 		<Owners>bl(315297830@qq.com)</Owners>
-		<PackageReleaseNotes>remove 3.1,6.0 support</PackageReleaseNotes>
+		<PackageReleaseNotes>add support of net6.0,update reference of MongoDB.Diver to 2.19.2</PackageReleaseNotes>
 		<Summary>provide smaplly method to create DbContext from docker or appsettings.json and some useful mappings like UTC to Local,ObjecctId to string,Enum to string etc and other extention methods.</Summary>
 		<Title>this package can help you not to needinstall MongoDB.Driver on Domain layer.All conventions are packed.(combination of BL.MongoDB and BL.MongoDB.Gen)</Title>
 		<Description>use [CONNECTIONSTRINGS_MONGO] in environment variable(like docker container) or [ConnectionStrings.Mongo] in appsettings.json to create DbContext,prefer using [CONNECTIONSTRINGS_MONGO] in env</Description>
 		<PackageProjectUrl>https://github.com/bailei1987/dotnet</PackageProjectUrl>
 		<OutputType>Library</OutputType>
 		<IsPackable>true</IsPackable>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="MongoDB.Driver" Version="2.13.1" />
+		<PackageReference Include="MongoDB.Driver" Version="2.19.2" />
 	</ItemGroup>
 </Project>

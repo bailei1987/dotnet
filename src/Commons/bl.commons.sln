@@ -62,6 +62,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Flows.Client", "BL.Flows
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Flows.Domain", "BL.Flows\BL.Flows.Domain\BL.Flows.Domain.csproj", "{D0861F88-C743-4D52-B6BC-A18A4BBE0FCF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BL.DataSync", "BL.DataSync", "{3710FD53-A936-4C21-8CC2-EE988D2F0798}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.DataSync.Server", "BL.DataSync\BL.DataSync.Server\BL.DataSync.Server.csproj", "{6346E5FA-D54A-4F3C-ABC6-0984A17417A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -176,6 +180,10 @@ Global
 		{D0861F88-C743-4D52-B6BC-A18A4BBE0FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0861F88-C743-4D52-B6BC-A18A4BBE0FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0861F88-C743-4D52-B6BC-A18A4BBE0FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6346E5FA-D54A-4F3C-ABC6-0984A17417A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6346E5FA-D54A-4F3C-ABC6-0984A17417A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6346E5FA-D54A-4F3C-ABC6-0984A17417A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6346E5FA-D54A-4F3C-ABC6-0984A17417A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -191,6 +199,7 @@ Global
 		{15C90730-1377-4FE9-A4F6-F0D0659215D5} = {E542A0FB-0558-4E1B-A2A0-6C7B05D0C3A8}
 		{5327BAAB-D7E1-4B9B-A945-1B2371F0CD20} = {E542A0FB-0558-4E1B-A2A0-6C7B05D0C3A8}
 		{D0861F88-C743-4D52-B6BC-A18A4BBE0FCF} = {E542A0FB-0558-4E1B-A2A0-6C7B05D0C3A8}
+		{6346E5FA-D54A-4F3C-ABC6-0984A17417A9} = {3710FD53-A936-4C21-8CC2-EE988D2F0798}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1CD7B59-9DA1-485F-B7A9-F96EB639D156}
